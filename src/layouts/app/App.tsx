@@ -58,7 +58,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const nodeRef = useRef(null);
   const floatBtnRef = useRef(null);
   const dispatch = useDispatch();
-  const { mytheme } = useSelector((state: RootState) => state.theme);
+  const { mytheme } = useSelector((state: any) => state.theme);
   const items: MenuProps['items'] = [
     {
       key: 'user-profile-link',
@@ -174,22 +174,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
                   }}
                 />
               </Tooltip>
-              <Input.Search
-                placeholder="search"
-                style={{
-                  width: isMobile ? '100%' : '400px',
-                  marginLeft: isMobile ? 0 : '.5rem',
-                }}
-                size="middle"
-              />
             </Flex>
             <Flex align="center" gap="small">
-              <Tooltip title="Apps">
-                <Button icon={<AppstoreOutlined />} type="text" size="large" />
-              </Tooltip>
-              <Tooltip title="Messages">
-                <Button icon={<MessageOutlined />} type="text" size="large" />
-              </Tooltip>
               <Tooltip title="Theme">
                 <Switch
                   className=" hidden sm:inline py-1"

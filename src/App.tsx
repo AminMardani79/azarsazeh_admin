@@ -27,7 +27,7 @@ export const COLOR = {
 };
 
 function App() {
-  const { mytheme } = useSelector((state: RootState) => state.theme);
+  const { mytheme } = useSelector((state: any) => state.theme);
 
   return (
     <HelmetProvider>
