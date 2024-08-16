@@ -11,7 +11,11 @@ type Props = {
 export const PageHeader = ({ breadcrumbs, title, ...others }: Props) => {
   return (
     <div {...others}>
-      <Space direction="vertical" size="small">
+      <Space
+        direction="vertical"
+        size="small"
+        style={{ direction: 'rtl', width: '100%' }}
+      >
         <Typography.Title
           level={4}
           style={{ padding: 0, margin: 0, textTransform: 'capitalize' }}
@@ -20,7 +24,7 @@ export const PageHeader = ({ breadcrumbs, title, ...others }: Props) => {
         </Typography.Title>
         <Breadcrumb items={breadcrumbs} className="page-header-breadcrumbs" />
       </Space>
-      <Divider orientation="right" plain>
+      <Divider orientation="left" plain>
         <span style={{ textTransform: 'capitalize' }}>{title}</span>
       </Divider>
     </div>

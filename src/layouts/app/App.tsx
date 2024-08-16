@@ -127,7 +127,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           style={{
             overflow: 'auto',
             position: 'fixed',
-            left: 0,
+            right: 0,
             top: 0,
             bottom: 0,
             background: 'none',
@@ -144,8 +144,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         >
           <HeaderNav
             style={{
-              marginLeft: collapsed ? 0 : '200px',
-              padding: '0 2rem 0 0',
+              marginRight: collapsed ? 0 : '200px',
+              padding: '0 0 0 2rem',
               background: navFill ? 'rgba(255, 255, 255, .5)' : 'none',
               backdropFilter: navFill ? 'blur(8px)' : 'none',
               boxShadow: navFill ? '0 0 8px 2px rgba(0, 0, 0, 0.05)' : 'none',
@@ -200,7 +200,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           </HeaderNav>
           <Content
             style={{
-              margin: `0 0 0 ${collapsed ? 0 : '200px'}`,
+              margin: `0 ${collapsed ? 0 : '200px'} 0 0`,
               // background: '#ebedf0',
               borderRadius: collapsed ? 0 : borderRadius,
               transition: 'all .25s',

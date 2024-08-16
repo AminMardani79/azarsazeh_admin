@@ -28,12 +28,13 @@ const getItem = (
 
 const items: MenuProps['items'] = [
   getItem('Dashboards', 'dashboards', <PieChartOutlined />, [
-    getItem(<Link to={PATH_DASHBOARD.default}>Default</Link>, 'default', null),
-    getItem(
+    getItem(<Link to={PATH_DASHBOARD.projects}>پروژه ها</Link>, 'projects', null),
+    // getItem(<Link to={PATH_DASHBOARD.default}>Default</Link>, 'default', null),
+    /* getItem(
       <Link to={PATH_DASHBOARD.projects}>Projects</Link>,
       'projects',
       null
-    ),
+    ), */
     getItem(
       <Link to={PATH_DASHBOARD.ecommerce}>eCommerce</Link>,
       'ecommerce',

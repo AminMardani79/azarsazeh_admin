@@ -12,4 +12,5 @@
 
 .card .ant-card-head-title {
   text-transform: capitalize;
+  text-align: right;
 }

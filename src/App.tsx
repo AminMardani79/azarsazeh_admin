@@ -32,6 +32,7 @@ function App() {
   return (
     <HelmetProvider>
       <ConfigProvider
+        direction="rtl"
         theme={{
           token: {
             colorPrimary: COLOR['500'],
