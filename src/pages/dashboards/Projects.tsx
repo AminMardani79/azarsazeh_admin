@@ -1,22 +1,15 @@
 import { Col, Row } from 'antd';
-import {
-  Card,
-  PageHeader,
-  ProjectsTable,
-} from '../../components';
-import {
-  HomeOutlined,
-  PieChartOutlined,
-} from '@ant-design/icons';
+import { Card, PageHeader, ProjectsTable } from '../../components';
+import { HomeOutlined, PieChartOutlined } from '@ant-design/icons';
 import { DASHBOARD_ITEMS } from '../../constants';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useFetchData } from '../../hooks';
+import CreateButton from '../../components/CreateButton/CreateButton';
+import ProjectsForm from '../../components/dashboard/projects/ProjectsForm/ProjectsForm';
 
 export const ProjectsDashboardPage = () => {
-  const {
-    data: projectsData
-  } = useFetchData('../mocks/Projects.json');
+  const { data: projectsData } = useFetchData('../mocks/Projects.json');
 
   return (
     <div>
@@ -53,6 +46,12 @@ export const ProjectsDashboardPage = () => {
             title: 'projects',
           },
         ]}
+        renderButtons={() => (
+          <CreateButton
+            title="ساخت پروژه"
+            renderForm={() => <ProjectsForm />}
+          />
+        )}
       />
       <Row
         gutter={[
