@@ -35,7 +35,8 @@ import {
   WelcomePage,
   LearningDashboardPage,
   LogisticsDashboardPage,
-  ProjectsPage
+  ProjectsPage,
+  EditProjectPage,
 } from '../pages';
 import {
   CorporateLayout,
@@ -137,10 +138,9 @@ const router = createBrowserRouter([
       },
       {
         path: ':id',
-        element: <div>details</div>
-      }
+        element: <EditProjectPage />,
+      },
     ],
-
   },
   {
     path: '/sitemap',
