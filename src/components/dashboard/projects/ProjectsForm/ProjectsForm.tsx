@@ -1,5 +1,5 @@
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Upload } from 'antd';
+import { Form, Input } from 'antd';
+import FileUploader from '../../../FileUploader/FileUploader';
 
 const ProjectsForm = () => {
   const normFile = (e: any) => {
@@ -10,14 +10,10 @@ const ProjectsForm = () => {
     return e && e.fileList;
   };
 
-  const beforeUpload = (file: any) => {
-    return false;
-  };
-
   return (
     <>
       <Form.Item
-        label="نام"
+        label="نام پروژه"
         name="name"
         rules={[{ required: true, message: 'لطفا نام پروژه را وارد کنید.' }]}
       >
@@ -25,17 +21,11 @@ const ProjectsForm = () => {
       </Form.Item>
       <Form.Item
         name="file"
-        label="Upload"
+        label="آپلود عکس"
         valuePropName="fileList"
         getValueFromEvent={normFile}
       >
-        <Upload
-          name="file"
-          beforeUpload={beforeUpload}
-          maxCount={1}
-        >
-          <Button icon={<UploadOutlined />}>Select File</Button>
-        </Upload>
+        <FileUploader/>
       </Form.Item>
     </>
   );

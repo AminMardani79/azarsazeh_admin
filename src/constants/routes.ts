@@ -32,6 +32,10 @@ export const PATH_LANDING = {
   contact: '/contact',
 };
 
+export const PATH_PROJECTS = {
+  root: ROOTS_PROJECTS
+}
+
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   default: path(ROOTS_DASHBOARD, '/default'),
@@ -134,10 +138,10 @@ export const PATH_ERROR = {
   error503: path(ROOTS_ERRORS, '/503'),
 };
 
-export const PATH_PROJECTS = {
+/* export const PATH_PROJECTS = {
   root: ROOTS_PROJECTS,
   details: (id: string | number): string => path(ROOTS_PROJECTS, `/view/${id}`),
-};
+}; */
 
 export const PATH_CONTACTS = {
   root: ROOTS_CONTACTS,

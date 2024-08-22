@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ConfigProvider, Layout, Menu, MenuProps, SiderProps } from 'antd';
-import { PieChartOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, PieChartOutlined } from '@ant-design/icons';
 import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
-import { PATH_DASHBOARD, PATH_LANDING } from '../../constants';
+import { PATH_DASHBOARD, PATH_LANDING, PATH_PROJECTS } from '../../constants';
 import { COLOR } from '../../App.tsx';
 
 const { Sider } = Layout;
@@ -28,7 +28,6 @@ const getItem = (
 
 const items: MenuProps['items'] = [
   getItem('Dashboards', 'dashboards', <PieChartOutlined />, [
-    getItem(<Link to={PATH_DASHBOARD.projects}>پروژه ها</Link>, 'projects', null),
     // getItem(<Link to={PATH_DASHBOARD.default}>Default</Link>, 'default', null),
     /* getItem(
       <Link to={PATH_DASHBOARD.projects}>Projects</Link>,
@@ -58,6 +57,10 @@ const items: MenuProps['items'] = [
       null
     ),
   ]),
+  getItem(
+    <Link to={PATH_PROJECTS.root}>پروژه ها</Link>, 'projects',
+    <InfoCircleOutlined />
+  )
   /* getItem(
     <Link to={PATH_ABOUT.root}>About</Link>,
     'about',

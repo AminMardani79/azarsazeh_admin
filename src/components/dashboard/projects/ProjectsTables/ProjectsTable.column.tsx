@@ -2,7 +2,7 @@ import { Badge, BadgeProps, Button, Tag, TagProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
 
-export const useProjectsTableColumn = (toggleDeleteModal: ()=> void) => {
+export const useProjectsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
     {
       title: 'Name',

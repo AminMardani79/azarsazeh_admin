@@ -19,7 +19,6 @@ import {
   HomePage,
   MarketingDashboardPage,
   PasswordResetPage,
-  ProjectsDashboardPage,
   SignInPage,
   SignUpPage,
   SitemapPage,
@@ -36,6 +35,7 @@ import {
   WelcomePage,
   LearningDashboardPage,
   LogisticsDashboardPage,
+  ProjectsPage
 } from '../pages';
 import {
   CorporateLayout,
@@ -100,10 +100,6 @@ const router = createBrowserRouter([
         element: <DefaultDashboardPage />,
       },
       {
-        path: 'projects',
-        element: <ProjectsDashboardPage />,
-      },
-      {
         path: 'ecommerce',
         element: <EcommerceDashboardPage />,
       },
@@ -128,6 +124,23 @@ const router = createBrowserRouter([
         element: <LogisticsDashboardPage />,
       },
     ],
+  },
+  {
+    path: '/projects',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        path: '',
+        element: <ProjectsPage />,
+      },
+      {
+        path: ':id',
+        element: <div>details</div>
+      }
+    ],
+
   },
   {
     path: '/sitemap',

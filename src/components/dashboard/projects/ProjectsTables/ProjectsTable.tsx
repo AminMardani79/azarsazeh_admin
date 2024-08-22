@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { useProjectsTableColumn } from './ProjectsTable.column';
+import { useNavigate } from 'react-router-dom';
+import { PATH_PROJECTS } from '../../../../constants';
 
 type Props = {
   data: Projects[];
@@ -9,13 +11,18 @@ type Props = {
 } & TableProps<any>;
 
 export const ProjectsTable = ({ data, ...others }: Props) => {
+  const navigate = useNavigate();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
-  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
+  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    setDeleteModalOpen((prev) => !prev);
+  }
 
   const column = useProjectsTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
+    navigate(`${PATH_PROJECTS.root}/${record.project_id}`)
     console.log(record);
   };
 

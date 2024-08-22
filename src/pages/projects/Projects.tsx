@@ -8,7 +8,7 @@ import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import ProjectsForm from '../../components/dashboard/projects/ProjectsForm/ProjectsForm';
 
-export const ProjectsDashboardPage = () => {
+export const ProjectsPage = () => {
   const { data: projectsData } = useFetchData('../mocks/Projects.json');
 
   return (

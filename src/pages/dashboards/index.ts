@@ -1,5 +1,4 @@
 export { DefaultDashboardPage } from './Default.tsx';
-export { ProjectsDashboardPage } from './Projects.tsx';
 export { EcommerceDashboardPage } from './Ecommerce.tsx';
 export { MarketingDashboardPage } from './Marketing.tsx';
 export { SocialDashboardPage } from './Social.tsx';
