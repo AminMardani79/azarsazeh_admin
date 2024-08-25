@@ -13,7 +13,8 @@ const ROOTS_BLOG = '/blog';
 const ROOTS_CAREERS = '/careers';
 const ROOTS_ACCOUNT = '/account';
 const ROOTS_AUTH = '/auth';
-const ROOTS_PROJECTS = '/projects';
+const ROOTS_PROJECT_CATEGORIES = '/project-categories';
+const ROOTS_PROJECT = '/projects';
 const ROOTS_CONTACTS = '/contacts';
 const ROOTS_USER_MGMT = '/user-management';
 const ROOTS_SUBSCRIPTION = '/subscription';
@@ -32,14 +33,18 @@ export const PATH_LANDING = {
   contact: '/contact',
 };
 
+export const PATH_PROJECT_CATEGORIES = {
+  root: ROOTS_PROJECT_CATEGORIES
+}
+
 export const PATH_PROJECTS = {
-  root: ROOTS_PROJECTS
+  root: ROOTS_PROJECT
 }
 
 export const PATH_DASHBOARD = {
   root: ROOTS_DASHBOARD,
   default: path(ROOTS_DASHBOARD, '/default'),
-  projects: path(ROOTS_DASHBOARD, '/projects'),
+  projects: path(ROOTS_DASHBOARD, '/project-categories'),
   ecommerce: path(ROOTS_DASHBOARD, '/ecommerce'),
   marketing: path(ROOTS_DASHBOARD, '/marketing'),
   social: path(ROOTS_DASHBOARD, '/social'),

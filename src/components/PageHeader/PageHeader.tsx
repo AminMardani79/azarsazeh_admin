@@ -40,9 +40,7 @@ export const PageHeader = ({
         </Space>
         {renderButtons && renderButtons()}
       </Flex>
-      <Divider orientation="left" plain>
-        <span style={{ textTransform: 'capitalize' }}>{title}</span>
-      </Divider>
+      <Divider />
     </div>
   );
 };

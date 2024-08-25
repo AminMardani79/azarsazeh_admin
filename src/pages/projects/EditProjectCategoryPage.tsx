@@ -1,15 +1,34 @@
-import { Col, Row } from 'antd';
-import { Card, PageHeader, ProjectsTable } from '../../components';
+import { Tabs, TabsProps } from 'antd';
+import { Helmet } from 'react-helmet-async';
+import { PageHeader } from '../../components';
 import { HomeOutlined, PieChartOutlined } from '@ant-design/icons';
 import { DASHBOARD_ITEMS } from '../../constants';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
+import { useState } from 'react';
+import ProjectDetailTab from './ProjectCategoryDetailTab';
+import ProjectsTab from './ProjectsTab';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import ProjectsForm from '../../components/dashboard/projects/ProjectsForm/ProjectsForm';
 
-export const ProjectsPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+const items: TabsProps['items'] = [
+  {
+    key: '1',
+    label: 'ویرایش دسته بندی',
+    children: <ProjectDetailTab />,
+  },
+  {
+    key: '2',
+    label: 'پروژه ها',
+    children: <ProjectsTab />,
+  },
+];
+
+export const EditProjecCategorytPage = () => {
+  const [activeKey, setActiveKey] = useState('1');
+
+  const handleTabChange = (key: string) => {
+    setActiveKey(key);
+  };
 
   return (
     <div>
@@ -46,25 +65,21 @@ export const ProjectsPage = () => {
             title: 'projects',
           },
         ]}
-        renderButtons={() => (
-          <CreateButton
-            title="ساخت پروژه"
-            renderForm={() => <ProjectsForm />}
-          />
-        )}
+        renderButtons={() =>
+          activeKey === '2' && (
+            <CreateButton
+              title="ساخت پروژه"
+              renderForm={() => <ProjectsForm />}
+            />
+          )
+        }
       />
-      <Row
-        gutter={[
-          { xs: 8, sm: 16, md: 24, lg: 32 },
-          { xs: 8, sm: 16, md: 24, lg: 32 },
-        ]}
-      >
-        <Col span={24}>
-          <Card title="Projects">
-            <ProjectsTable key="all-projects-table" data={projectsData} />
-          </Card>
-        </Col>
-      </Row>
+      <Tabs
+        defaultActiveKey="1"
+        activeKey={activeKey}
+        items={items}
+        onChange={handleTabChange}
+      />
     </div>
   );
 };

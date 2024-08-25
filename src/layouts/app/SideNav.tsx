@@ -3,8 +3,9 @@ import { ConfigProvider, Layout, Menu, MenuProps, SiderProps } from 'antd';
 import { InfoCircleOutlined, PieChartOutlined } from '@ant-design/icons';
 import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
-import { PATH_DASHBOARD, PATH_LANDING, PATH_PROJECTS } from '../../constants';
+import { PATH_DASHBOARD, PATH_LANDING } from '../../constants';
 import { COLOR } from '../../App.tsx';
+import { PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
 
 const { Sider } = Layout;
 
@@ -58,7 +59,7 @@ const items: MenuProps['items'] = [
     ),
   ]),
   getItem(
-    <Link to={PATH_PROJECTS.root}>پروژه ها</Link>, 'projects',
+    <Link to={PATH_PROJECT_CATEGORIES.root}>دسته بندی پروژه ها</Link>, 'project-categories',
     <InfoCircleOutlined />
   )
   /* getItem(

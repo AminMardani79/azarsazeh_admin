@@ -1,15 +1,15 @@
 import { Form, Input } from 'antd';
-import FileUploader from '../../../FileUploader/FileUploader';
-import { normFile } from '../../../../utils';
+import { normFile } from '../../../utils';
+import FileUploader from '../../FileUploader/FileUploader';
 
-const ProjectsForm = () => {
+const ProjectCategoriesForm = () => {
 
   return (
     <>
       <Form.Item
-        label="نام پروژه"
+        label="نام دسته بندی"
         name="name"
-        rules={[{ required: true, message: 'لطفا نام پروژه را وارد کنید.' }]}
+        rules={[{ required: true, message: 'لطفا نام دسته بندی را وارد کنید.' }]}
       >
         <Input />
       </Form.Item>
@@ -25,4 +25,4 @@ const ProjectsForm = () => {
   );
 };
 
-export default ProjectsForm;
+export default ProjectCategoriesForm;

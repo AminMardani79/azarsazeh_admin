@@ -1,30 +1,28 @@
 import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
-import { useProjectsTableColumn } from './ProjectsTable.column';
-import { useNavigate, useParams } from 'react-router-dom';
-import { PATH_PROJECTS, PATH_PROJECT_CATEGORIES } from '../../../../constants';
+import { useNavigate } from 'react-router-dom';
+import { PATH_PROJECT_CATEGORIES } from '../../../../constants';
+import { useProjectCategoriesTableColumn } from './ProjectCategories.column';
 
 type Props = {
   data: Projects[];
   onRowClick?: any;
 } & TableProps<any>;
 
-export const ProjectsTable = ({ data, columns, ...others }: Props) => {
+export const ProjectCategoriesTable = ({ data, columns, ...others }: Props) => {
   const navigate = useNavigate();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const params = useParams();
 
   const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setDeleteModalOpen((prev) => !prev);
   }
 
-  const column = useProjectsTableColumn(toggleDeleteModal);
+  const column = useProjectCategoriesTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    const categoryId = params.id;
-    navigate(`${PATH_PROJECT_CATEGORIES.root}/${categoryId}${PATH_PROJECTS.root}/${record.project_id}`)
+    navigate(`${PATH_PROJECT_CATEGORIES.root}/${record.project_id}`)
   };
 
   return (
@@ -41,7 +39,7 @@ export const ProjectsTable = ({ data, columns, ...others }: Props) => {
         }}
       />
       <Modal
-        title="حذف پروژه"
+        title="حذف دسته بندی"
         open={isDeleteModalOpen}
         onOk={toggleDeleteModal}
         onCancel={toggleDeleteModal}
@@ -51,7 +49,7 @@ export const ProjectsTable = ({ data, columns, ...others }: Props) => {
         confirmLoading={false}
         centered
       >
-        <Typography.Text >آیا از حذف این پروژه اطمینان دارید؟</Typography.Text>
+        <Typography.Text >آیا از حذف این دسته بندی اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );
