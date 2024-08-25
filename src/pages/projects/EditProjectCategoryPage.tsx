@@ -36,33 +36,19 @@ export const EditProjecCategorytPage = () => {
         <title>پروژه ها</title>
       </Helmet>
       <PageHeader
-        title="projects dashboard"
+        title="ویرایش دسته بندی پروژه"
         breadcrumbs={[
           {
             title: (
               <>
                 <HomeOutlined />
-                <span>home</span>
+                <span>خانه</span>
               </>
             ),
             path: '/',
           },
           {
-            title: (
-              <>
-                <PieChartOutlined />
-                <span>dashboards</span>
-              </>
-            ),
-            menu: {
-              items: DASHBOARD_ITEMS.map((d) => ({
-                key: d.title,
-                title: <Link to={d.path}>{d.title}</Link>,
-              })),
-            },
-          },
-          {
-            title: 'projects',
+            title: 'دسته بندی پروژه',
           },
         ]}
         renderButtons={() =>

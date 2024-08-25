@@ -1,8 +1,6 @@
 import { Col, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
-import { HomeOutlined, PieChartOutlined } from '@ant-design/icons';
-import { DASHBOARD_ITEMS } from '../../constants';
-import { Link } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
 import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
@@ -18,33 +16,19 @@ export const ProjectCategoriesPage = () => {
         <title>دسته بندی پروژه ها</title>
       </Helmet>
       <PageHeader
-        title="projects dashboard"
+        title="لیست دسته بندی ها"
         breadcrumbs={[
           {
             title: (
               <>
                 <HomeOutlined />
-                <span>home</span>
+                <span>خانه</span>
               </>
             ),
             path: '/',
           },
           {
-            title: (
-              <>
-                <PieChartOutlined />
-                <span>dashboards</span>
-              </>
-            ),
-            menu: {
-              items: DASHBOARD_ITEMS.map((d) => ({
-                key: d.title,
-                title: <Link to={d.path}>{d.title}</Link>,
-              })),
-            },
-          },
-          {
-            title: 'projects',
+            title: 'دسته بندی ها',
           },
         ]}
         renderButtons={() => (
