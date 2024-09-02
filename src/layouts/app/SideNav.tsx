@@ -75,7 +75,7 @@ const items: MenuProps['items'] = [
     <InfoCircleOutlined />
   ),
   getItem(
-    <Link to={PATH_CONTACTUS.root}>تماس با ما</Link>, 'contactus',
+    <Link to={PATH_CONTACTUS.root}>تماس با ما</Link>, 'contact-us',
     <InfoCircleOutlined />
   ),
   /* getItem(
