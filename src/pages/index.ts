@@ -2,6 +2,7 @@ export { HomePage } from './Home.tsx';
 export { SitemapPage } from './Sitemap.tsx';
 export * from './dashboards';
 export * from './projects';
+export * from './news';
 export * from './equipments';
 export * from './corporate';
 export * from './userAccount';

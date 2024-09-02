@@ -41,6 +41,8 @@ import {
   EquipmentCategoriesPage,
   EditEquipmentCategorytPage,
   EditEquipmentPage,
+  NewsPage,
+  EditNewsPage
 } from '../pages';
 import {
   CorporateLayout,
@@ -168,6 +170,22 @@ const router = createBrowserRouter([
         path: ':id/equipments/:equipment',
         element: <EditEquipmentPage />,
       },
+    ],
+  },
+  {
+    path: '/news',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        path: '',
+        element: <NewsPage />,
+      },
+      {
+        path: ':id',
+        element: <EditNewsPage />,
+      }
     ],
   },
   {
