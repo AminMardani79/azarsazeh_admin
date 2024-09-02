@@ -1,8 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { PageHeader } from '../../components';
-import { HomeOutlined, PieChartOutlined } from '@ant-design/icons';
-import { DASHBOARD_ITEMS } from '../../constants';
-import { Link } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 import EditProjectForm from '../../components/dashboard/projects/ProjectsForm/EditProjectForm';
 import { useForm } from 'antd/es/form/Form';
 import { Form } from 'antd';

@@ -37,7 +37,8 @@ function App() {
           token: {
             colorPrimary: COLOR['500'],
             borderRadius: 6,
-            fontFamily: 'Lato, sans-serif',
+            fontFamily: 'IranSans, sans-serif',
+            fontWeightStrong: 800,
           },
           components: {
             Breadcrumb: {
