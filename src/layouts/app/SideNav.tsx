@@ -5,7 +5,7 @@ import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
 import { PATH_DASHBOARD, PATH_LANDING } from '../../constants';
 import { COLOR } from '../../App.tsx';
-import { PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
+import { PATH_EQUIPMENT_CATEGORIES, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
 
 const { Sider } = Layout;
 
@@ -61,7 +61,11 @@ const items: MenuProps['items'] = [
   getItem(
     <Link to={PATH_PROJECT_CATEGORIES.root}>دسته بندی پروژه ها</Link>, 'project-categories',
     <InfoCircleOutlined />
-  )
+  ),
+  getItem(
+    <Link to={PATH_EQUIPMENT_CATEGORIES.root}>دسته بندی تجهیزات</Link>, 'equipment-categories',
+    <InfoCircleOutlined />
+  ),
   /* getItem(
     <Link to={PATH_ABOUT.root}>About</Link>,
     'about',

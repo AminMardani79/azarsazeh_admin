@@ -1,2 +1,3 @@
 export { ProjectCategoriesPage } from './ProjectCategories';
-export { EditProjecCategorytPage } from './EditProjectCategoryPage';
+export { EditProjecCategoryPage } from './EditProjectCategoryPage';
+export { EditProjectPage } from './EditProjectPage';

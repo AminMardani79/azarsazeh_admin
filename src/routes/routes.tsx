@@ -36,7 +36,11 @@ import {
   LearningDashboardPage,
   LogisticsDashboardPage,
   ProjectCategoriesPage,
-  EditProjecCategorytPage,
+  EditProjectPage,
+  EditProjecCategoryPage,
+  EquipmentCategoriesPage,
+  EditEquipmentCategorytPage,
+  EditEquipmentPage,
 } from '../pages';
 import {
   CorporateLayout,
@@ -46,7 +50,6 @@ import {
 } from '../layouts';
 import React, { ReactNode, useEffect } from 'react';
 import { AboutPage } from '../pages/About.tsx';
-import { EditProjectPage } from '../pages/projects/EditProjectPage.tsx';
 
 // Custom scroll restoration function
 export const ScrollToTop: React.FC = () => {
@@ -139,11 +142,31 @@ const router = createBrowserRouter([
       },
       {
         path: ':id',
-        element: <EditProjecCategorytPage />,
+        element: <EditProjecCategoryPage />,
       },
       {
         path: ':id/projects/:projectId',
         element: <EditProjectPage />,
+      },
+    ],
+  },
+  {
+    path: '/equipment-categories',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        path: '',
+        element: <EquipmentCategoriesPage />,
+      },
+      {
+        path: ':id',
+        element: <EditEquipmentCategorytPage />,
+      },
+      {
+        path: ':id/equipments/:equipment',
+        element: <EditEquipmentPage />,
       },
     ],
   },

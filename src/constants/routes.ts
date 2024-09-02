@@ -14,7 +14,9 @@ const ROOTS_CAREERS = '/careers';
 const ROOTS_ACCOUNT = '/account';
 const ROOTS_AUTH = '/auth';
 const ROOTS_PROJECT_CATEGORIES = '/project-categories';
+const ROOTS_EQUIPMENT_CATEGORIES = '/equipment-categories';
 const ROOTS_PROJECT = '/projects';
+const ROOTS_EQUIPMENT = '/equipments';
 const ROOTS_CONTACTS = '/contacts';
 const ROOTS_USER_MGMT = '/user-management';
 const ROOTS_SUBSCRIPTION = '/subscription';
@@ -37,8 +39,16 @@ export const PATH_PROJECT_CATEGORIES = {
   root: ROOTS_PROJECT_CATEGORIES
 }
 
+export const PATH_EQUIPMENT_CATEGORIES = {
+  root: ROOTS_EQUIPMENT_CATEGORIES
+}
+
 export const PATH_PROJECTS = {
   root: ROOTS_PROJECT
+}
+
+export const PATH_EQUIPMENTS = {
+  root: ROOTS_EQUIPMENT
 }
 
 export const PATH_DASHBOARD = {

@@ -3,25 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import ProjectDetailTab from './ProjectCategoryDetailTab';
-import ProjectsTab from './ProjectsTab';
+import EquipmentDetailTab from './EquipmentCategoryDetailTab';
+import EquipmentsTab from './EquipmentsTab';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import ProjectsForm from '../../components/dashboard/projects/ProjectsForm/ProjectsForm';
+import EquipmentForm from '../../components/dashboard/equipments/equipmentsForm/EquipmentForm';
 
 const items: TabsProps['items'] = [
   {
     key: '1',
     label: 'ویرایش دسته بندی',
-    children: <ProjectDetailTab />,
+    children: <EquipmentDetailTab />,
   },
   {
     key: '2',
-    label: 'پروژه ها',
-    children: <ProjectsTab />,
+    label: 'تجهیزات',
+    children: <EquipmentsTab />,
   },
 ];
 
-export const EditProjecCategoryPage = () => {
+export const EditEquipmentCategorytPage = () => {
   const [activeKey, setActiveKey] = useState('1');
 
   const handleTabChange = (key: string) => {
@@ -31,10 +32,10 @@ export const EditProjecCategoryPage = () => {
   return (
     <div>
       <Helmet>
-        <title>پروژه ها</title>
+        <title>تجهیزات</title>
       </Helmet>
       <PageHeader
-        title="ویرایش دسته بندی پروژه"
+        title="ویرایش دسته بندی تجهیزات"
         breadcrumbs={[
           {
             title: (
@@ -46,14 +47,14 @@ export const EditProjecCategoryPage = () => {
             path: '/',
           },
           {
-            title: 'دسته بندی پروژه',
+            title: 'دسته بندی تجهیزات',
           },
         ]}
         renderButtons={() =>
           activeKey === '2' && (
             <CreateButton
-              title="ساخت پروژه"
-              renderForm={() => <ProjectsForm />}
+              title="ساخت تجهیزات"
+              renderForm={() => <EquipmentForm />}
             />
           )
         }
