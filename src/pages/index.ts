@@ -3,6 +3,7 @@ export { SitemapPage } from './Sitemap.tsx';
 export * from './dashboards';
 export * from './projects';
 export * from './news';
+export * from './academy';
 export * from './equipments';
 export * from './corporate';
 export * from './userAccount';

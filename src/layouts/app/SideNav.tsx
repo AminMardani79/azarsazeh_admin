@@ -5,7 +5,7 @@ import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
 import { PATH_DASHBOARD, PATH_LANDING } from '../../constants';
 import { COLOR } from '../../App.tsx';
-import { PATH_EQUIPMENT_CATEGORIES, PATH_NEWS, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
+import { PATH_ACADEMY, PATH_EQUIPMENT_CATEGORIES, PATH_NEWS, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
 
 const { Sider } = Layout;
 
@@ -68,6 +68,10 @@ const items: MenuProps['items'] = [
   ),
   getItem(
     <Link to={PATH_NEWS.root}>اخبار</Link>, 'news',
+    <InfoCircleOutlined />
+  ),
+  getItem(
+    <Link to={PATH_ACADEMY.root}>آکادمی</Link>, 'academy',
     <InfoCircleOutlined />
   ),
   /* getItem(

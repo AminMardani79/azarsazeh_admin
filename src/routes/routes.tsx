@@ -42,7 +42,9 @@ import {
   EditEquipmentCategorytPage,
   EditEquipmentPage,
   NewsPage,
-  EditNewsPage
+  EditNewsPage,
+  AcademyPage,
+  EditAcademyPage
 } from '../pages';
 import {
   CorporateLayout,
@@ -185,6 +187,22 @@ const router = createBrowserRouter([
       {
         path: ':id',
         element: <EditNewsPage />,
+      }
+    ],
+  },
+  {
+    path: '/academy',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        path: '',
+        element: <AcademyPage />,
+      },
+      {
+        path: ':id',
+        element: <EditAcademyPage />,
       }
     ],
   },
