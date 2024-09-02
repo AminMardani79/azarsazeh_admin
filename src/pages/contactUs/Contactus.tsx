@@ -3,20 +3,18 @@ import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
 import { useFetchData } from '../../hooks';
-import CreateButton from '../../components/CreateButton/CreateButton';
-import NewsForm from '../../components/dashboard/news/newsForm/NewsForm';
-import { NewsTable } from '../../components/dashboard/news/newsTable/NewsTable';
+import { ContactusTable } from '../../components/dashboard/contactus/contactusTable/ContactusTable';
 
-export const NewsPage = () => {
+export const ContactusPage = () => {
   const { data: projectsData } = useFetchData('../mocks/Projects.json');
 
   return (
     <div>
       <Helmet>
-        <title>اخبار</title>
+        <title>تماس با ما</title>
       </Helmet>
       <PageHeader
-        title="لیست اخبار"
+        title="تماس با ما"
         breadcrumbs={[
           {
             title: (
@@ -28,15 +26,9 @@ export const NewsPage = () => {
             path: '/',
           },
           {
-            title: 'اخبار',
+            title: 'تماس با ما',
           },
         ]}
-        renderButtons={() => (
-          <CreateButton
-            title="ساخت خبر"
-            renderForm={() => <NewsForm />}
-          />
-        )}
       />
       <Row
         gutter={[
@@ -45,8 +37,8 @@ export const NewsPage = () => {
         ]}
       >
         <Col span={24}>
-          <Card title="اخبار">
-            <NewsTable key="all-news-categories-table" data={projectsData} />
+          <Card title="تماس با ما">
+            <ContactusTable key="contact-us-table" data={projectsData} />
           </Card>
         </Col>
       </Row>
