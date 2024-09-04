@@ -5,7 +5,7 @@ import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
 import { PATH_DASHBOARD, PATH_LANDING } from '../../constants';
 import { COLOR } from '../../App.tsx';
-import { PATH_ACADEMY, PATH_COMPANY, PATH_CONTACTUS, PATH_EQUIPMENT_CATEGORIES, PATH_NEWS, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
+import { PATH_ACADEMY, PATH_COMPANY, PATH_CONTACTUS, PATH_EQUIPMENT_CATEGORIES, PATH_JOBS, PATH_NEWS, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
 
 const { Sider } = Layout;
 
@@ -28,36 +28,6 @@ const getItem = (
 };
 
 const items: MenuProps['items'] = [
-  getItem('Dashboards', 'dashboards', <PieChartOutlined />, [
-    // getItem(<Link to={PATH_DASHBOARD.default}>Default</Link>, 'default', null),
-    /* getItem(
-      <Link to={PATH_DASHBOARD.projects}>Projects</Link>,
-      'projects',
-      null
-    ), */
-    getItem(
-      <Link to={PATH_DASHBOARD.ecommerce}>eCommerce</Link>,
-      'ecommerce',
-      null
-    ),
-    getItem(
-      <Link to={PATH_DASHBOARD.marketing}>Marketing</Link>,
-      'marketing',
-      null
-    ),
-    getItem(<Link to={PATH_DASHBOARD.social}>Social</Link>, 'social', null),
-    getItem(<Link to={PATH_DASHBOARD.bidding}>Bidding</Link>, 'bidding', null),
-    getItem(
-      <Link to={PATH_DASHBOARD.learning}>Learning</Link>,
-      'learning',
-      null
-    ),
-    getItem(
-      <Link to={PATH_DASHBOARD.logistics}>Logistics</Link>,
-      'logistics',
-      null
-    ),
-  ]),
   getItem(
     <Link to={PATH_PROJECT_CATEGORIES.root}>دسته بندی پروژه ها</Link>, 'project-categories',
     <InfoCircleOutlined />
@@ -82,6 +52,18 @@ const items: MenuProps['items'] = [
     <Link to={PATH_COMPANY.root}>شرکت ما</Link>, 'company',
     <InfoCircleOutlined />
   ),
+  getItem('همکاری با ما', 'jobs', <PieChartOutlined />, [
+    getItem(
+      <Link to={PATH_JOBS.jobCategories}>دسته بندی</Link>,
+      'categories',
+      null
+    ),
+    getItem(
+      <Link to={PATH_JOBS.jobs}>مشاغل</Link>,
+      '',
+      null
+    )
+  ]),
   /* getItem(
     <Link to={PATH_ABOUT.root}>About</Link>,
     'about',

@@ -58,6 +58,10 @@ import React, { ReactNode, useEffect } from 'react';
 import { AboutPage } from '../pages/About.tsx';
 import { ContactusPage } from '../pages/contactUs/Contactus.tsx';
 import { ContactusDetailPage } from '../pages/contactUs/ContactusDetail.tsx';
+import { JobCategoriesPage } from '../pages/jobs/jobCategories/JobCategories.tsx';
+import { JobsPage } from '../pages/jobs/jobsList/Jobs.tsx';
+import { EditJobCategoryPage } from '../pages/jobs/jobCategories/EditJobCategory.tsx';
+import { EditJobPage } from '../pages/jobs/jobsList/EditJob.tsx';
 
 // Custom scroll restoration function
 export const ScrollToTop: React.FC = () => {
@@ -175,6 +179,29 @@ const router = createBrowserRouter([
       {
         path: ':id/equipments/:equipment',
         element: <EditEquipmentPage />,
+      },
+    ],
+  },
+  {
+    path: '/jobs',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: 'categories',
+        element: <JobCategoriesPage />,
+      },
+      {
+        path: '',
+        element: <JobsPage />,
+      },
+      {
+        path: 'categories/:id',
+        element: <EditJobCategoryPage />,
+      },
+      {
+        path: ':id',
+        element: <EditJobPage />,
       },
     ],
   },
