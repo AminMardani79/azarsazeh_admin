@@ -5,7 +5,7 @@ import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
 import { PATH_DASHBOARD, PATH_LANDING } from '../../constants';
 import { COLOR } from '../../App.tsx';
-import { PATH_ACADEMY, PATH_CONTACTUS, PATH_EQUIPMENT_CATEGORIES, PATH_NEWS, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
+import { PATH_ACADEMY, PATH_COMPANY, PATH_CONTACTUS, PATH_EQUIPMENT_CATEGORIES, PATH_NEWS, PATH_PROJECT_CATEGORIES } from '../../constants/routes.ts';
 
 const { Sider } = Layout;
 
@@ -76,6 +76,10 @@ const items: MenuProps['items'] = [
   ),
   getItem(
     <Link to={PATH_CONTACTUS.root}>تماس با ما</Link>, 'contact-us',
+    <InfoCircleOutlined />
+  ),
+  getItem(
+    <Link to={PATH_COMPANY.root}>شرکت ما</Link>, 'company',
     <InfoCircleOutlined />
   ),
   /* getItem(

@@ -44,7 +44,9 @@ import {
   NewsPage,
   EditNewsPage,
   AcademyPage,
-  EditAcademyPage
+  EditAcademyPage,
+  CompanyPage,
+  EditCompanyPage
 } from '../pages';
 import {
   CorporateLayout,
@@ -221,6 +223,22 @@ const router = createBrowserRouter([
       {
         path: ':id',
         element: <ContactusDetailPage />,
+      }
+    ],
+  },
+  {
+    path: '/company',
+    element: <PageWrapper children={<DashboardLayout />} />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        path: '',
+        element: <CompanyPage />,
+      },
+      {
+        path: ':id',
+        element: <EditCompanyPage />,
       }
     ],
   },

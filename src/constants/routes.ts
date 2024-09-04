@@ -17,6 +17,7 @@ const ROOTS_PROJECT_CATEGORIES = '/project-categories';
 const ROOTS_EQUIPMENT_CATEGORIES = '/equipment-categories';
 const ROOTS_PROJECT = '/projects';
 const ROOTS_EQUIPMENT = '/equipments';
+const ROOTS_COMPANY = '/company';
 const ROOTS_NEWS = '/news';
 const ROOTS_ACADEMY = '/academy';
 const ROOTS_CONTACTUS = '/contact-us';
@@ -48,6 +49,10 @@ export const PATH_EQUIPMENT_CATEGORIES = {
 
 export const PATH_NEWS = {
   root: ROOTS_NEWS
+}
+
+export const PATH_COMPANY = {
+  root: ROOTS_COMPANY
 }
 
 export const PATH_ACADEMY = {
