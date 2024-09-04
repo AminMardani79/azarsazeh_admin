@@ -1,8 +1,6 @@
 import {
   Button,
-  Checkbox,
   Col,
-  Divider,
   Flex,
   Form,
   Input,
@@ -11,23 +9,17 @@ import {
   theme,
   Typography,
 } from 'antd';
-import {
-  FacebookFilled,
-  GoogleOutlined,
-  TwitterOutlined,
-} from '@ant-design/icons';
 import { Logo } from '../../components';
 import { useMediaQuery } from 'react-responsive';
-import { PATH_AUTH, PATH_DASHBOARD } from '../../constants';
+import { PATH_LANDING } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-const { Title, Text, Link } = Typography;
+const { Title, Text } = Typography;
 
 type FieldType = {
-  email?: string;
+  username?: string;
   password?: string;
-  remember?: boolean;
 };
 
 export const SignInPage = () => {
@@ -48,7 +40,7 @@ export const SignInPage = () => {
     });
 
     setTimeout(() => {
-      navigate(PATH_DASHBOARD.default);
+      navigate(PATH_LANDING.root);
     }, 5000);
   };
 
@@ -84,20 +76,15 @@ export const SignInPage = () => {
           gap="middle"
           style={{ height: '100%', padding: '2rem' }}
         >
-          <Title className="m-0">Login</Title>
-          <Flex gap={4}>
-            <Text>Don't have an account?</Text>
-            <Link href={PATH_AUTH.signup}>Create an account here</Link>
-          </Flex>
+          <Title className="m-0">ورود</Title>
           <Form
             name="sign-up-form"
             layout="vertical"
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
             initialValues={{
-              email: 'demo@email.com',
-              password: 'demo123',
-              remember: true,
+              username: 'demo@email.com',
+              password: 'demo123'
             }}
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
@@ -107,10 +94,10 @@ export const SignInPage = () => {
             <Row gutter={[8, 0]}>
               <Col xs={24}>
                 <Form.Item<FieldType>
-                  label="Email"
-                  name="email"
+                  label="نام کاربری"
+                  name="username"
                   rules={[
-                    { required: true, message: 'Please input your email' },
+                    { required: true, message: 'لطفا نام کاربری را وارد کنید' },
                   ]}
                 >
                   <Input />
@@ -118,18 +105,13 @@ export const SignInPage = () => {
               </Col>
               <Col xs={24}>
                 <Form.Item<FieldType>
-                  label="Password"
+                  label="رمزعبور"
                   name="password"
                   rules={[
-                    { required: true, message: 'Please input your password!' },
+                    { required: true, message: 'لطفا رمز عبور را وارد کنید' },
                   ]}
                 >
                   <Input.Password />
-                </Form.Item>
-              </Col>
-              <Col xs={24}>
-                <Form.Item<FieldType> name="remember" valuePropName="checked">
-                  <Checkbox>Remember me</Checkbox>
                 </Form.Item>
               </Col>
             </Row>
@@ -141,23 +123,11 @@ export const SignInPage = () => {
                   size="middle"
                   loading={loading}
                 >
-                  Continue
+                  ورود
                 </Button>
-                <Link href={PATH_AUTH.passwordReset}>Forgot password?</Link>
               </Flex>
             </Form.Item>
           </Form>
-          <Divider className="m-0">or</Divider>
-          <Flex
-            vertical={isMobile}
-            gap="small"
-            wrap="wrap"
-            style={{ width: '100%' }}
-          >
-            <Button icon={<GoogleOutlined />}>Sign in with Google</Button>
-            <Button icon={<FacebookFilled />}>Sign in with Facebook</Button>
-            <Button icon={<TwitterOutlined />}>Sign in with Twitter</Button>
-          </Flex>
         </Flex>
       </Col>
     </Row>

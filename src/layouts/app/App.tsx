@@ -32,7 +32,7 @@ import SideNav from './SideNav.tsx';
 import HeaderNav from './HeaderNav.tsx';
 import FooterNav from './FooterNav.tsx';
 import { NProgress } from '../../components';
-import { PATH_LANDING } from '../../constants';
+import { PATH_AUTH, PATH_LANDING } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/theme/themeSlice.ts';
 
@@ -87,7 +87,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         });
 
         setTimeout(() => {
-          navigate(PATH_LANDING.root);
+          navigate(PATH_AUTH.signin);
         }, 1000);
       },
     },

@@ -1,28 +1,15 @@
 import { createBrowserRouter, useLocation } from 'react-router-dom';
 import {
   AccountDeactivePage,
-  BiddingDashboardPage,
-  CorporateAboutPage,
-  CorporateContactPage,
-  CorporateFaqPage,
-  CorporateLicensePage,
-  CorporatePricingPage,
-  CorporateTeamPage,
-  DefaultDashboardPage,
-  EcommerceDashboardPage,
   Error400Page,
   Error403Page,
   Error404Page,
   Error500Page,
   Error503Page,
   ErrorPage,
-  HomePage,
-  MarketingDashboardPage,
   PasswordResetPage,
   SignInPage,
   SignUpPage,
-  SitemapPage,
-  SocialDashboardPage,
   UserProfileActionsPage,
   UserProfileActivityPage,
   UserProfileDetailsPage,
@@ -33,8 +20,6 @@ import {
   UserProfileSecurityPage,
   VerifyEmailPage,
   WelcomePage,
-  LearningDashboardPage,
-  LogisticsDashboardPage,
   ProjectCategoriesPage,
   EditProjectPage,
   EditProjecCategoryPage,
@@ -49,9 +34,7 @@ import {
   EditCompanyPage
 } from '../pages';
 import {
-  CorporateLayout,
   DashboardLayout,
-  GuestLayout,
   UserAccountLayout,
 } from '../layouts';
 import React, { ReactNode, useEffect } from 'react';
@@ -96,54 +79,6 @@ const PageWrapper = ({ children }: PageProps) => {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <PageWrapper children={<GuestLayout />} />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        path: '',
-        element: <HomePage />,
-      },
-    ],
-  },
-  {
-    path: '/dashboards',
-    element: <PageWrapper children={<DashboardLayout />} />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        path: 'default',
-        element: <DefaultDashboardPage />,
-      },
-      {
-        path: 'ecommerce',
-        element: <EcommerceDashboardPage />,
-      },
-      {
-        path: 'marketing',
-        element: <MarketingDashboardPage />,
-      },
-      {
-        path: 'social',
-        element: <SocialDashboardPage />,
-      },
-      {
-        path: 'bidding',
-        element: <BiddingDashboardPage />,
-      },
-      {
-        path: 'learning',
-        element: <LearningDashboardPage />,
-      },
-      {
-        path: 'logistics',
-        element: <LogisticsDashboardPage />,
-      },
-    ],
-  },
-  {
-    path: '/project-categories',
     element: <PageWrapper children={<DashboardLayout />} />,
     errorElement: <ErrorPage />,
     children: [
@@ -153,11 +88,11 @@ const router = createBrowserRouter([
         element: <ProjectCategoriesPage />,
       },
       {
-        path: ':id',
+        path: 'project-categories/:id',
         element: <EditProjecCategoryPage />,
       },
       {
-        path: ':id/projects/:projectId',
+        path: 'project-categories/:id/projects/:projectId',
         element: <EditProjectPage />,
       },
     ],
@@ -192,7 +127,7 @@ const router = createBrowserRouter([
         element: <JobCategoriesPage />,
       },
       {
-        path: '',
+        path: 'list',
         element: <JobsPage />,
       },
       {
@@ -200,7 +135,7 @@ const router = createBrowserRouter([
         element: <EditJobCategoryPage />,
       },
       {
-        path: ':id',
+        path: 'list/:id',
         element: <EditJobPage />,
       },
     ],
@@ -267,50 +202,6 @@ const router = createBrowserRouter([
         path: ':id',
         element: <EditCompanyPage />,
       }
-    ],
-  },
-  {
-    path: '/sitemap',
-    element: <PageWrapper children={<DashboardLayout />} />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        path: '',
-        element: <SitemapPage />,
-      },
-    ],
-  },
-  {
-    path: '/corporate',
-    element: <PageWrapper children={<CorporateLayout />} />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        path: 'about',
-        element: <CorporateAboutPage />,
-      },
-      {
-        path: 'team',
-        element: <CorporateTeamPage />,
-      },
-      {
-        path: 'faqs',
-        element: <CorporateFaqPage />,
-      },
-      {
-        path: 'contact',
-        element: <CorporateContactPage />,
-      },
-      {
-        path: 'pricing',
-        element: <CorporatePricingPage />,
-      },
-      {
-        path: 'license',
-        element: <CorporateLicensePage />,
-      },
     ],
   },
   {

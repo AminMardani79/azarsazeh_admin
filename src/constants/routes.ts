@@ -86,7 +86,7 @@ export const PATH_DASHBOARD = {
 
 export const PATH_JOBS = {
   root: ROOTS_JOBS,
-  jobs: path(ROOTS_JOBS, '/'),
+  jobs: path(ROOTS_JOBS, '/list'),
   jobCategories: path(ROOTS_JOBS, '/categories'),
 };
 

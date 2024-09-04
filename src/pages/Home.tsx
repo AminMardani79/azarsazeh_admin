@@ -8,7 +8,7 @@ import {
   PATH_GITHUB,
   PATH_USER_PROFILE,
 } from '../constants';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   AntDesignOutlined,
   AppstoreOutlined,
@@ -25,7 +25,7 @@ import {
   TableOutlined,
 } from '@ant-design/icons';
 import { Card, Container } from '../components';
-import { createElement, CSSProperties } from 'react';
+import { createElement, CSSProperties, useEffect } from 'react';
 
 const { Title, Text } = Typography;
 
@@ -155,6 +155,7 @@ export const HomePage = () => {
   const {
     token: { colorPrimary },
   } = theme.useToken();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: 769 });
   const isTablet = useMediaQuery({ maxWidth: 992 });
 
@@ -164,6 +165,10 @@ export const HomePage = () => {
     paddingRight: isMobile ? '1rem' : 0,
     paddingLeft: isMobile ? '1rem' : 0,
   };
+
+  useEffect(()=> {
+    navigate(PATH_AUTH.signin)
+  }, [])
 
   return (
     <div

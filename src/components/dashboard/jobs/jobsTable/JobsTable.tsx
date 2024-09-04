@@ -22,7 +22,7 @@ export const JobsTable = ({ data, columns, ...others }: Props) => {
   const column = useNewsTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_JOBS.jobs}${record.project_id}`)
+    navigate(`${PATH_JOBS.jobs}/${record.project_id}`)
   };
 
   return (

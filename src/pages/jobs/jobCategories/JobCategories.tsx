@@ -5,7 +5,6 @@ import { HomeOutlined } from "@ant-design/icons";
 import CreateButton from "../../../components/CreateButton/CreateButton";
 import { Card, Col, Row } from "antd";
 import JobCategoryForm from "../../../components/dashboard/jobs/jobsForm/JobCategoryForm";
-import { JobsTable } from "../../../components/dashboard/jobs/jobsTable/JobsTable";
 import { JobCategoriesTable } from "../../../components/dashboard/jobs/jobsTable/JobCategoriesTable";
 
 
