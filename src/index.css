@@ -10,3 +10,7 @@ body {
   margin: 0;
   font-family: var(font-family);
 }
+
+.ant-input{
+  padding: 10px 11px !important;
+}
