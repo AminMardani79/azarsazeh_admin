@@ -30,11 +30,11 @@ export const Logo = ({
   return asLink ? (
     <Link to={href || '#'} className="logo-link">
       <Flex gap={others.gap || 'small'} align="center" {...others}>
-        <img
+        {/* <img
           src="/logo-no-background.png"
           alt="design sparx logo"
           height={imgSize?.h || 48}
-        />
+        /> */}
         <Typography.Title
           level={5}
           type="secondary"

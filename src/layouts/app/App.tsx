@@ -20,7 +20,7 @@ import {
   SettingOutlined,
   UserOutlined,
   MoonOutlined,
-  SunOutlined,
+  SunOutlined
 } from '@ant-design/icons';
 import {
   CSSTransition,
@@ -184,13 +184,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
               </Tooltip>
               <Dropdown menu={{ items }} trigger={['click']}>
                 <Flex>
-                  <img
-                    src="/me.jpg"
-                    alt="user profile photo"
-                    height={36}
-                    width={36}
-                    style={{ borderRadius, objectFit: 'cover' }}
-                  />
+                  <UserOutlined style={{fontSize: "25px", cursor: "pointer"}}/>
                 </Flex>
               </Dropdown>
             </Flex>

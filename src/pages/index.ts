@@ -6,7 +6,6 @@ export * from './news';
 export * from './academy';
 export * from './company';
 export * from './equipments';
-export * from './corporate';
 export * from './userAccount';
 export * from './authentication';
 export * from './errors';

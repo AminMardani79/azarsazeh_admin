@@ -3,6 +3,7 @@ import {
   Col,
   Flex,
   Form,
+  Image,
   Input,
   message,
   Row,
@@ -58,14 +59,7 @@ export const SignInPage = () => {
           className="text-center"
           style={{ background: colorPrimary, height: '100%', padding: '1rem' }}
         >
-          <Logo color="white" />
-          <Title level={2} className="text-white">
-            Welcome back to Antd Admin
-          </Title>
-          <Text className="text-white" style={{ fontSize: 18 }}>
-            A dynamic and versatile multipurpose dashboard utilizing Ant Design,
-            React, TypeScript, and Vite.
-          </Text>
+          <Image src="/azarsazeh_logo.jpg" preview={false}/>
         </Flex>
       </Col>
       <Col xs={24} lg={12}>
