@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { useEquipmentsTableColumn } from './EquipmentsTable.column';
-import { useNavigate, useParams } from 'react-router-dom';
-import { PATH_EQUIPMENTS, PATH_EQUIPMENT_CATEGORIES } from '../../../../constants/routes';
+import { useNavigate } from 'react-router-dom';
+import { PATH_EQUIPMENTS } from '../../../../constants/routes';
 
 type Props = {
   data: Projects[];
@@ -13,7 +13,6 @@ type Props = {
 export const EquipmentsTable = ({ data, columns, ...others }: Props) => {
   const navigate = useNavigate();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const params = useParams();
 
   const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -23,8 +22,7 @@ export const EquipmentsTable = ({ data, columns, ...others }: Props) => {
   const column = useEquipmentsTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    const categoryId = params.id;
-    navigate(`${PATH_EQUIPMENT_CATEGORIES.root}/${categoryId}${PATH_EQUIPMENTS.root}/${record.project_id}`)
+    navigate(`${PATH_EQUIPMENTS.equipments}/${record.project_id}`)
   };
 
   return (

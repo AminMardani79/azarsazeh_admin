@@ -2,7 +2,7 @@ import { message } from 'antd';
 import axios from 'axios';
 
 const apiService = axios.create({
-  baseURL: 'https://some-domain.com/api/',
+  baseURL: 'https://some-domain.com/api',
 });
 
 apiService.interceptors.request.use(

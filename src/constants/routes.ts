@@ -14,8 +14,6 @@ const ROOTS_BLOG = '/blog';
 const ROOTS_CAREERS = '/careers';
 const ROOTS_ACCOUNT = '/account';
 const ROOTS_AUTH = '/auth';
-const ROOTS_PROJECT_CATEGORIES = '/project-categories';
-const ROOTS_EQUIPMENT_CATEGORIES = '/equipment-categories';
 const ROOTS_PROJECT = '/projects';
 const ROOTS_EQUIPMENT = '/equipments';
 const ROOTS_COMPANY = '/company';
@@ -40,14 +38,6 @@ export const PATH_LANDING = {
   contact: '/contact',
 };
 
-export const PATH_PROJECT_CATEGORIES = {
-  root: ROOTS_PROJECT_CATEGORIES
-}
-
-export const PATH_EQUIPMENT_CATEGORIES = {
-  root: ROOTS_EQUIPMENT_CATEGORIES
-}
-
 export const PATH_NEWS = {
   root: ROOTS_NEWS
 }
@@ -65,11 +55,15 @@ export const PATH_CONTACTUS = {
 }
 
 export const PATH_PROJECTS = {
-  root: ROOTS_PROJECT
+  root: ROOTS_PROJECT,
+  categories: path(ROOTS_PROJECT, '/project-categories'),
+  projects: path(ROOTS_PROJECT, '/project-list'),
 }
 
 export const PATH_EQUIPMENTS = {
-  root: ROOTS_EQUIPMENT
+  root: ROOTS_EQUIPMENT,
+  categories: path(ROOTS_EQUIPMENT, '/equipment-categories'),
+  equipments: path(ROOTS_EQUIPMENT, '/equipment-list'),
 }
 
 export const PATH_DASHBOARD = {

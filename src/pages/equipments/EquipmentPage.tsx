@@ -4,19 +4,19 @@ import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
 import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
-import EquipmentCategoryForm from '../../components/dashboard/equipments/equipmentCategoryForm/EquipmentCategoryForm';
-import { EquipmentCategoriesTable } from '../../components/dashboard/equipments/equipmentCategoriesTable/EquipmentCategoriesTable';
+import EquipmentForm from '../../components/dashboard/equipments/equipmentsForm/EquipmentForm';
+import { EquipmentsTable } from '../../components/dashboard/equipments/equipmentsTable/EquipmentsTable';
 
-export const EquipmentCategoriesPage = () => {
+export const EquipmentPage = () => {
   const { data: projectsData } = useFetchData('../mocks/Projects.json');
 
   return (
     <div>
       <Helmet>
-        <title>دسته بندی تجهیزات ها</title>
+        <title>تجهیزات ها</title>
       </Helmet>
       <PageHeader
-        title="دسته بندی های تجهیزات"
+        title="تجهیزات"
         breadcrumbs={[
           {
             title: (
@@ -28,13 +28,13 @@ export const EquipmentCategoriesPage = () => {
             path: '/',
           },
           {
-            title: 'دسته بندی ها',
+            title: 'تجهیزات',
           },
         ]}
         renderButtons={() => (
           <CreateButton
-            title="ساخت دسته بندی"
-            renderForm={() => <EquipmentCategoryForm />}
+            title="ساخت تجهیزات"
+            renderForm={() => <EquipmentForm />}
           />
         )}
       />
@@ -46,7 +46,7 @@ export const EquipmentCategoriesPage = () => {
       >
         <Col span={24}>
           <Card title="Projects">
-            <EquipmentCategoriesTable key="all-equipment-categories-table" data={projectsData} />
+            <EquipmentsTable key="all-equipment-categories-table" data={projectsData} />
           </Card>
         </Col>
       </Row>

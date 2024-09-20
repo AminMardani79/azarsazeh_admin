@@ -3,19 +3,20 @@ import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 // apis
-const getAcademyArticles = () => apiService.get('/academy/articles');
+const getAcademyArticles = () => apiService.get('/blogs/academies/');
 
 const getAcademyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
-  apiService.get(`/academy/articles/${queryKey[1]}`);
+  apiService.get(`/blogs/academies/${queryKey[1]}`);
 
 const removeAcademyArticle = (data: { id: string }) =>
-  apiService.delete(`/academy/articles/${data.id}`);
+  apiService.delete(`/blogs/academies/${data.id}/delete`);
 
 const createAcademyArticle = (data: AcademyArticle) =>
-  apiService.post('/academy/articles', data);
+  apiService.post('/blogs/academies/create', data);
 
-const editAcademyArticle = (data: EditAcademyArticle) =>
-  apiService.put('/academy/articles', data);
+const editAcademyArticle = (data: EditAcademyArticle) => {
+  return apiService.put(`/blogs/academies/${data.id}/update`, data);
+}
 
 // client queries
 export const useAcademyArticles = () =>

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ConfigProvider, Layout, Menu, MenuProps, SiderProps } from 'antd';
-import { ApartmentOutlined, ContactsOutlined, FileTextOutlined, InfoCircleOutlined, PieChartOutlined, ProductOutlined, ReadOutlined, SolutionOutlined, ToolOutlined } from '@ant-design/icons';
+import { ApartmentOutlined, ContactsOutlined, FileTextOutlined, ReadOutlined, SolutionOutlined } from '@ant-design/icons';
 import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
 import { PATH_LANDING } from '../../constants';
 import { COLOR } from '../../App.tsx';
-import { PATH_ACADEMY, PATH_COMPANY, PATH_CONTACTUS, PATH_EQUIPMENT_CATEGORIES, PATH_JOBS, PATH_NEWS } from '../../constants/routes.ts';
+import { PATH_ACADEMY, PATH_COMPANY, PATH_CONTACTUS, PATH_EQUIPMENTS, PATH_JOBS, PATH_NEWS, PATH_PROJECTS } from '../../constants/routes.ts';
 
 const { Sider } = Layout;
 
@@ -28,14 +28,30 @@ const getItem = (
 };
 
 const items: MenuProps['items'] = [
-  getItem(
-    <Link to={PATH_LANDING.root}>دسته بندی پروژه ها</Link>, '',
-    <ProductOutlined />
-  ),
-  getItem(
-    <Link to={PATH_EQUIPMENT_CATEGORIES.root}>دسته بندی تجهیزات</Link>, 'equipment-categories',
-    <ToolOutlined />
-  ),
+  getItem('پروژه ها', 'projects', <SolutionOutlined />, [
+    getItem(
+      <Link to={PATH_PROJECTS.categories}>دسته بندی</Link>,
+      'project-categories',
+      null
+    ),
+    getItem(
+      <Link to={PATH_PROJECTS.projects}>لیست پروژه ها</Link>,
+      'project-list',
+      null
+    )
+  ]),
+  getItem('تجهیزات', 'equipments', <SolutionOutlined />, [
+    getItem(
+      <Link to={PATH_EQUIPMENTS.categories}>دسته بندی</Link>,
+      'equipment-categories',
+      null
+    ),
+    getItem(
+      <Link to={PATH_EQUIPMENTS.equipments}>لیست تجهیزات</Link>,
+      'equipment-list',
+      null
+    )
+  ]),
   getItem(
     <Link to={PATH_NEWS.root}>اخبار</Link>, 'news',
     <FileTextOutlined />

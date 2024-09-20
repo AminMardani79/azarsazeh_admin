@@ -1,9 +1,6 @@
 import { Form, Input } from 'antd';
-import FileUploader from '../../../FileUploader/FileUploader';
-import { normFile } from '../../../../utils';
 
 const ProjectsForm = () => {
-
   return (
     <>
       <Form.Item
@@ -13,14 +10,7 @@ const ProjectsForm = () => {
       >
         <Input />
       </Form.Item>
-      <Form.Item
-        name="file"
-        label="آپلود عکس"
-        valuePropName="fileList"
-        getValueFromEvent={normFile}
-      >
-        <FileUploader/>
-      </Form.Item>
+
     </>
   );
 };

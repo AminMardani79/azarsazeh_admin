@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
-import { PATH_PROJECT_CATEGORIES } from '../../../../constants';
 import { useProjectCategoriesTableColumn } from './ProjectCategories.column';
+import { PATH_PROJECTS } from '../../../../constants';
 
 type Props = {
   data: Projects[];
@@ -22,7 +22,7 @@ export const ProjectCategoriesTable = ({ data, columns, ...others }: Props) => {
   const column = useProjectCategoriesTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_PROJECT_CATEGORIES.root}/${record.project_id}`)
+    navigate(`${PATH_PROJECTS.categories}/${record.project_id}`)
   };
 
   return (

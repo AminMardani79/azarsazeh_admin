@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { useProjectsTableColumn } from './ProjectsTable.column';
-import { useNavigate, useParams } from 'react-router-dom';
-import { PATH_PROJECTS, PATH_PROJECT_CATEGORIES } from '../../../../constants';
+import { useNavigate } from 'react-router-dom';
+import { PATH_PROJECTS } from '../../../../constants';
 
 type Props = {
   data: Projects[];
@@ -13,7 +13,6 @@ type Props = {
 export const ProjectsTable = ({ data, columns, ...others }: Props) => {
   const navigate = useNavigate();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const params = useParams();
 
   const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
@@ -23,8 +22,7 @@ export const ProjectsTable = ({ data, columns, ...others }: Props) => {
   const column = useProjectsTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    const categoryId = params.id;
-    navigate(`${PATH_PROJECT_CATEGORIES.root}/${categoryId}${PATH_PROJECTS.root}/${record.project_id}`)
+    navigate(`${PATH_PROJECTS.projects}/${record.project_id}`)
   };
 
   return (

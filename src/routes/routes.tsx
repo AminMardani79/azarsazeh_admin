@@ -25,13 +25,13 @@ import {
   EditProjecCategoryPage,
   EquipmentCategoriesPage,
   EditEquipmentCategorytPage,
-  EditEquipmentPage,
   NewsPage,
   EditNewsPage,
   AcademyPage,
   EditAcademyPage,
   CompanyPage,
-  EditCompanyPage
+  EditCompanyPage,
+  EditEquipmentPage
 } from '../pages';
 import {
   DashboardLayout,
@@ -45,6 +45,8 @@ import { JobCategoriesPage } from '../pages/jobs/jobCategories/JobCategories.tsx
 import { JobsPage } from '../pages/jobs/jobsList/Jobs.tsx';
 import { EditJobCategoryPage } from '../pages/jobs/jobCategories/EditJobCategory.tsx';
 import { EditJobPage } from '../pages/jobs/jobsList/EditJob.tsx';
+import { ProjectPage } from '../pages/projects/ProjectsPage.tsx';
+import { EquipmentPage } from '../pages/equipments/EquipmentPage.tsx';
 
 // Custom scroll restoration function
 export const ScrollToTop: React.FC = () => {
@@ -78,41 +80,47 @@ const PageWrapper = ({ children }: PageProps) => {
 // Create the router
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/projects',
     element: <PageWrapper children={<DashboardLayout />} />,
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        path: '',
+        path: 'project-categories',
         element: <ProjectCategoriesPage />,
+      },
+      {
+        path: 'project-list',
+        element: <ProjectPage />,
       },
       {
         path: 'project-categories/:id',
         element: <EditProjecCategoryPage />,
       },
       {
-        path: 'project-categories/:id/projects/:projectId',
+        path: 'project-list/:id',
         element: <EditProjectPage />,
       },
     ],
   },
   {
-    path: '/equipment-categories',
+    path: '/equipments',
     element: <PageWrapper children={<DashboardLayout />} />,
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        path: '',
+        path: 'equipment-categories',
         element: <EquipmentCategoriesPage />,
       },
       {
-        path: ':id',
+        path: 'equipment-list',
+        element: <EquipmentPage />,
+      },
+      {
+        path: 'equipment-categories/:id',
         element: <EditEquipmentCategorytPage />,
       },
       {
-        path: ':id/equipments/:equipment',
+        path: 'equipment-list/:id',
         element: <EditEquipmentPage />,
       },
     ],
