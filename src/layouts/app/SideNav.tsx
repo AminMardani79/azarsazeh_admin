@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ConfigProvider, Layout, Menu, MenuProps, SiderProps } from 'antd';
-import { ApartmentOutlined, ContactsOutlined, FileTextOutlined, ReadOutlined, SolutionOutlined } from '@ant-design/icons';
+import { ApartmentOutlined, ContactsOutlined, FileTextOutlined, ProductOutlined, ReadOutlined, SolutionOutlined, ToolOutlined } from '@ant-design/icons';
 import { Logo } from '../../components';
 import { Link, useLocation } from 'react-router-dom';
 import { PATH_LANDING } from '../../constants';
@@ -28,7 +28,7 @@ const getItem = (
 };
 
 const items: MenuProps['items'] = [
-  getItem('پروژه ها', 'projects', <SolutionOutlined />, [
+  getItem('پروژه ها', 'projects', <ProductOutlined />, [
     getItem(
       <Link to={PATH_PROJECTS.categories}>دسته بندی</Link>,
       'project-categories',
@@ -40,7 +40,7 @@ const items: MenuProps['items'] = [
       null
     )
   ]),
-  getItem('تجهیزات', 'equipments', <SolutionOutlined />, [
+  getItem('تجهیزات', 'equipments', <ToolOutlined />, [
     getItem(
       <Link to={PATH_EQUIPMENTS.categories}>دسته بندی</Link>,
       'equipment-categories',

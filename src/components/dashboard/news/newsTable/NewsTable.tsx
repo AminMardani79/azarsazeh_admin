@@ -37,6 +37,9 @@ export const NewsTable = ({ data, columns, ...others }: Props) => {
             onClick: () => handleRowClick(record),
           };
         }}
+        pagination={{
+          showSizeChanger: false,
+        }}
       />
       <Modal
         title="حذف خبر"

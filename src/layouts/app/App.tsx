@@ -16,8 +16,6 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  QuestionOutlined,
-  SettingOutlined,
   UserOutlined,
   MoonOutlined,
   SunOutlined
@@ -32,7 +30,7 @@ import SideNav from './SideNav.tsx';
 import HeaderNav from './HeaderNav.tsx';
 import FooterNav from './FooterNav.tsx';
 import { NProgress } from '../../components';
-import { PATH_AUTH, PATH_LANDING } from '../../constants';
+import { PATH_AUTH } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/theme/themeSlice.ts';
 
@@ -61,16 +59,6 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
       key: 'user-profile-link',
       label: 'profile',
       icon: <UserOutlined />,
-    },
-    {
-      key: 'user-settings-link',
-      label: 'settings',
-      icon: <SettingOutlined />,
-    },
-    {
-      key: 'user-help-link',
-      label: 'help center',
-      icon: <QuestionOutlined />,
     },
     {
       type: 'divider',
@@ -157,7 +145,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
             }}
           >
             <Flex align="center">
-              <Tooltip title={`${collapsed ? 'Expand' : 'Collapse'} Sidebar`}>
+              <Tooltip title={`${collapsed ? 'بازکردن' : 'بستن'} منو`}>
                 <Button
                   type="text"
                   icon={
@@ -173,7 +161,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
               </Tooltip>
             </Flex>
             <Flex align="center" gap="small">
-              <Tooltip title="Theme">
+              <Tooltip title={mytheme === 'light' ? 'تم تاریک' : 'تم روشن'}>
                 <Switch
                   className=" hidden sm:inline py-1"
                   checkedChildren={<MoonOutlined />}

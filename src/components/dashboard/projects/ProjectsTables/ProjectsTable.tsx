@@ -17,12 +17,12 @@ export const ProjectsTable = ({ data, columns, ...others }: Props) => {
   const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setDeleteModalOpen((prev) => !prev);
-  }
+  };
 
   const column = useProjectsTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_PROJECTS.projects}/${record.project_id}`)
+    navigate(`${PATH_PROJECTS.projects}/${record.project_id}`);
   };
 
   return (
@@ -37,6 +37,9 @@ export const ProjectsTable = ({ data, columns, ...others }: Props) => {
             onClick: () => handleRowClick(record),
           };
         }}
+        pagination={{
+          showSizeChanger: false,
+        }}
       />
       <Modal
         title="حذف پروژه"
@@ -49,7 +52,7 @@ export const ProjectsTable = ({ data, columns, ...others }: Props) => {
         confirmLoading={false}
         centered
       >
-        <Typography.Text >آیا از حذف این پروژه اطمینان دارید؟</Typography.Text>
+        <Typography.Text>آیا از حذف این پروژه اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

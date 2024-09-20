@@ -179,6 +179,9 @@ export const CategoriesCard = ({ ...others }: Props) => {
         columns={CATEGORIES_COLUMNS}
         size="middle"
         className="overflow-scroll"
+        pagination={{
+          showSizeChanger: false,
+        }}
       />
     </Card>
   );

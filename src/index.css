@@ -14,3 +14,15 @@ body {
 .ant-input{
   padding: 10px 11px !important;
 }
+
+.ant-dropdown-menu-title-content{
+  font-weight: 600;
+}
+
+.ant-pagination{
+  justify-content: center !important;
+}
+
+.ant-pagination-item {
+  font-weight: 600 !important;
+}
