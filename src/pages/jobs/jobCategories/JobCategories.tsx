@@ -46,8 +46,8 @@ export const JobCategoriesPage = () => {
         ]}
       >
         <Col span={24}>
-          <Card title="اخبار">
-            <JobCategoriesTable key="all-news-categories-table" data={projectsData} />
+          <Card title="دسته بندی مشاغل">
+            <JobCategoriesTable key="all-job-categories-table" data={projectsData} />
           </Card>
         </Col>
       </Row>

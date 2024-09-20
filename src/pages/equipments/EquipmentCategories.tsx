@@ -45,7 +45,7 @@ export const EquipmentCategoriesPage = () => {
         ]}
       >
         <Col span={24}>
-          <Card title="Projects">
+          <Card title="دسته بندی تجهیزات">
             <EquipmentCategoriesTable key="all-equipment-categories-table" data={projectsData} />
           </Card>
         </Col>

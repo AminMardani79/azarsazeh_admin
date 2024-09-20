@@ -1,6 +1,6 @@
 import { Button, Col, Form, Input, Row } from 'antd';
 import { useForm } from 'antd/es/form/Form';
-import FileUploader from '../../components/FileUploader/FileUploader';
+import FileUploader from '../../components/Uploader/ImageUploader';
 import { normFile } from '../../utils';
 
 const ProjectCategoryDetailTab = () => {

@@ -44,7 +44,7 @@ export const ProjectPage = () => {
         ]}
       >
         <Col span={24}>
-          <Card title="Projects">
+          <Card title="پروژه ها">
             <ProjectsTable key="all-project-table" data={projectsData} />
           </Card>
         </Col>

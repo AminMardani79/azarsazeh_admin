@@ -1,6 +1,6 @@
 import { Button, Col, Form, FormInstance, Input, Row } from 'antd';
 import { normFile } from '../../../../utils';
-import FileUploader from '../../../FileUploader/FileUploader';
+import FileUploader from '../../../Uploader/ImageUploader';
 
 const EditEquipmentCategoryForm = ({ form }: { form: FormInstance<any> }) => {
   const handleClick = () => form.submit();

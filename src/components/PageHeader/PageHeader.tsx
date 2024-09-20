@@ -12,7 +12,7 @@ import './styles.css';
 
 type Props = {
   title: string;
-  breadcrumbs: BreadcrumbProps['items'];
+  breadcrumbs?: BreadcrumbProps['items'];
   renderButtons?: () => React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 

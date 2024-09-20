@@ -1,5 +1,5 @@
 import { Button, Col, Form, FormInstance, Input, Row } from 'antd';
-import FileUploader from '../../../FileUploader/FileUploader';
+import FileUploader from '../../../Uploader/ImageUploader';
 import { normFile } from '../../../../utils';
 
 const EditEquipmentForm = ({ form }: { form: FormInstance<any> }) => {

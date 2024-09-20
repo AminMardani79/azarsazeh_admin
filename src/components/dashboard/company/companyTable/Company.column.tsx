@@ -1,13 +1,13 @@
-import { Badge, BadgeProps, Button, Tag, TagProps, Typography } from 'antd';
+import { Button, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
 
 export const useCompanyTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
     {
-      title: 'Name',
-      dataIndex: 'project_name',
-      key: 'proj_name',
+      title: 'عنوان مطلب',
+      dataIndex: 'article_name',
+      key: 'article_name',
       render: (_: any, { project_name }: Projects) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
@@ -19,75 +19,9 @@ export const useCompanyTableColumn = (toggleDeleteModal: (event: any)=> void) =>
       ),
     },
     {
-      title: 'Client',
-      dataIndex: 'client_name',
-      key: 'proj_client_name',
-    },
-    {
-      title: 'Category',
-      dataIndex: 'project_category',
-      key: 'proj_category',
-      render: (_: any) => <span className="text-capitalize">{_}</span>,
-    },
-    {
-      title: 'Priority',
-      dataIndex: 'priority',
-      key: 'proj_priority',
-      render: (_: any) => {
-        let color: TagProps['color'];
-
-        if (_ === 'low') {
-          color = 'cyan';
-        } else if (_ === 'medium') {
-          color = 'geekblue';
-        } else {
-          color = 'magenta';
-        }
-
-        return (
-          <Tag color={color} className="text-capitalize">
-            {_}
-          </Tag>
-        );
-      },
-    },
-    {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'proj_status',
-      render: (_: any) => {
-        let status: BadgeProps['status'];
-
-        if (_ === 'on hold') {
-          status = 'default';
-        } else if (_ === 'completed') {
-          status = 'success';
-        } else {
-          status = 'processing';
-        }
-
-        return <Badge status={status} text={_} className="text-capitalize" />;
-      },
-    },
-    {
-      title: 'Team size',
-      dataIndex: 'team_size',
-      key: 'proj_team_size',
-    },
-    {
-      title: 'Duration',
-      dataIndex: 'project_duration',
-      key: 'project_duration',
-    },
-    {
-      title: 'Start date',
-      dataIndex: 'start_date',
-      key: 'proj_start_date',
-    },
-    {
       title: '',
       dataIndex: 'operation',
-      key: 'proj_operation',
+      key: 'article_operation',
       render: (_: any) => {
         return (
           <Button
