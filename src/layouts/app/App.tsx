@@ -18,7 +18,7 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
   MoonOutlined,
-  SunOutlined
+  SunOutlined,
 } from '@ant-design/icons';
 import {
   CSSTransition,
@@ -33,6 +33,7 @@ import { NProgress } from '../../components';
 import { PATH_AUTH } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/theme/themeSlice.ts';
+import { useLogout } from '../../services/auth.api.ts';
 
 const { Content } = Layout;
 
@@ -54,6 +55,25 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const floatBtnRef = useRef(null);
   const dispatch = useDispatch();
   const { mytheme } = useSelector((state: any) => state.theme);
+
+  const { mutate } = useLogout();
+
+  const onSuccess = () => {
+    localStorage.clear();
+    message.open({
+      type: 'success',
+      content: 'خروج با موفقیت انجام شد',
+    });
+    navigate(PATH_AUTH.signin);
+  };
+
+  const onError = () => {
+    message.open({
+      type: 'error',
+      content: 'خروج با مشکل مواجه شد',
+    });
+  };
+
   const items: MenuProps['items'] = [
     {
       key: 'user-profile-link',
@@ -69,14 +89,11 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
       icon: <LogoutOutlined />,
       danger: true,
       onClick: () => {
+        mutate({}, { onSuccess, onError });
         message.open({
           type: 'loading',
-          content: 'signing you out',
+          content: 'درحال خروج',
         });
-
-        setTimeout(() => {
-          navigate(PATH_AUTH.signin);
-        }, 1000);
       },
     },
   ];
@@ -94,6 +111,12 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
       }
     });
   }, []);
+
+  useEffect(()=> {
+    if(!localStorage.getItem("xAuthToken")){
+      // navigate(PATH_AUTH.signin);
+    }
+  }, [])
 
   return (
     <>
@@ -172,7 +195,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
               </Tooltip>
               <Dropdown menu={{ items }} trigger={['click']}>
                 <Flex>
-                  <UserOutlined style={{fontSize: "25px", cursor: "pointer"}}/>
+                  <UserOutlined
+                    style={{ fontSize: '25px', cursor: 'pointer' }}
+                  />
                 </Flex>
               </Dropdown>
             </Flex>

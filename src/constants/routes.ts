@@ -56,8 +56,8 @@ export const PATH_CONTACTUS = {
 
 export const PATH_PROJECTS = {
   root: ROOTS_PROJECT,
-  categories: path(ROOTS_PROJECT, '/project-categories'),
-  projects: path(ROOTS_PROJECT, '/project-list'),
+  categories: path("", "/project-categories"),
+  projects: path("", '/project-list'),
 }
 
 export const PATH_EQUIPMENTS = {

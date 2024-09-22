@@ -10,13 +10,12 @@ import {
   theme,
   Typography,
 } from 'antd';
-import { Logo } from '../../components';
 import { useMediaQuery } from 'react-responsive';
 import { PATH_LANDING } from '../../constants';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useLogin } from '../../services/auth.api';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 type FieldType = {
   username?: string;
@@ -29,25 +28,29 @@ export const SignInPage = () => {
   } = theme.useToken();
   const isMobile = useMediaQuery({ maxWidth: 769 });
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
-  const onFinish = (values: any) => {
+  const { mutate, isPending } = useLogin();
+
+  const onSuccess = (values: any) => {
     console.log('Success:', values);
-    setLoading(true);
-
+    const xAuthToken = values.token;
+    localStorage.setItem("xAuthToken", xAuthToken);
     message.open({
       type: 'success',
-      content: 'Login successful',
+      content: 'ورود شما با موفقیت انجام شد',
     });
-
-    setTimeout(() => {
-      navigate(PATH_LANDING.root);
-    }, 5000);
+    
+    navigate(PATH_LANDING.root);
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+  const onError = () => {
+    message.open({
+      type: 'error',
+      content: 'ورود شما با مشکل مواجه شد',
+    });
   };
+
+  const onFinish = (values: any) => mutate(values, { onSuccess, onError });
 
   return (
     <Row style={{ minHeight: isMobile ? 'auto' : '100vh', overflow: 'hidden' }}>
@@ -59,7 +62,7 @@ export const SignInPage = () => {
           className="text-center"
           style={{ background: colorPrimary, height: '100%', padding: '1rem' }}
         >
-          <Image src="/azarsazeh_logo.jpg" preview={false}/>
+          <Image src="/azarsazeh_logo.jpg" preview={false} />
         </Flex>
       </Col>
       <Col xs={24} lg={12}>
@@ -78,10 +81,9 @@ export const SignInPage = () => {
             wrapperCol={{ span: 24 }}
             initialValues={{
               username: 'demo@email.com',
-              password: 'demo123'
+              password: 'demo123',
             }}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
             autoComplete="off"
             requiredMark={false}
           >
@@ -115,7 +117,7 @@ export const SignInPage = () => {
                   type="primary"
                   htmlType="submit"
                   size="middle"
-                  loading={loading}
+                  loading={isPending}
                 >
                   ورود
                 </Button>

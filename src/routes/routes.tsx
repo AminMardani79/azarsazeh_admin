@@ -80,12 +80,13 @@ const PageWrapper = ({ children }: PageProps) => {
 // Create the router
 const router = createBrowserRouter([
   {
-    path: '/projects',
+    path: '/',
     element: <PageWrapper children={<DashboardLayout />} />,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'project-categories',
+        index: true,
+        path: '',
         element: <ProjectCategoriesPage />,
       },
       {
