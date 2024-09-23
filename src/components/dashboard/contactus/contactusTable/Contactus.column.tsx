@@ -1,34 +1,35 @@
 import { Button, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
+import { ContactUs } from '../../../../types/contactUs.types';
 
 export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
     {
       title: 'نام',
-      dataIndex: 'first_name',
-      key: 'first_name',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'name',
+      key: 'name',
+      render: (_: any, { name }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {name.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
     {
       title: 'نام خانوادگی',
-      dataIndex: 'last_name',
-      key: 'last_name',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'family',
+      key: 'family',
+      render: (_: any, { family }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {family.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
@@ -36,27 +37,27 @@ export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) 
       title: 'ایمیل',
       dataIndex: 'email',
       key: 'email',
-      render: (_: any, { project_name }: Projects) => (
+      render: (_: any, { email }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {email.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
     {
       title: 'شماره تلفن',
-      dataIndex: 'phone_number',
-      key: 'phone_number',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'phoneNumber',
+      key: 'phoneNumber',
+      render: (_: any, { phoneNumber }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {phoneNumber.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

@@ -2,12 +2,12 @@ import { Col, Row } from 'antd';
 import { Card, PageHeader, ProjectsTable } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import ProjectsForm from '../../components/dashboard/projects/ProjectsForm/ProjectsForm';
+import { useProjects } from '../../services/project.api';
 
 export const ProjectPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+  const {data, isFetching} = useProjects();
 
   return (
     <div>
@@ -45,7 +45,7 @@ export const ProjectPage = () => {
       >
         <Col span={24}>
           <Card title="پروژه ها">
-            <ProjectsTable key="all-project-table" data={projectsData} />
+            <ProjectsTable key="all-project-table" data={data?.data.results} loading={isFetching}/>
           </Card>
         </Col>
       </Row>

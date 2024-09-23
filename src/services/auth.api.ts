@@ -4,12 +4,11 @@ import {useMutation} from '@tanstack/react-query'
 const login = (values: {username: string, password: string})=> {
   const {username, password} = values;
 
-  const encodedUsername = btoa(username);
-  const encodedPassword = btoa(password);
+  const encodedAuthentication = btoa(`${username}:${password}`);
 
-  return apiService.post('/users/login',{}, {
+  return apiService.post('/users/login/',null, {
     headers: {
-      'Authorization': `Basic ${encodedUsername}:${encodedPassword}`
+      'Authorization': `Basic ${encodedAuthentication}`
     }
   });
 }

@@ -1,6 +1,6 @@
 import { Button, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
+import { JobCategory } from '../../../../types/job.types';
 
 export const useJobCategoriesTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
@@ -8,13 +8,13 @@ export const useJobCategoriesTableColumn = (toggleDeleteModal: (event: any)=> vo
       title: 'عنوان دسته بندی',
       dataIndex: 'category_name',
       key: 'category_name',
-      render: (_: any, { project_name }: Projects) => (
+      render: (_: any, { title }: JobCategory) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {title.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

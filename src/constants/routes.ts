@@ -82,6 +82,7 @@ export const PATH_JOBS = {
   root: ROOTS_JOBS,
   jobs: path(ROOTS_JOBS, '/list'),
   jobCategories: path(ROOTS_JOBS, '/categories'),
+  jobRequests: path(ROOTS_JOBS, '/requests'),
 };
 
 export const PATH_SITEMAP = {

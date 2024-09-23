@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
-import { useProjectCategoriesTableColumn } from './ProjectCategories.column';
-import { PATH_PROJECTS } from '../../../../constants';
+import { PATH_JOBS } from '../../../../constants/routes';
+import { useJobRequestsTableColumn } from './jobRequests.column';
 
 type Props = {
   data: Projects[];
   onRowClick?: any;
-  loading?: boolean;
 } & TableProps<any>;
 
-export const ProjectCategoriesTable = ({ data, columns, loading, ...others }: Props) => {
+export const JobRequestsTable = ({ data, columns, ...others }: Props) => {
   const navigate = useNavigate();
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -20,10 +19,10 @@ export const ProjectCategoriesTable = ({ data, columns, loading, ...others }: Pr
     setDeleteModalOpen((prev) => !prev);
   }
 
-  const column = useProjectCategoriesTableColumn(toggleDeleteModal);
+  const column = useJobRequestsTableColumn(toggleDeleteModal);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_PROJECTS.categories}/${record.project_id}`)
+    navigate(`${PATH_JOBS.jobCategories}/${record.project_id}`)
   };
 
   return (
@@ -31,7 +30,6 @@ export const ProjectCategoriesTable = ({ data, columns, loading, ...others }: Pr
       <Table
         dataSource={data}
         columns={column}
-        loading={loading}
         className="overflow-scroll"
         {...others}
         onRow={(record) => {
@@ -44,7 +42,7 @@ export const ProjectCategoriesTable = ({ data, columns, loading, ...others }: Pr
         }}
       />
       <Modal
-        title="حذف دسته بندی"
+        title="حذف درخواست شغلی"
         open={isDeleteModalOpen}
         onOk={toggleDeleteModal}
         onCancel={toggleDeleteModal}
@@ -54,7 +52,7 @@ export const ProjectCategoriesTable = ({ data, columns, loading, ...others }: Pr
         confirmLoading={false}
         centered
       >
-        <Typography.Text >آیا از حذف این دسته بندی اطمینان دارید؟</Typography.Text>
+        <Typography.Text >آیا از حذف این درخواست شغلی اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

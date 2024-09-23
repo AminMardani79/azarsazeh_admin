@@ -1,15 +1,15 @@
 import { Helmet } from "react-helmet-async";
-import { useFetchData } from "../../../hooks";
 import { PageHeader } from "../../../components";
 import { HomeOutlined } from "@ant-design/icons";
 import CreateButton from "../../../components/CreateButton/CreateButton";
 import { Card, Col, Row } from "antd";
 import JobCategoryForm from "../../../components/dashboard/jobs/jobsForm/JobCategoryForm";
 import { JobCategoriesTable } from "../../../components/dashboard/jobs/jobsTable/JobCategoriesTable";
+import { useJobCategories } from "../../../services/jobs.api";
 
 
 export const JobCategoriesPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+  const {data, isFetching} = useJobCategories();
 
   return (
     <div>
@@ -47,7 +47,7 @@ export const JobCategoriesPage = () => {
       >
         <Col span={24}>
           <Card title="دسته بندی مشاغل">
-            <JobCategoriesTable key="all-job-categories-table" data={projectsData} />
+            <JobCategoriesTable key="all-job-categories-table" data={data?.data.results} loading={isFetching} />
           </Card>
         </Col>
       </Row>

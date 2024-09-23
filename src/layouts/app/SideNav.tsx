@@ -78,7 +78,12 @@ const items: MenuProps['items'] = [
       <Link to={PATH_JOBS.jobs}>مشاغل</Link>,
       'list',
       null
-    )
+    ),
+    getItem(
+      <Link to={PATH_JOBS.jobRequests}>درخواست های همکاری</Link>,
+      'requests',
+      null
+    ),
   ]),
 ];
 

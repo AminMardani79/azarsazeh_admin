@@ -33,8 +33,8 @@ export const SignInPage = () => {
 
   const onSuccess = (values: any) => {
     console.log('Success:', values);
-    const xAuthToken = values.token;
-    localStorage.setItem("xAuthToken", xAuthToken);
+    const xAuthToken = values.data.token;
+    localStorage.setItem("xAuthToken", `Token ${xAuthToken}`);
     message.open({
       type: 'success',
       content: 'ورود شما با موفقیت انجام شد',
@@ -80,8 +80,8 @@ export const SignInPage = () => {
             labelCol={{ span: 24 }}
             wrapperCol={{ span: 24 }}
             initialValues={{
-              username: 'demo@email.com',
-              password: 'demo123',
+              username: 'admin',
+              password: '123',
             }}
             onFinish={onFinish}
             autoComplete="off"

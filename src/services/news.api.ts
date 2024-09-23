@@ -3,7 +3,7 @@ import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 // apis
-const getAllNews = () => apiService.get('/news');
+const getAllNews = () => apiService.get('/blogs/news/');
 
 const getNews = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/news/${queryKey[1]}`);

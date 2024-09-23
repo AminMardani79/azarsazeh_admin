@@ -1,7 +1,7 @@
 export interface Job {
   title: string;
   location: string;
-  category: File;
+  category: string;
 }
 
 export interface EditJob extends Job {
@@ -10,8 +10,11 @@ export interface EditJob extends Job {
 
 export interface JobCategory {
   title: string;
-  location: string;
-  category: File;
+}
+
+export interface JobRequest {
+  fullname: string;
+  job: any;
 }
 
 export interface EditJobCategory extends JobCategory {

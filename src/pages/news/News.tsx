@@ -6,9 +6,12 @@ import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import NewsForm from '../../components/dashboard/news/newsForm/NewsForm';
 import { NewsTable } from '../../components/dashboard/news/newsTable/NewsTable';
+import { useAllNews } from '../../services/news.api';
 
 export const NewsPage = () => {
   const { data: projectsData } = useFetchData('../mocks/Projects.json');
+
+  const {data, isFetching} = useAllNews();
 
   return (
     <div>
@@ -46,7 +49,7 @@ export const NewsPage = () => {
       >
         <Col span={24}>
           <Card title="اخبار">
-            <NewsTable key="all-news-categories-table" data={projectsData} />
+            <NewsTable key="all-news-categories-table" data={data?.data.results} loading={isFetching} />
           </Card>
         </Col>
       </Row>

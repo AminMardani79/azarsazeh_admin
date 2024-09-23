@@ -1,34 +1,48 @@
 import { Button, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
+import { Job } from '../../../../types/job.types';
 
 export const useNewsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
     {
       title: 'عنوان شغل',
-      dataIndex: 'job_name',
-      key: 'job_name',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'title',
+      key: 'title',
+      render: (_: any, { title }: Job) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {title.substring(0, 20)}
+        </Typography.Paragraph>
+      ),
+    },
+    {
+      title: 'موقعیت مکانی',
+      dataIndex: 'location',
+      key: 'location',
+      render: (_: any, { location }: Job) => (
+        <Typography.Paragraph
+          ellipsis={{ rows: 1 }}
+          className="text-capitalize"
+          style={{ marginBottom: 0 }}
+        >
+          {location.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
     {
       title: 'دسته بندی',
-      dataIndex: 'job_category_name',
-      key: 'job_category_name',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'category',
+      key: 'category',
+      render: (_: any, { category }: Job) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {category.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

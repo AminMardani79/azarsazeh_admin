@@ -28,7 +28,7 @@ apiService.interceptors.response.use(
   function (error) {
     const { status } = error.response;
     if (status === 401) {
-      window.location.replace(PATH_AUTH.signin);
+      // window.location.replace(PATH_AUTH.signin);
       message.error('نشست شما منقضی شد.');
       return Promise.reject(error);
     }

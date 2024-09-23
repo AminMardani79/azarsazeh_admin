@@ -6,7 +6,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 // apis
 
 // Projects
-const getProjects = () => apiService.get('/company/articles');
+const getProjects = () => apiService.get('/blogs/projects/');
 
 const getProject = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -19,7 +19,7 @@ const createProject = (data: Project) => apiService.post('/company/articles', da
 const editProject = (data: EditProject) => apiService.put('/company/articles', data);
 
 // Project categories
-const getProjectCategories = () => apiService.get('/company/articles');
+const getProjectCategories = () => apiService.get('/blogs/categories/');
 
 const getProjectCategory = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -34,7 +34,7 @@ const editProjectCategory = (data: EditProjectCategory) =>
   apiService.put('/company/articles', data);
 
 // client queries
-export const useProjects = (categoryId: string) =>
+export const useProjects = (categoryId?: string) =>
   useQuery({ queryKey: ['projects', categoryId], queryFn: getProjects });
 
 export const useProject = (projectId: string) =>

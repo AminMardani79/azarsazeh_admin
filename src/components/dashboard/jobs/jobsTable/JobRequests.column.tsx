@@ -1,43 +1,41 @@
-import { Button, Tag, Typography } from 'antd';
-import { Projects } from '../../../../types';
+import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import { JobRequest } from '../../../../types/job.types';
 
-export const useProjectsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useJobRequestsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
     {
-      title: 'نام پروژه',
-      dataIndex: 'title',
-      key: 'title',
-      render: (_: any, { title }: Projects) => (
+      title: 'نام و نام خانوادگی',
+      dataIndex: 'fullname',
+      key: 'fullname',
+      render: (_: any, { fullname }: JobRequest) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {title.substring(0, 20)}
+          {fullname.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
     {
-      title: 'دسته بندی ها',
-      dataIndex: 'categories',
-      key: 'categories',
-      render: (_: any, { categories }: Projects) => (
+      title: 'عنوان شغل',
+      dataIndex: 'job',
+      key: 'job',
+      render: (_: any, { job }: JobRequest) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {categories.map(item=> {
-            return <Tag color="blue">{item.title}</Tag>
-          })}
+          {job.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
     {
       title: '',
       dataIndex: 'operation',
-      key: 'proj_operation',
+      key: 'category_operation',
       render: (_: any) => {
         return (
           <Button

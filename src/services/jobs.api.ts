@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 // apis
 
 // jobs
-const getJobs = () => apiService.get('/company/articles');
+const getJobs = () => apiService.get('/contact/jobs');
 
 const getJob = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -18,7 +18,9 @@ const createJob = (data: Job) => apiService.post('/company/articles', data);
 const editJob = (data: EditJob) => apiService.put('/company/articles', data);
 
 // job categories
-const getJobCategories = () => apiService.get('/company/articles');
+const getJobCategories = () => apiService.get('/contact/job_categories/');
+
+const getJobRequests = () => apiService.get('/contact/cooperation_requests/');
 
 const getJobCategory = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -59,6 +61,9 @@ export const useJobCategories = () =>
 
 export const useJobCategory = (id: string) =>
   useQuery({ queryKey: ['company-articles', id], queryFn: getJobCategory });
+
+export const useJobRequests = () =>
+  useQuery({ queryKey: ['job-requests'], queryFn: getJobRequests });
 
 export const useCreateJobCategory = () =>
   useMutation({

@@ -2,13 +2,13 @@ import { Col, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import AcademyForm from '../../components/dashboard/academy/academyForm/AcademyForm';
 import { AcademyTable } from '../../components/dashboard/academy/academyTable/AcademyTable';
+import { useAcademyArticles } from '../../services/academy.api';
 
 export const AcademyPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+  const {data, isFetching} = useAcademyArticles();
 
   return (
     <div>
@@ -46,7 +46,7 @@ export const AcademyPage = () => {
       >
         <Col span={24}>
           <Card title="مقالات">
-            <AcademyTable key="all-academy-table" data={projectsData} />
+            <AcademyTable key="all-academy-table" data={data?.data.results} loading={isFetching} />
           </Card>
         </Col>
       </Row>

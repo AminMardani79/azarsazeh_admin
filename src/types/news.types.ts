@@ -1,6 +1,6 @@
 export interface News {
-  name: string;
-  description: string;
+  title: string;
+  content: string;
   image: File;
 }
 
