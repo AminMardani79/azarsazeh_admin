@@ -1,13 +1,17 @@
-import { Button, Form, Modal } from 'antd';
-import { useForm } from 'antd/es/form/Form';
+import { UseMutateFunction } from '@tanstack/react-query';
+import { Button, Form, Modal, message } from 'antd';
+import { FormInstance, useForm } from 'antd/es/form/Form';
+import { AxiosResponse } from 'axios';
 import { useState } from 'react';
 
 function CreateButton({
   renderForm,
   title,
+  mutate,
 }: {
-  renderForm?: () => React.ReactNode;
+  renderForm?: (form: FormInstance) => React.ReactNode;
   title: string;
+  mutate: UseMutateFunction<AxiosResponse<any, any>, Error, any, unknown>;
 }) {
   const [form] = useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +23,14 @@ function CreateButton({
 
   const handleSubmitForm = () => form.submit();
 
-  const handleFinish = (values: any) => console.log(values);
+  const onError = () => message.error('ذخیره فرم با مشکل مواجه شد.');
+
+  const onSuccess = () => message.success('ذخیره فرم با موفقیت انجام شد');
+
+  const handleFinish = (values: any) => {
+    //mutate(values, { onSuccess, onError });
+    console.log({ values });
+  };
 
   return (
     <>
@@ -37,7 +48,7 @@ function CreateButton({
         centered
       >
         <Form form={form} onFinish={handleFinish}>
-          {renderForm && renderForm()}
+          {renderForm && renderForm(form)}
         </Form>
       </Modal>
     </>

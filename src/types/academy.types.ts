@@ -7,3 +7,8 @@ export interface AcademyArticle {
 export interface EditAcademyArticle extends AcademyArticle {
   id: string;
 }
+
+export interface CreateAcademy {
+  title: string;
+  image: File;
+}

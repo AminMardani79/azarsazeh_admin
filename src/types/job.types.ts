@@ -20,3 +20,13 @@ export interface JobRequest {
 export interface EditJobCategory extends JobCategory {
   id: string;
 }
+
+export interface CreateJobCategory {
+  title: string;
+}
+
+export interface CreateJob {
+  title: string;
+  location: string;
+  category: string;
+}

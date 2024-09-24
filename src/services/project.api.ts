@@ -1,5 +1,4 @@
-import { ProjectCategory } from '../types';
-import { EditProject, EditProjectCategory, Project } from '../types/project.types';
+import { CreateProject, CreateProjectCategory } from '../types/project.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -14,9 +13,9 @@ const getProject = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeProject = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createProject = (data: Project) => apiService.post('/company/articles', data);
+const createProject = (data: CreateProject) => apiService.post('/blogs/projects/create/', data);
 
-const editProject = (data: EditProject) => apiService.put('/company/articles', data);
+const editProject = (data: any) => apiService.put('/company/articles', data);
 
 // Project categories
 const getProjectCategories = () => apiService.get('/blogs/categories/');
@@ -27,10 +26,10 @@ const getProjectCategory = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeProjectCategory = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createProjectCategory = (data: ProjectCategory) =>
-  apiService.post('/company/articles', data);
+const createProjectCategory = (data: CreateProjectCategory) =>
+  apiService.post('/blogs/project_categories/create/', data);
 
-const editProjectCategory = (data: EditProjectCategory) =>
+const editProjectCategory = (data: any) =>
   apiService.put('/company/articles', data);
 
 // client queries

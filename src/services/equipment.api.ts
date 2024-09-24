@@ -1,11 +1,11 @@
-import { EditEquipment, EditEquipmentCategory, Equipment, EquipmentCategory } from '../types/equipment.types';
+import { CreateEquipment, CreateEquipmentCategory, EditEquipment, EditEquipmentCategory } from '../types/equipment.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 // apis
 
 // Equipments
-const getEquipments = () => apiService.get('/company/articles');
+const getEquipments = () => apiService.get('/blogs/equipments/');
 
 const getEquipment = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -13,12 +13,12 @@ const getEquipment = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeEquipment = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createEquipment = (data: Equipment) => apiService.post('/company/articles', data);
+const createEquipment = (data: CreateEquipment) => apiService.post('/blogs/equipments/create/', data);
 
 const editEquipment = (data: EditEquipment) => apiService.put('/company/articles', data);
 
 // Equipment categories
-const getEquipmentCategories = () => apiService.get('/company/articles');
+const getEquipmentCategories = () => apiService.get('/blogs/equipment_categories/');
 
 const getEquipmentCategory = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -26,8 +26,8 @@ const getEquipmentCategory = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeEquipmentCategory = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createEquipmentCategory = (data: EquipmentCategory) =>
-  apiService.post('/company/articles', data);
+const createEquipmentCategory = (data: CreateEquipmentCategory) =>
+  apiService.post('/blogs/equipment_categories/create/', data);
 
 const editEquipmentCategory = (data: EditEquipmentCategory) =>
   apiService.put('/company/articles', data);

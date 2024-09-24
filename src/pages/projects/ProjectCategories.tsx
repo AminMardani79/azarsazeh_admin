@@ -1,18 +1,20 @@
-import { Col, Row } from 'antd';
+import { Col, FormInstance, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import { ProjectCategoriesTable } from '../../components/dashboard/projects/ProjectCategoriesTable/ProjectCategoriesTable';
 import ProjectCategoriesForm from '../../components/dashboard/projects/projectCategoryForm/ProjectCategoryForm';
-import { useProjectCategories } from '../../services/project.api';
+import {
+  useCreateProjectCategory,
+  useProjectCategories,
+} from '../../services/project.api';
+import { useState } from 'react';
 
 export const ProjectCategoriesPage = () => {
-
-  const {data, isFetching} = useProjectCategories();
-
-  console.log(data?.data.results);
-  
+  const [images, setImages] = useState<File[]>([]);
+  const { data, isFetching } = useProjectCategories();
+  const { mutate } = useCreateProjectCategory();
 
   return (
     <div>
@@ -38,7 +40,8 @@ export const ProjectCategoriesPage = () => {
         renderButtons={() => (
           <CreateButton
             title="ساخت دسته بندی"
-            renderForm={() => <ProjectCategoriesForm />}
+            mutate={mutate}
+            renderForm={(form: FormInstance) => <ProjectCategoriesForm form={form}/>}
           />
         )}
       />
@@ -50,7 +53,11 @@ export const ProjectCategoriesPage = () => {
       >
         <Col span={24}>
           <Card title="دسته بندی ها">
-            <ProjectCategoriesTable key="all-project-categories-table" data={data?.data.results} loading={isFetching} />
+            <ProjectCategoriesTable
+              key="all-project-categories-table"
+              data={data?.data.results}
+              loading={isFetching}
+            />
           </Card>
         </Col>
       </Row>

@@ -6,14 +6,3 @@ export type ProjectType =
   | 'marketing'
   | 'research'
   | string;
-
-export type Projects = {
-  id: string;
-  title: string;
-  categories: any[]
-};
-
-export type ProjectCategories = {
-  id: string;
-  title: string;
-}

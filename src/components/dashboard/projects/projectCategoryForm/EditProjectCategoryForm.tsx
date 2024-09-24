@@ -28,9 +28,9 @@ const EditProjectCategoryForm = ({ form }: { form: FormInstance<any> }) => {
       </Col>
       <Col span={24}>
         <Form.Item
-          name="file"
+          name="image"
           label="آپلود عکس"
-          valuePropName="fileList"
+          valuePropName="image"
           getValueFromEvent={normFile}
         >
           <ImageUploader />

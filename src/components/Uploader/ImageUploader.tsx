@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Image, Upload, UploadFile, UploadProps, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
@@ -10,7 +10,15 @@ const getBase64 = (file: any): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUploder = () => {
+const ImageUploder = ({
+  maxCount,
+  updateImages,
+  uploadedImages,
+}: {
+  maxCount?: number;
+  updateImages: any;
+  uploadedImages?: [];
+}) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState<UploadFile[]>([
@@ -49,9 +57,14 @@ const ImageUploder = () => {
     setPreviewOpen(true);
   };
 
-  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
+  const handleChange: UploadProps['onChange'] = ({
+    fileList: newFileList,
+    file,
+  }) => {
+    console.log({ file });
+    updateImages(file);
     console.log({ newFileList });
+    setFileList(newFileList);
   };
 
   const uploadButton = (
@@ -76,14 +89,21 @@ const ImageUploder = () => {
 
     return false;
   };
+
+  useEffect(() => {
+    if (uploadedImages) setFileList((prev) => [...prev, ...uploadedImages]);
+  }, []);
+
   return (
     <>
       <Upload
-        action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
         onChange={handleChange}
+        beforeUpload={beforeUpload}
+        name="image"
+        maxCount={maxCount}
       >
         {uploadButton}
       </Upload>

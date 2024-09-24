@@ -1,19 +1,22 @@
-export interface Project {
-  name: string;
-  description: string;
-  image: File;
-}
-
-export interface EditProject extends Project {
+export type Projects = {
   id: string;
-}
+  title: string;
+  categories: any[]
+};
 
-export interface ProjectCategory {
-  name: string;
-  description: string;
-  image: File;
-}
-
-export interface EditProjectCategory extends ProjectCategory {
+export type ProjectCategories = {
   id: string;
+  title: string;
+}
+
+export type CreateProjectCategory = {
+  title: string,
+  image: File
+}
+
+export type CreateProject = {
+  content: string;
+  title: string;
+  categories: string[];
+  images: File[];
 }

@@ -15,3 +15,16 @@ export interface EquipmentCategory {
 export interface EditEquipmentCategory extends EquipmentCategory {
   id: string;
 }
+
+export interface CreateEquipmentCategory {
+  title: string;
+  image: File;
+}
+
+export interface CreateEquipment {
+  title: string;
+  content: string;
+  categories: string[];
+  images: File[];
+  is_published: boolean;
+}

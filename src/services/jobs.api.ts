@@ -1,4 +1,4 @@
-import { EditJob, Job } from '../types/job.types';
+import { CreateJob, CreateJobCategory, EditJob } from '../types/job.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -13,7 +13,7 @@ const getJob = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeJob = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createJob = (data: Job) => apiService.post('/company/articles', data);
+const createJob = (data: CreateJob) => apiService.post('/contact/jobs/create/', data);
 
 const editJob = (data: EditJob) => apiService.put('/company/articles', data);
 
@@ -28,8 +28,8 @@ const getJobCategory = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeJobCategory = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createJobCategory = (data: Job) =>
-  apiService.post('/company/articles', data);
+const createJobCategory = (data: CreateJobCategory) =>
+  apiService.post('/contact/job_categories/create/', data);
 
 const editJobCategory = (data: EditJob) =>
   apiService.put('/company/articles', data);
