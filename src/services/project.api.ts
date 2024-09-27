@@ -1,4 +1,3 @@
-import { CreateProject, CreateProjectCategory } from '../types/project.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -13,16 +12,7 @@ const getProject = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeProject = (id: string) =>
   apiService.delete(`/blogs/projects/${id}/delete/`);
 
-const createProject = (data: CreateProject) => {
-  const formData = new FormData();
-  formData.append('title', data.title);
-  formData.append('content', data.content);
-  formData.append('categories', data.categories.value);
-  formData.append('images', data.images[0]);
-  formData.append('images', data.images[1]);
-
-  return apiService.post('/blogs/projects/create/', formData);
-};
+const createProject = (data: FormData) => apiService.post('/blogs/projects/create/', data);
 
 const editProject = (data: any) => apiService.put('/company/articles', data);
 
@@ -35,13 +25,7 @@ const getProjectCategory = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeProjectCategory = (id: string) =>
   apiService.delete(`/blogs/project_categories/${id}/delete/`);
 
-const createProjectCategory = (data: CreateProjectCategory) => {
-  const formData = new FormData();
-  formData.append('title', data.title);
-  formData.append('image', data.images[0]);
-
-  return apiService.post('/blogs/project_categories/create/', formData);
-};
+const createProjectCategory = (data: FormData) => apiService.post('/blogs/project_categories/create/', data);
 
 const editProjectCategory = (data: any) =>
   apiService.put('/company/articles', data);

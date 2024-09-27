@@ -1,7 +1,3 @@
-import {
-  CreateEquipment,
-  CreateEquipmentCategory,
-} from '../types/equipment.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -16,14 +12,7 @@ const getEquipment = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeEquipment = (id: string) =>
   apiService.delete(`/blogs/equipments/${id}/delete/`);
 
-const createEquipment = (data: CreateEquipment) => {
-  const formData = new FormData();
-  formData.append('title', data.title);
-  formData.append('content', data.content);
-  formData.append('categories', data.categories.value);
-  formData.append('images', data.images[0]);
-  return apiService.post('/blogs/equipments/create/', formData);
-};
+const createEquipment = (data: FormData) => apiService.post('/blogs/equipments/create/', data);
 
 const editEquipment = (data: any) => apiService.put('/company/articles', data);
 
@@ -37,13 +26,7 @@ const getEquipmentCategory = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeEquipmentCategory = (id: string) =>
   apiService.delete(`/blogs/equipment_categories/${id}/delete/`);
 
-const createEquipmentCategory = (data: CreateEquipmentCategory) => {
-  const formData = new FormData();
-  formData.append('title', data.title);
-  formData.append('image', data.images[0]);
-
-  return apiService.post('/blogs/equipment_categories/create/', formData);
-};
+const createEquipmentCategory = (data: FormData) => apiService.post('/blogs/equipment_categories/create/', data);
 
 const editEquipmentCategory = (data: any) =>
   apiService.put('/company/articles', data);

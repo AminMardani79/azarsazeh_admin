@@ -1,4 +1,4 @@
-import { CreateAcademy, EditAcademyArticle } from '../types/academy.types';
+import { EditAcademyArticle } from '../types/academy.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -11,12 +11,7 @@ const getAcademyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeAcademyArticle = (id: string) =>
   apiService.delete(`/blogs/academies/${id}/delete`);
 
-const createAcademyArticle = (data: CreateAcademy) => {
-  const formData = new FormData();
-  formData.append('title', data.title);
-  formData.append('image', data.images[0]);
-  return apiService.post('/blogs/academies/create/', formData);
-};
+const createAcademyArticle = (data: FormData) => apiService.post('/blogs/academies/create/', data);
 
 const editAcademyArticle = (data: EditAcademyArticle) => {
   return apiService.put(`/blogs/academies/${data.id}/update`, data);

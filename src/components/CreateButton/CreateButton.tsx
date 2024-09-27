@@ -9,20 +9,20 @@ function CreateButton({
   title,
   mutate,
   refetch,
-  confirmLoading = false
+  confirmLoading = false,
 }: {
   renderForm?: (form: FormInstance) => React.ReactNode;
   title: string;
-  mutate: UseMutateFunction<AxiosResponse<any, any>, Error, any, unknown>,
+  mutate: UseMutateFunction<AxiosResponse<any, any>, Error, any, unknown>;
   refetch?: any;
-  confirmLoading: boolean
+  confirmLoading: boolean;
 }) {
   const [form] = useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggleModal = () => {
     form.resetFields();
-    if(!isModalOpen){
+    if (!isModalOpen) {
       refetch && refetch();
     }
     setIsModalOpen((prev) => !prev);
@@ -38,7 +38,26 @@ function CreateButton({
   };
 
   const handleFinish = (values: any) => {
-    mutate(values, { onSuccess, onError });
+    const formData = new FormData();
+    Object.keys(values).forEach((key) => {
+      if (key === 'category') {
+        formData.append('category', values.category.value);
+      } else if (key === 'categories') {
+        formData.append('categories', values.categories.value);
+      } else if (values['image']) {
+        formData.append('image', values.image[0]);
+      } else if (key !== values['images']) {
+        formData.append(key, values[key]);
+      }
+    });
+
+    if (values['images']) {
+      for (let image of values.images) {
+        formData.append('images', image);
+      }
+    }
+
+    mutate(formData, { onSuccess, onError });
   };
 
   return (

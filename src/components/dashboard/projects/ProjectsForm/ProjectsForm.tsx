@@ -16,7 +16,7 @@ const ProjectsForm = ({
     { label: string; value: string }[]
   >([]);
 
-  const { handleUpdateImages } = useUpdateImages(form);
+  const { handleUpdateImages } = useUpdateImages(form, "images");
 
   useEffect(() => {
     if (categories && categories.length > 0) {

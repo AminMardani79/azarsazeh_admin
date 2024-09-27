@@ -10,7 +10,7 @@ const ProjectCategoriesForm = ({
   form: FormInstance;
   uploadedImages?: [];
 }) => {
-  const { handleUpdateImages } = useUpdateImages(form);
+  const { handleUpdateImages } = useUpdateImages(form, 'image');
 
   return (
     <>
@@ -24,7 +24,7 @@ const ProjectCategoriesForm = ({
         <Input />
       </Form.Item>
       <Form.Item
-        name="images"
+        name="image"
         label="آپلود عکس"
         valuePropName="fileList"
         getValueFromEvent={normFile}

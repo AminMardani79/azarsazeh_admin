@@ -5,7 +5,7 @@ import { normFile } from '../../../../utils';
 import ImageUploder from '../../../Uploader/ImageUploader';
 
 const NewsForm = ({ form }: { form: FormInstance }) => {
-  const { handleUpdateImages } = useUpdateImages(form);
+  const { handleUpdateImages } = useUpdateImages(form, "image");
   return (
     <>
       <Form.Item
@@ -30,7 +30,7 @@ const NewsForm = ({ form }: { form: FormInstance }) => {
         <TextArea rows={10}/>
       </Form.Item>
       <Form.Item
-        name="images"
+        name="image"
         label="آپلود عکس"
         valuePropName="fileList"
         getValueFromEvent={normFile}

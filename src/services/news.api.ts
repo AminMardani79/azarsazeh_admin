@@ -1,4 +1,4 @@
-import { CreateNews, EditNews } from '../types/news.types';
+import { EditNews } from '../types/news.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -11,14 +11,7 @@ const getNews = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeNews = (id: string) =>
   apiService.delete(`/blogs/news/${id}/delete/`);
 
-const createNews = (data: CreateNews) => {
-  const formData = new FormData();
-  formData.append('title', data.title);
-  formData.append('meta_title', data.meta_title);
-  formData.append('content', data.content);
-  formData.append('image', data.images[0]);
-  return apiService.post('/blogs/news/create/', formData);
-};
+const createNews = (data: FormData) => apiService.post('/blogs/news/create/', data);
 
 const editNews = (data: EditNews) => apiService.put('/academy/articles', data);
 

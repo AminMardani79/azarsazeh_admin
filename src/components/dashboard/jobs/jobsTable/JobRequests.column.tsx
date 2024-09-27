@@ -30,7 +30,7 @@ export const useJobRequestsTableColumn = (
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {job.substring(0, 20)}
+          {job.title.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

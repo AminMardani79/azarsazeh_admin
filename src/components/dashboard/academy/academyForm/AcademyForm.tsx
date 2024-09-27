@@ -2,9 +2,10 @@ import { Form, FormInstance, Input } from 'antd';
 import { useUpdateImages } from '../../../../hooks/useUpdateImages';
 import { normFile } from '../../../../utils';
 import ImageUploder from '../../../Uploader/ImageUploader';
+import TextArea from 'antd/es/input/TextArea';
 
 const AcademyForm = ({ form }: { form: FormInstance }) => {
-  const {handleUpdateImages} = useUpdateImages(form);
+  const {handleUpdateImages} = useUpdateImages(form, "image");
   return (
     <>
       <Form.Item
@@ -14,17 +15,17 @@ const AcademyForm = ({ form }: { form: FormInstance }) => {
       >
         <Input />
       </Form.Item>
-      {/* <Form.Item
+      <Form.Item
         label="توضیحات مقاله"
         name="content"
         rules={[
           { required: true, message: 'لطفا توضیحات مقاله را وارد کنید.' },
         ]}
       >
-        <TextArea />
-      </Form.Item> */}
+        <TextArea rows={10}/>
+      </Form.Item>
       <Form.Item
-        name="images"
+        name="image"
         label="آپلود عکس"
         valuePropName="fileList"
         getValueFromEvent={normFile}

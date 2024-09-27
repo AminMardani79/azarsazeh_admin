@@ -9,14 +9,14 @@ const EquipmentForm = ({form, categories}: {form: FormInstance, categories: Equi
   const [categoryOptions, setCategoryOptions] = useState<
     { label: string; value: string }[]
   >([]);
-  const {handleUpdateImages} = useUpdateImages(form)
+  const {handleUpdateImages} = useUpdateImages(form, "images")
 
   useEffect(() => {
     if (categories && categories.length > 0) {
       const options = categories.map((category) => {
         return {
           label: category.title,
-          value: category.id,
+          value: category.id
         };
       });
 

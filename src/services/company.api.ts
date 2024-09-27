@@ -1,4 +1,3 @@
-import { CompanyArticle } from '../types/company.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -11,7 +10,7 @@ const getCompanyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeCompanyArticle = (id: string) =>
   apiService.delete(`/blogs/about_us/${id}/delete/`);
 
-const createCompanyArticle = (data: CompanyArticle) =>
+const createCompanyArticle = (data: FormData) =>
   apiService.post('/blogs/about_us/create/', data);
 
 const editCompanyArticle = (data: any) =>
