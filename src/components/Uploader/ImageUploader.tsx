@@ -14,10 +14,12 @@ const ImageUploder = ({
   maxCount,
   updateImages,
   uploadedImages,
+  onRemove,
 }: {
   maxCount?: number;
   updateImages: any;
-  uploadedImages?: [];
+  uploadedImages?: UploadFile[];
+  onRemove?: any;
 }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -61,9 +63,7 @@ const ImageUploder = ({
     fileList: newFileList,
     file,
   }) => {
-    console.log({ file });
     updateImages(file);
-    console.log({ newFileList });
     setFileList(newFileList);
   };
 
@@ -91,8 +91,9 @@ const ImageUploder = ({
   };
 
   useEffect(() => {
-    if (uploadedImages) setFileList((prev) => [...prev, ...uploadedImages]);
-  }, []);
+    if (uploadedImages !== undefined && uploadedImages.length > 0)
+      setFileList([...uploadedImages]);
+  }, [uploadedImages]);
 
   return (
     <>
@@ -102,6 +103,7 @@ const ImageUploder = ({
         onPreview={handlePreview}
         onChange={handleChange}
         beforeUpload={beforeUpload}
+        onRemove={onRemove}
         name="image"
         maxCount={maxCount}
       >

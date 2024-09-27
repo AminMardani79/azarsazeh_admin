@@ -1,3 +1,5 @@
+import { UploadFileStatus } from 'antd/es/upload/interface';
+
 export const getNameInitials = (fullName: string): string => {
   const fInitial = Array.from(fullName.split(' ')[0])[0],
     lInitial = Array.from(fullName.split(' ')[1])[0];
@@ -181,6 +183,56 @@ export const normFile = (e: any) => {
   if (Array.isArray(e)) {
     return e;
   }
-  
+
   return e && e.fileList;
+};
+
+export const generateResponseFormData = (values: any) => {
+  const formData = new FormData();
+  Object.keys(values).forEach((key) => {
+    if (key === 'category') {
+      formData.append('category', values.category.value);
+      return;
+    }
+
+    if (key === 'categories') {
+      formData.append('categories', values.categories.value);
+      return;
+    }
+
+    if (key === 'image') {
+      values[key].length === 1 && formData.append('image', values.image[0]);
+      return;
+    }
+
+    if (key !== 'images') {
+      formData.append(key, values[key]);
+      return;
+    }
+  });
+
+  if (values['images']) {
+    for (let image of values.images) {
+      formData.append('images', image);
+    }
+  }
+  
+  return formData;
+};
+
+export const generateImageObject = (imageUrl: string, imageId: string) => {
+  const name = imageUrl.split('/').pop()!;
+  const status = 'done' as UploadFileStatus;
+  return {
+    uid: imageId,
+    name,
+    status,
+    url: imageUrl,
+  };
+};
+
+export const generateImageObjects = (
+  images: { id: string; image: string }[]
+) => {
+  return images.map((image) => generateImageObject(image.image, image.id));
 };

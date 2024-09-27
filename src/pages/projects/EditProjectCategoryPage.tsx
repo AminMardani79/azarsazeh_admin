@@ -2,11 +2,26 @@ import { Helmet } from 'react-helmet-async';
 import { PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
-import { Form } from 'antd';
+import { Form, Spin } from 'antd';
 import EditProjectCategoryForm from '../../components/dashboard/projects/projectCategoryForm/EditProjectCategoryForm';
+import { useParams } from 'react-router-dom';
+import {
+  useEditProjectCategory,
+  useProjectCategory,
+} from '../../services/project.api';
+import { generateResponseFormData } from '../../utils';
 
 export const EditProjecCategoryPage = () => {
   const [form] = useForm();
+  const params = useParams();
+
+  const { data, isFetching } = useProjectCategory(params.id!);
+  const { mutate, isPending } = useEditProjectCategory();
+
+  const handleFormFinish = (values: any) => {
+    const formData = generateResponseFormData(values);
+    mutate({ data: formData, id: params.id! });
+  };
 
   return (
     <div>
@@ -30,9 +45,11 @@ export const EditProjecCategoryPage = () => {
           },
         ]}
       />
-      <Form form={form}>
-        <EditProjectCategoryForm form={form} />
-      </Form>
+      <Spin spinning={isFetching}>
+        <Form form={form} onFinish={handleFormFinish}>
+          <EditProjectCategoryForm form={form} data={data?.data} confirmLoading={isPending} />
+        </Form>
+      </Spin>
     </div>
   );
 };

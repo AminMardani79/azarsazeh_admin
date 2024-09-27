@@ -1,33 +1,124 @@
-import { Button, Col, Form, FormInstance, Input, Row } from 'antd';
-import { normFile } from '../../../../utils';
+import {
+  Button,
+  Col,
+  Form,
+  FormInstance,
+  Input,
+  Row,
+  Select,
+  UploadFile,
+  message,
+} from 'antd';
+import { generateImageObjects, normFile } from '../../../../utils';
 import ImageUploader from '../../../Uploader/ImageUploader';
+import { useUpdateImages } from '../../../../hooks/useUpdateImages';
+import { useEffect, useState } from 'react';
+import { EditProject } from '../../../../types/project.types';
+import TextArea from 'antd/es/input/TextArea';
+import {
+  generateCategoryOptions,
+  useCategoryOptions,
+} from '../../../../hooks/useCategoryOptions';
+import { useRemoveProjectImage } from '../../../../services/project.api';
 
-const EditProjectForm = ({ form }: { form: FormInstance<any> }) => {
+const EditProjectForm = ({
+  form,
+  data,
+  confirmLoading,
+  categories,
+}: {
+  form: FormInstance<any>;
+  data: EditProject;
+  confirmLoading: boolean;
+  categories: any;
+}) => {
+  const { handleUpdateImages } = useUpdateImages(form, 'images');
+  const [uploadedImages, setUploadedImages] = useState<UploadFile[]>([]);
+  const { categoryOptions } = useCategoryOptions(categories);
+
+  const { mutate } = useRemoveProjectImage();
+
   const handleClick = () => form.submit();
 
+  useEffect(() => {
+    if (data) {
+      form.setFieldsValue({
+        title: data.title,
+        content: data.content,
+        meta_title: data.meta_title,
+        categories: generateCategoryOptions(data.categories)[0],
+      });
+
+      if (data.images) {
+        const imageObjects = generateImageObjects(data.images);
+        setUploadedImages([...imageObjects]);
+      }
+    }
+  }, [data]);
+
+  const onSuccess = () => message.success('حذف عکس با موفقیت انجام شد');
+
+  const handleRemoveImage = (data: UploadFile) => {
+    if (data.url) mutate(data.uid, { onSuccess });
+  };
+
   return (
-    <Row>
-      <Col span={24} md={10}>
+    <Row gutter={[15, 0]}>
+      <Col span={24} md={8}>
         <Form.Item
           label="نام پروژه"
-          name="name"
+          name="title"
           rules={[{ required: true, message: 'لطفا نام پروژه را وارد کنید.' }]}
         >
           <Input />
         </Form.Item>
       </Col>
+      <Col span={24} md={8}>
+        <Form.Item label="عنوان ثانویه" name="meta_title">
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={8}>
+        <Form.Item
+          label="دسته بندی"
+          name="categories"
+          rules={[
+            { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
+          ]}
+        >
+          <Select labelInValue options={categoryOptions} />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={24}>
+        <Form.Item
+          label="توضیحات"
+          name="content"
+          rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+        >
+          <TextArea rows={10} />
+        </Form.Item>
+      </Col>
       <Col span={24}>
         <Form.Item
-          name="file"
+          name="images"
           label="آپلود عکس"
           valuePropName="fileList"
           getValueFromEvent={normFile}
         >
-          <ImageUploader/>
+          <ImageUploader
+            uploadedImages={uploadedImages}
+            updateImages={handleUpdateImages}
+            onRemove={handleRemoveImage}
+          />
         </Form.Item>
       </Col>
       <Col span={24}>
-        <Button size="middle" type="primary" onClick={handleClick}>
+        <Button
+          size="middle"
+          type="primary"
+          onClick={handleClick}
+          loading={confirmLoading}
+        >
           ویرایش
         </Button>
       </Col>

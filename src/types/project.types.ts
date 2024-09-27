@@ -20,3 +20,11 @@ export type CreateProject = {
   categories: { value: string; label: string };
   images: any;
 };
+
+export type EditProject = {
+  title: string;
+  meta_title: string;
+  content: string;
+  images: { id: string; image: string }[];
+  categories: { title: string; id: string };
+};

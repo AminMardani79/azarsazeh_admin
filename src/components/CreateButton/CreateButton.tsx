@@ -3,6 +3,7 @@ import { Button, Form, Modal, message } from 'antd';
 import { FormInstance, useForm } from 'antd/es/form/Form';
 import { AxiosResponse } from 'axios';
 import { useState } from 'react';
+import { generateResponseFormData } from '../../utils';
 
 function CreateButton({
   renderForm,
@@ -38,24 +39,7 @@ function CreateButton({
   };
 
   const handleFinish = (values: any) => {
-    const formData = new FormData();
-    Object.keys(values).forEach((key) => {
-      if (key === 'category') {
-        formData.append('category', values.category.value);
-      } else if (key === 'categories') {
-        formData.append('categories', values.categories.value);
-      } else if (values['image']) {
-        formData.append('image', values.image[0]);
-      } else if (key !== values['images']) {
-        formData.append(key, values[key]);
-      }
-    });
-
-    if (values['images']) {
-      for (let image of values.images) {
-        formData.append('images', image);
-      }
-    }
+    const formData = generateResponseFormData(values);
 
     mutate(formData, { onSuccess, onError });
   };

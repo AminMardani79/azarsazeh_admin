@@ -27,7 +27,7 @@ export const ProjectsTable = ({ data, columns, refetch, ...others }: Props) => {
   const column = useProjectsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_PROJECTS.projects}/${record.project_id}`);
+    navigate(`${PATH_PROJECTS.projects}/${record.id}`);
   };
 
   return (

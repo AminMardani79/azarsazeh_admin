@@ -34,7 +34,7 @@ export const ProjectCategoriesTable = ({
   const column = useProjectCategoriesTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_PROJECTS.categories}/${record.project_id}`);
+    navigate(`${PATH_PROJECTS.categories}/${record.id}`);
   };
 
   return (
