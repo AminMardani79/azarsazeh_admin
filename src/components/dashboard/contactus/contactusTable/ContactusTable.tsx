@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useContactusTableColumn } from './Contactus.column';
 import { PATH_CONTACTUS } from '../../../../constants/routes';
 import { ContactUs } from '../../../../types/contactUs.types';
+import { useRemoveContactUs } from '../../../../services/contactUs.api';
+import { useDeleteModal } from '../../../../hooks/useDeleteModal';
 
 type Props = {
   data: ContactUs[];
   onRowClick?: any;
+  refetch: any;
 } & TableProps<any>;
 
-export const ContactusTable = ({ data, columns, ...others }: Props) => {
+export const ContactusTable = ({
+  data,
+  columns,
+  refetch,
+  ...others
+}: Props) => {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { mutate, isPending } = useRemoveContactUs();
 
-  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setDeleteModalOpen((prev) => !prev);
-  }
+  const {
+    isDeleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    handleRemoveItem,
+  } = useDeleteModal(mutate, refetch);
 
-  const column = useContactusTableColumn(toggleDeleteModal);
+  const column = useContactusTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_CONTACTUS.root}/${record.project_id}`)
+    navigate(`${PATH_CONTACTUS.root}/${record.project_id}`);
   };
 
   return (
@@ -41,15 +50,15 @@ export const ContactusTable = ({ data, columns, ...others }: Props) => {
       <Modal
         title="حذف"
         open={isDeleteModalOpen}
-        onOk={toggleDeleteModal}
-        onCancel={toggleDeleteModal}
+        onOk={handleRemoveItem}
+        onCancel={handleDeleteModalClose}
         cancelText="لغو"
         okText="حذف"
         okType="danger"
-        confirmLoading={false}
+        confirmLoading={isPending}
         centered
       >
-        <Typography.Text >آیا از حذف این مورد اطمینان دارید؟</Typography.Text>
+        <Typography.Text>آیا از حذف این مورد اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

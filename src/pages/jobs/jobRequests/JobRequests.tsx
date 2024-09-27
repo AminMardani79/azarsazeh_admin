@@ -5,7 +5,7 @@ import { useJobRequests } from '../../../services/jobs.api';
 import { JobRequestsTable } from '../../../components/dashboard/jobs/jobsTable/JobRequestsTable';
 
 export const JobRequestsPage = () => {
-  const { data, isFetching } = useJobRequests();
+  const { data, isFetching, refetch } = useJobRequests();
 
   return (
     <div>
@@ -27,6 +27,7 @@ export const JobRequestsPage = () => {
               key="all-job-categories-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetch}
             />
           </Card>
         </Col>

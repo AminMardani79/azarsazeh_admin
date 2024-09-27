@@ -2,7 +2,9 @@ import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { JobCategory } from '../../../../types/job.types';
 
-export const useJobCategoriesTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useJobCategoriesTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'عنوان دسته بندی',
@@ -20,15 +22,18 @@ export const useJobCategoriesTableColumn = (toggleDeleteModal: (event: any)=> vo
     },
     {
       title: '',
-      dataIndex: 'operation',
-      key: 'category_operation',
-      render: (_: any) => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (_: any, { id }: JobCategory) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

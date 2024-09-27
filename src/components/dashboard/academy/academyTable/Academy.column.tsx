@@ -2,7 +2,9 @@ import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { AcademyArticle } from '../../../../types/academy.types';
 
-export const useAcademyTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useAcademyTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'عنوان مقاله',
@@ -20,15 +22,18 @@ export const useAcademyTableColumn = (toggleDeleteModal: (event: any)=> void) =>
     },
     {
       title: '',
-      dataIndex: 'operation',
-      key: 'article_operation',
-      render: (_: any) => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (_: any, { id }: AcademyArticle) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

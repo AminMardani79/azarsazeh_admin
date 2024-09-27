@@ -2,7 +2,9 @@ import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { Job } from '../../../../types/job.types';
 
-export const useNewsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useNewsTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'عنوان شغل',
@@ -48,15 +50,18 @@ export const useNewsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
     },
     {
       title: '',
-      dataIndex: 'operation',
-      key: 'job_operation',
-      render: (_: any) => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (_: any, { id }: Job) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

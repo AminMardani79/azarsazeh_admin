@@ -1,8 +1,10 @@
 import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import { ProjectCategories } from '../../../../types/projects';
+import { ProjectCategories } from '../../../../types/project.types';
 
-export const useProjectCategoriesTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useProjectCategoriesTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'نام دسته بندی',
@@ -22,13 +24,16 @@ export const useProjectCategoriesTableColumn = (toggleDeleteModal: (event: any)=
       title: '',
       dataIndex: 'operation',
       key: 'proj_operation',
-      render: (_: any) => {
+      render: (_: any, { id }: ProjectCategories) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

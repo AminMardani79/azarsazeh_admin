@@ -2,13 +2,11 @@ import { Col, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
 import { ContactusTable } from '../../components/dashboard/contactus/contactusTable/ContactusTable';
 import { useContactUs } from '../../services/contactUs.api';
 
 export const ContactusPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
-  const {data, isFetching} = useContactUs();
+  const { data, isFetching, refetch } = useContactUs();
 
   return (
     <div>
@@ -40,7 +38,12 @@ export const ContactusPage = () => {
       >
         <Col span={24}>
           <Card title="تماس با ما">
-            <ContactusTable key="contact-us-table" data={data?.data.results} loading={isFetching}/>
+            <ContactusTable
+              key="contact-us-table"
+              data={data?.data.results}
+              loading={isFetching}
+              refetch={refetch}
+            />
           </Card>
         </Col>
       </Row>

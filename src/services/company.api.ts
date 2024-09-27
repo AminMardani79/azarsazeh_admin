@@ -1,20 +1,20 @@
-import { CompanyArticle, EditCompanyArticle } from '../types/company.types';
+import { CompanyArticle } from '../types/company.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
 // apis
-const getCompanyArticles = () => apiService.get('/company/articles');
+const getCompanyArticles = () => apiService.get('/blogs/about_us/');
 
 const getCompanyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
 
-const removeCompanyArticle = (data: { id: string }) =>
-  apiService.delete(`/company/articles/${data.id}`);
+const removeCompanyArticle = (id: string) =>
+  apiService.delete(`/blogs/about_us/${id}/delete/`);
 
 const createCompanyArticle = (data: CompanyArticle) =>
-  apiService.post('/company/articles', data);
+  apiService.post('/blogs/about_us/create/', data);
 
-const editCompanyArticle = (data: EditCompanyArticle) =>
+const editCompanyArticle = (data: any) =>
   apiService.put('/company/articles', data);
 
 // client queries

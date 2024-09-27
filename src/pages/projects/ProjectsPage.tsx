@@ -71,6 +71,7 @@ export const ProjectPage = () => {
               key="all-project-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetchProjects}
             />
           </Card>
         </Col>

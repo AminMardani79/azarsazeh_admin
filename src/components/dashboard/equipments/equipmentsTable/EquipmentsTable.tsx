@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useEquipmentsTableColumn } from './EquipmentsTable.column';
 import { useNavigate } from 'react-router-dom';
 import { PATH_EQUIPMENTS } from '../../../../constants/routes';
+import { Equipments } from '../../../../types/equipment.types';
+import { useDeleteModal } from '../../../../hooks/useDeleteModal';
+import { useRemoveEquipment } from '../../../../services/equipment.api';
 
 type Props = {
-  data: Projects[];
+  data: Equipments[];
   onRowClick?: any;
+  refetch: any;
 } & TableProps<any>;
 
-export const EquipmentsTable = ({ data, columns, ...others }: Props) => {
+export const EquipmentsTable = ({
+  data,
+  columns,
+  refetch,
+  ...others
+}: Props) => {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { mutate, isPending } = useRemoveEquipment();
 
-  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setDeleteModalOpen((prev) => !prev);
-  }
+  const {
+    isDeleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    handleRemoveItem,
+  } = useDeleteModal(mutate, refetch);
 
-  const column = useEquipmentsTableColumn(toggleDeleteModal);
+  const column = useEquipmentsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_EQUIPMENTS.equipments}/${record.project_id}`)
+    navigate(`${PATH_EQUIPMENTS.equipments}/${record.project_id}`);
   };
 
   return (
@@ -44,15 +53,15 @@ export const EquipmentsTable = ({ data, columns, ...others }: Props) => {
       <Modal
         title="حذف تجهیزات"
         open={isDeleteModalOpen}
-        onOk={toggleDeleteModal}
-        onCancel={toggleDeleteModal}
+        onOk={handleRemoveItem}
+        onCancel={handleDeleteModalClose}
         cancelText="لغو"
         okText="حذف"
         okType="danger"
-        confirmLoading={false}
+        confirmLoading={isPending}
         centered
       >
-        <Typography.Text >آیا از حذف این تجهیزات اطمینان دارید؟</Typography.Text>
+        <Typography.Text>آیا از حذف این تجهیزات اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

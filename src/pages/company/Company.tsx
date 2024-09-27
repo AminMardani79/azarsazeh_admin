@@ -1,14 +1,25 @@
-import { Col, Row } from 'antd';
+import { Col, FormInstance, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import { CompanyTable } from '../../components/dashboard/company/companyTable/CompanyTable';
 import CompanyForm from '../../components/dashboard/company/companyForm/CompanyForm';
+import {
+  useCompanyArticles,
+  useCreateCompanyArticle,
+} from '../../services/company.api';
+import { useEffect } from 'react';
 
 export const CompanyPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+  const { refetch, data, isSuccess } = useCompanyArticles();
+  const { mutate, isPending } = useCreateCompanyArticle();
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+  }, [isSuccess]);
 
   return (
     <div>
@@ -34,7 +45,9 @@ export const CompanyPage = () => {
         renderButtons={() => (
           <CreateButton
             title="ساخت مطلب"
-            renderForm={() => <CompanyForm />}
+            mutate={mutate}
+            confirmLoading={isPending}
+            renderForm={(form: FormInstance) => <CompanyForm form={form} />}
           />
         )}
       />
@@ -46,7 +59,11 @@ export const CompanyPage = () => {
       >
         <Col span={24}>
           <Card title="مطالب">
-            <CompanyTable key="artcles-table" data={projectsData} />
+            <CompanyTable
+              key="artcles-table"
+              data={data?.data.results}
+              refetch={refetch}
+            />
           </Card>
         </Col>
       </Row>

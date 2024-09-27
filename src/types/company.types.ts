@@ -1,9 +1,6 @@
 export interface CompanyArticle {
-  name: string;
-  description: string;
-  image: File;
-}
-
-export interface EditCompanyArticle extends CompanyArticle {
+  title: string;
   id: string;
+  image: File;
+  content: string;
 }

@@ -1,28 +1,33 @@
-import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
 import { useNewsTableColumn } from './News.column';
 import { PATH_NEWS } from '../../../../constants/routes';
+import { News } from '../../../../types/news.types';
+import { useDeleteModal } from '../../../../hooks/useDeleteModal';
+import { useRemoveNews } from '../../../../services/news.api';
 
 type Props = {
-  data: Projects[];
+  data: News[];
   onRowClick?: any;
+  refetch: any;
 } & TableProps<any>;
 
-export const NewsTable = ({ data, columns, ...others }: Props) => {
+export const NewsTable = ({ data, columns, refetch, ...others }: Props) => {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { mutate, isPending } = useRemoveNews();
 
-  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setDeleteModalOpen((prev) => !prev);
-  }
+    const {
+    isDeleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    handleRemoveItem,
+  } = useDeleteModal(mutate, refetch);
 
-  const column = useNewsTableColumn(toggleDeleteModal);
+
+  const column = useNewsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_NEWS.root}/${record.project_id}`)
+    navigate(`${PATH_NEWS.root}/${record.project_id}`);
   };
 
   return (
@@ -44,15 +49,15 @@ export const NewsTable = ({ data, columns, ...others }: Props) => {
       <Modal
         title="حذف خبر"
         open={isDeleteModalOpen}
-        onOk={toggleDeleteModal}
-        onCancel={toggleDeleteModal}
+        onOk={handleRemoveItem}
+        onCancel={handleDeleteModalClose}
         cancelText="لغو"
         okText="حذف"
         okType="danger"
-        confirmLoading={false}
+        confirmLoading={isPending}
         centered
       >
-        <Typography.Text >آیا از حذف این خبر اطمینان دارید؟</Typography.Text>
+        <Typography.Text>آیا از حذف این خبر اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

@@ -2,6 +2,7 @@ export interface Job {
   title: string;
   location: string;
   category: { id: string; title: string };
+  id: string;
 }
 
 export interface EditJob extends Job {
@@ -14,6 +15,7 @@ export interface JobCategory {
 }
 
 export interface JobRequest {
+  id: string;
   fullname: string;
   job: any;
 }

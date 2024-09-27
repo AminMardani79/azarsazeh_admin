@@ -60,6 +60,7 @@ export const NewsPage = () => {
               key="all-news-categories-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetch}
             />
           </Card>
         </Col>

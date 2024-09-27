@@ -1,28 +1,32 @@
-import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
 import { useAcademyTableColumn } from './Academy.column';
 import { PATH_ACADEMY } from '../../../../constants/routes';
+import { AcademyArticle } from '../../../../types/academy.types';
+import { useDeleteModal } from '../../../../hooks/useDeleteModal';
+import { useRemoveAcademyArticle } from '../../../../services/academy.api';
 
 type Props = {
-  data: Projects[];
+  data: AcademyArticle[];
   onRowClick?: any;
+  refetch: any;
 } & TableProps<any>;
 
-export const AcademyTable = ({ data, columns, ...others }: Props) => {
+export const AcademyTable = ({ data, columns, refetch, ...others }: Props) => {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { mutate, isPending } = useRemoveAcademyArticle();
 
-  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setDeleteModalOpen((prev) => !prev);
-  }
+  const {
+    isDeleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    handleRemoveItem,
+  } = useDeleteModal(mutate, refetch);
 
-  const column = useAcademyTableColumn(toggleDeleteModal);
+  const column = useAcademyTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_ACADEMY.root}/${record.project_id}`)
+    navigate(`${PATH_ACADEMY.root}/${record.project_id}`);
   };
 
   return (
@@ -44,15 +48,15 @@ export const AcademyTable = ({ data, columns, ...others }: Props) => {
       <Modal
         title="حذف مقاله"
         open={isDeleteModalOpen}
-        onOk={toggleDeleteModal}
-        onCancel={toggleDeleteModal}
+        onOk={handleRemoveItem}
+        onCancel={handleDeleteModalClose}
         cancelText="لغو"
         okText="حذف"
         okType="danger"
-        confirmLoading={false}
+        confirmLoading={isPending}
         centered
       >
-        <Typography.Text >آیا از حذف این مقاله اطمینان دارید؟</Typography.Text>
+        <Typography.Text>آیا از حذف این مقاله اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

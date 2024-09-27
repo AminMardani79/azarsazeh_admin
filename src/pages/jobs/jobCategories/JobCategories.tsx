@@ -63,6 +63,7 @@ export const JobCategoriesPage = () => {
               key="all-job-categories-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetch}
             />
           </Card>
         </Col>

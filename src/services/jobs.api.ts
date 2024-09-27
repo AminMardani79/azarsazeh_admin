@@ -10,8 +10,8 @@ const getJobs = () => apiService.get('/contact/jobs');
 const getJob = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
 
-const removeJob = (data: { id: string }) =>
-  apiService.delete(`/company/articles/${data.id}`);
+const removeJob = (id: string) =>
+  apiService.delete(`/contact/jobs/${id}/delete/`);
 
 const createJob = (data: CreateJob) => {
   const formData = new FormData();
@@ -28,11 +28,14 @@ const getJobCategories = () => apiService.get('/contact/job_categories/');
 
 const getJobRequests = () => apiService.get('/contact/cooperation_requests/');
 
+const removeJobRequest = (id: string) =>
+  apiService.delete(`/contact/cooperation_requests/${id}/delete/`);
+
 const getJobCategory = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
 
-const removeJobCategory = (data: { id: string }) =>
-  apiService.delete(`/company/articles/${data.id}`);
+const removeJobCategory = (id: string) =>
+  apiService.delete(`/contact/job_categories/${id}/delete/`);
 
 const createJobCategory = (data: CreateJobCategory) => {
   const formData = new FormData();
@@ -44,8 +47,7 @@ const editJobCategory = (data: EditJob) =>
   apiService.put('/company/articles', data);
 
 // client queries
-export const useJobs = () =>
-  useQuery({ queryKey: ['jobs'], queryFn: getJobs });
+export const useJobs = () => useQuery({ queryKey: ['jobs'], queryFn: getJobs });
 
 export const useJob = (id: string) =>
   useQuery({ queryKey: ['company-articles', id], queryFn: getJob });
@@ -91,4 +93,9 @@ export const useEditJobCategory = () =>
 export const useRemoveJobCategory = () =>
   useMutation({
     mutationFn: removeJobCategory,
+  });
+
+export const useRemoveJobRequest = () =>
+  useMutation({
+    mutationFn: removeJobRequest,
   });

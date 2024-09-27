@@ -2,7 +2,9 @@ import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { News } from '../../../../types/news.types';
 
-export const useNewsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useNewsTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'عنوان خبر',
@@ -20,15 +22,18 @@ export const useNewsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
     },
     {
       title: '',
-      dataIndex: 'operation',
-      key: 'news_operation',
-      render: (_: any) => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (_: any, { id }: News) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

@@ -7,12 +7,12 @@ const getAllContacts = () => apiService.get('/contact/contact_us');
 const getContact = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
 
-const removeContact = (data: { id: string }) =>
-  apiService.delete(`/company/articles/${data.id}`);
+const removeContact = (id: string) =>
+  apiService.delete(`/contact/contact_us/${id}/delete/`);
 
 // client queries
 export const useContactUs = () =>
-  useQuery({ queryKey: ['company-articles'], queryFn: getAllContacts });
+  useQuery({ queryKey: ['contact-us'], queryFn: getAllContacts });
 
 export const useContactUsDetail = (id: string) =>
   useQuery({ queryKey: ['company-articles', id], queryFn: getContact });

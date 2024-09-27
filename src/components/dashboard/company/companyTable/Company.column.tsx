@@ -1,34 +1,39 @@
 import { Button, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
+import { CompanyArticle } from '../../../../types/company.types';
 
-export const useCompanyTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useCompanyTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'عنوان مطلب',
-      dataIndex: 'article_name',
-      key: 'article_name',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'title',
+      key: 'title',
+      render: (_: any, { title }: CompanyArticle) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {title}
         </Typography.Paragraph>
       ),
     },
     {
       title: '',
-      dataIndex: 'operation',
-      key: 'article_operation',
-      render: (_: any) => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (_: any, { id }: CompanyArticle) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

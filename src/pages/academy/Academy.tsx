@@ -63,6 +63,7 @@ export const AcademyPage = () => {
               key="all-academy-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetch}
             />
           </Card>
         </Col>

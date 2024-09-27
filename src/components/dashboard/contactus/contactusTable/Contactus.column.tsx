@@ -2,33 +2,35 @@ import { Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { ContactUs } from '../../../../types/contactUs.types';
 
-export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) => {
+export const useContactusTableColumn = (
+  handleDeleteModalOpen: (id: string) => void
+) => {
   const COLUMNS = [
     {
       title: 'نام',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'first_name',
+      key: 'first_name',
       render: (_: any, { first_name }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {first_name.substring(0, 20)}
+          {first_name}
         </Typography.Paragraph>
       ),
     },
     {
       title: 'نام خانوادگی',
-      dataIndex: 'family',
-      key: 'family',
+      dataIndex: 'last_name',
+      key: 'last_name',
       render: (_: any, { last_name }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {last_name.substring(0, 20)}
+          {last_name}
         </Typography.Paragraph>
       ),
     },
@@ -42,35 +44,38 @@ export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) 
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {email.substring(0, 20)}
+          {email}
         </Typography.Paragraph>
       ),
     },
     {
       title: 'شماره تلفن',
-      dataIndex: 'phoneNumber',
-      key: 'phoneNumber',
+      dataIndex: 'phone',
+      key: 'phone',
       render: (_: any, { phone }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {phone.substring(0, 20)}
+          {phone}
         </Typography.Paragraph>
       ),
     },
     {
       title: '',
-      dataIndex: 'operation',
-      key: 'contact_us_operation',
-      render: (_: any) => {
+      dataIndex: 'id',
+      key: 'id',
+      render: (_: any, { id }: ContactUs) => {
         return (
           <Button
             type="primary"
             danger
             icon={<DeleteOutlined />}
-            onClick={toggleDeleteModal}
+            onClick={(event: React.MouseEvent<HTMLElement>) => {
+              event.stopPropagation();
+              handleDeleteModalOpen(id);
+            }}
           />
         );
       },

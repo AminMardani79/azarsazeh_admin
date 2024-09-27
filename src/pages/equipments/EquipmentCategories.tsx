@@ -60,6 +60,7 @@ export const EquipmentCategoriesPage = () => {
               key="all-equipment-categories-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetch}
             />
           </Card>
         </Col>

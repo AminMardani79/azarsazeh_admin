@@ -4,25 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import { useNewsTableColumn } from './Jobs.column';
 import { PATH_JOBS } from '../../../../constants/routes';
 import { Job } from '../../../../types/job.types';
+import { useRemoveJob } from '../../../../services/jobs.api';
+import { useDeleteModal } from '../../../../hooks/useDeleteModal';
 
 type Props = {
   data: Job[];
   onRowClick?: any;
+  refetch: any;
 } & TableProps<any>;
 
-export const JobsTable = ({ data, columns, ...others }: Props) => {
+export const JobsTable = ({ data, columns, refetch, ...others }: Props) => {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { mutate, isPending } = useRemoveJob();
 
-  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setDeleteModalOpen((prev) => !prev);
-  }
+  const {
+    isDeleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    handleRemoveItem,
+  } = useDeleteModal(mutate, refetch);
 
-  const column = useNewsTableColumn(toggleDeleteModal);
+  const column = useNewsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_JOBS.jobs}/${record.project_id}`)
+    navigate(`${PATH_JOBS.jobs}/${record.project_id}`);
   };
 
   return (
@@ -44,15 +49,15 @@ export const JobsTable = ({ data, columns, ...others }: Props) => {
       <Modal
         title="حذف خبر"
         open={isDeleteModalOpen}
-        onOk={toggleDeleteModal}
-        onCancel={toggleDeleteModal}
+        onOk={handleRemoveItem}
+        onCancel={handleDeleteModalClose}
         cancelText="لغو"
         okText="حذف"
         okType="danger"
-        confirmLoading={false}
+        confirmLoading={isPending}
         centered
       >
-        <Typography.Text >آیا از حذف این شغل اطمینان دارید؟</Typography.Text>
+        <Typography.Text>آیا از حذف این شغل اطمینان دارید؟</Typography.Text>
       </Modal>
     </>
   );

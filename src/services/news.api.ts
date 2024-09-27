@@ -8,8 +8,8 @@ const getAllNews = () => apiService.get('/blogs/news/');
 const getNews = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/news/${queryKey[1]}`);
 
-const removeNews = (data: { id: string }) =>
-  apiService.delete(`/academy/articles/${data.id}`);
+const removeNews = (id: string) =>
+  apiService.delete(`/blogs/news/${id}/delete/`);
 
 const createNews = (data: CreateNews) => {
   const formData = new FormData();
@@ -18,7 +18,7 @@ const createNews = (data: CreateNews) => {
   formData.append('content', data.content);
   formData.append('image', data.images[0]);
   return apiService.post('/blogs/news/create/', formData);
-}
+};
 
 const editNews = (data: EditNews) => apiService.put('/academy/articles', data);
 

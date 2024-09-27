@@ -2,6 +2,7 @@ export interface AcademyArticle {
   title: string;
   content: string;
   image: File;
+  id: string;
 }
 
 export interface EditAcademyArticle extends AcademyArticle {

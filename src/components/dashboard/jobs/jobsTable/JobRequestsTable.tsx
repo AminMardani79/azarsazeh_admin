@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
 import { PATH_JOBS } from '../../../../constants/routes';
-import { useJobRequestsTableColumn } from './jobRequests.column';
+import { JobRequest } from '../../../../types/job.types';
+import { useJobRequestsTableColumn } from './JobRequests.column';
+import { useRemoveJobRequest } from '../../../../services/jobs.api';
+import { useDeleteModal } from '../../../../hooks/useDeleteModal';
 
 type Props = {
-  data: Projects[];
+  data: JobRequest[];
   onRowClick?: any;
+  refetch: any;
 } & TableProps<any>;
 
-export const JobRequestsTable = ({ data, columns, ...others }: Props) => {
+export const JobRequestsTable = ({
+  data,
+  columns,
+  refetch,
+  ...others
+}: Props) => {
   const navigate = useNavigate();
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const { mutate, isPending } = useRemoveJobRequest();
 
-  const toggleDeleteModal = (event: React.MouseEvent<HTMLElement>) => {
-    event.stopPropagation();
-    setDeleteModalOpen((prev) => !prev);
-  }
+  const {
+    isDeleteModalOpen,
+    handleDeleteModalClose,
+    handleDeleteModalOpen,
+    handleRemoveItem,
+  } = useDeleteModal(mutate, refetch);
 
-  const column = useJobRequestsTableColumn(toggleDeleteModal);
+  const column = useJobRequestsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_JOBS.jobCategories}/${record.project_id}`)
+    navigate(`${PATH_JOBS.jobCategories}/${record.project_id}`);
   };
 
   return (
@@ -44,15 +53,17 @@ export const JobRequestsTable = ({ data, columns, ...others }: Props) => {
       <Modal
         title="حذف درخواست شغلی"
         open={isDeleteModalOpen}
-        onOk={toggleDeleteModal}
-        onCancel={toggleDeleteModal}
+        onOk={handleRemoveItem}
+        onCancel={handleDeleteModalClose}
         cancelText="لغو"
         okText="حذف"
         okType="danger"
-        confirmLoading={false}
+        confirmLoading={isPending}
         centered
       >
-        <Typography.Text >آیا از حذف این درخواست شغلی اطمینان دارید؟</Typography.Text>
+        <Typography.Text>
+          آیا از حذف این درخواست شغلی اطمینان دارید؟
+        </Typography.Text>
       </Modal>
     </>
   );

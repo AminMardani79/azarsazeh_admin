@@ -65,6 +65,7 @@ export const ProjectCategoriesPage = () => {
               key="all-project-categories-table"
               data={data?.data.results}
               loading={isFetching}
+              refetch={refetch}
             />
           </Card>
         </Col>
