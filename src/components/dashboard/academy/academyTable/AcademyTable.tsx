@@ -26,7 +26,7 @@ export const AcademyTable = ({ data, columns, refetch, ...others }: Props) => {
   const column = useAcademyTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_ACADEMY.root}/${record.project_id}`);
+    navigate(`${PATH_ACADEMY.root}/${record.id}`);
   };
 
   return (

@@ -10,7 +10,7 @@ const getBase64 = (file: any): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const ImageUploder = ({
+const ImageUploader = ({
   maxCount,
   updateImages,
   uploadedImages,
@@ -127,4 +127,4 @@ const ImageUploder = ({
   );
 };
 
-export default ImageUploder;
+export default ImageUploader;

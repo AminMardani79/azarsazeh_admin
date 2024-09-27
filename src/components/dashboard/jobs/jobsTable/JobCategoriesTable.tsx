@@ -31,7 +31,7 @@ export const JobCategoriesTable = ({
   const column = useJobCategoriesTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_JOBS.jobCategories}/${record.project_id}`);
+    navigate(`${PATH_JOBS.jobCategories}/${record.id}`);
   };
 
   return (

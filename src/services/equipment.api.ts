@@ -7,29 +7,45 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 const getEquipments = () => apiService.get('/blogs/equipments/');
 
 const getEquipment = ({ queryKey }: { queryKey: [string, string] }) =>
-  apiService.get(`/company/articles/${queryKey[1]}`);
+  apiService.get(`/blogs/equipments/${queryKey[1]}/`);
 
 const removeEquipment = (id: string) =>
   apiService.delete(`/blogs/equipments/${id}/delete/`);
 
-const createEquipment = (data: FormData) => apiService.post('/blogs/equipments/create/', data);
+const removeEquipmentImage = (id: string) =>
+  apiService.delete(`/blogs/equipments/images/${id}/delete/`);
 
-const editEquipment = (data: any) => apiService.put('/company/articles', data);
+const createEquipment = (data: FormData) =>
+  apiService.post('/blogs/equipments/create/', data);
+
+const editEquipment = ({
+  data,
+  id,
+}: {
+  data: FormData;
+  id: string | undefined;
+}) => apiService.patch(`/blogs/equipments/${id}/update/`, data);
 
 // Equipment categories
 const getEquipmentCategories = () =>
   apiService.get('/blogs/equipment_categories/');
 
 const getEquipmentCategory = ({ queryKey }: { queryKey: [string, string] }) =>
-  apiService.get(`/company/articles/${queryKey[1]}`);
+  apiService.get(`/blogs/equipment_categories/${queryKey[1]}/`);
 
 const removeEquipmentCategory = (id: string) =>
   apiService.delete(`/blogs/equipment_categories/${id}/delete/`);
 
-const createEquipmentCategory = (data: FormData) => apiService.post('/blogs/equipment_categories/create/', data);
+const createEquipmentCategory = (data: FormData) =>
+  apiService.post('/blogs/equipment_categories/create/', data);
 
-const editEquipmentCategory = (data: any) =>
-  apiService.put('/company/articles', data);
+const editEquipmentCategory = ({
+  data,
+  id,
+}: {
+  data: FormData;
+  id: string | undefined;
+}) => apiService.put(`/blogs/equipment_categories/${id}/update/`, data);
 
 // client queries
 export const useEquipments = () =>
@@ -51,6 +67,11 @@ export const useEditEquipment = () =>
 export const useRemoveEquipment = () =>
   useMutation({
     mutationFn: removeEquipment,
+  });
+
+export const useRemoveEquipmentImage = () =>
+  useMutation({
+    mutationFn: removeEquipmentImage,
   });
 
 export const useEquipmentCategories = (enabled: boolean = true) =>

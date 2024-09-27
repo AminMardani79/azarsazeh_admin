@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
-import { Form, Spin } from 'antd';
+import { Form, Spin, message } from 'antd';
 import EditProjectCategoryForm from '../../components/dashboard/projects/projectCategoryForm/EditProjectCategoryForm';
 import { useParams } from 'react-router-dom';
 import {
@@ -18,9 +18,11 @@ export const EditProjecCategoryPage = () => {
   const { data, isFetching } = useProjectCategory(params.id!);
   const { mutate, isPending } = useEditProjectCategory();
 
+  const onSuccess = () => message.success('ویرایش با موفقیت انجام شد');
+
   const handleFormFinish = (values: any) => {
     const formData = generateResponseFormData(values);
-    mutate({ data: formData, id: params.id! });
+    mutate({ data: formData, id: params.id! }, { onSuccess });
   };
 
   return (
@@ -47,7 +49,11 @@ export const EditProjecCategoryPage = () => {
       />
       <Spin spinning={isFetching}>
         <Form form={form} onFinish={handleFormFinish}>
-          <EditProjectCategoryForm form={form} data={data?.data} confirmLoading={isPending} />
+          <EditProjectCategoryForm
+            form={form}
+            data={data?.data}
+            confirmLoading={isPending}
+          />
         </Form>
       </Spin>
     </div>

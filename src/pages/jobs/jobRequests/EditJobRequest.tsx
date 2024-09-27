@@ -1,12 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import { HomeOutlined } from '@ant-design/icons';
 import { useForm } from 'antd/es/form/Form';
-import { Form } from 'antd';
+import { Form, Spin } from 'antd';
 import { PageHeader } from '../../../components';
-import EditJobCategoryForm from '../../../components/dashboard/jobs/jobsForm/EditJobCategoryForm';
+import JobRequestDetail from '../../../components/dashboard/jobs/jobsForm/JobRequestDetail';
+import { useParams } from 'react-router-dom';
+import { useJobRequest } from '../../../services/jobs.api';
 
 export const EditJobRequestPage = () => {
   const [form] = useForm();
+  const params = useParams();
+
+  const { data, isFetching } = useJobRequest(params.id!);
+
   return (
     <div>
       <Helmet>
@@ -26,12 +32,14 @@ export const EditJobRequestPage = () => {
           },
           {
             title: 'ویرایش دسته بندی شغل',
-          }
+          },
         ]}
       />
-      <Form form={form}>
-        <EditJobCategoryForm form={form}/>
-      </Form>
+      <Spin spinning={isFetching}>
+        <Form form={form}>
+          <JobRequestDetail form={form} data={data?.data} />
+        </Form>
+      </Spin>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import { EditNews } from '../types/news.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -6,14 +5,16 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 const getAllNews = () => apiService.get('/blogs/news/');
 
 const getNews = ({ queryKey }: { queryKey: [string, string] }) =>
-  apiService.get(`/news/${queryKey[1]}`);
+  apiService.get(`/blogs/news/${queryKey[1]}/`);
 
 const removeNews = (id: string) =>
   apiService.delete(`/blogs/news/${id}/delete/`);
 
-const createNews = (data: FormData) => apiService.post('/blogs/news/create/', data);
+const createNews = (data: FormData) =>
+  apiService.post('/blogs/news/create/', data);
 
-const editNews = (data: EditNews) => apiService.put('/academy/articles', data);
+const editNews = ({ data, id }: { data: FormData; id: string | undefined }) =>
+  apiService.put(`/blogs/news/${id}/update/`, data);
 
 // client queries
 export const useAllNews = () =>

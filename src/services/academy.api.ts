@@ -1,4 +1,3 @@
-import { EditAcademyArticle } from '../types/academy.types';
 import { apiService } from './apiService';
 import { useQuery, useMutation } from '@tanstack/react-query';
 
@@ -11,10 +10,17 @@ const getAcademyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeAcademyArticle = (id: string) =>
   apiService.delete(`/blogs/academies/${id}/delete`);
 
-const createAcademyArticle = (data: FormData) => apiService.post('/blogs/academies/create/', data);
+const createAcademyArticle = (data: FormData) =>
+  apiService.post('/blogs/academies/create/', data);
 
-const editAcademyArticle = (data: EditAcademyArticle) => {
-  return apiService.put(`/blogs/academies/${data.id}/update`, data);
+const editAcademyArticle = ({
+  data,
+  id,
+}: {
+  data: FormData;
+  id: string | undefined;
+}) => {
+  return apiService.patch(`/blogs/academies/${id}/update`, data);
 };
 
 // client queries

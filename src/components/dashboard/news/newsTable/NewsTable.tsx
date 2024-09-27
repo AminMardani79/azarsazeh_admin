@@ -27,7 +27,7 @@ export const NewsTable = ({ data, columns, refetch, ...others }: Props) => {
   const column = useNewsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_NEWS.root}/${record.project_id}`);
+    navigate(`${PATH_NEWS.root}/${record.id}`);
   };
 
   return (

@@ -31,7 +31,7 @@ export const EquipmentCategoriesTable = ({
   const column = useEquipmentCategoriesTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_EQUIPMENTS.categories}/${record.project_id}`);
+    navigate(`${PATH_EQUIPMENTS.categories}/${record.id}`);
   };
 
   return (

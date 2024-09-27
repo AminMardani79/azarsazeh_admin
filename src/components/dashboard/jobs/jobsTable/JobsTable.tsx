@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useNewsTableColumn } from './Jobs.column';
@@ -27,7 +26,7 @@ export const JobsTable = ({ data, columns, refetch, ...others }: Props) => {
   const column = useNewsTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_JOBS.jobs}/${record.project_id}`);
+    navigate(`${PATH_JOBS.jobs}/${record.id}`);
   };
 
   return (

@@ -5,8 +5,13 @@ export interface Job {
   id: string;
 }
 
-export interface EditJob extends Job {
-  id: string;
+export interface EditJob {
+  title: string;
+  category: { title: string; id: string };
+  location: string;
+  work_experiences: string;
+  education: string;
+  skills: string;
 }
 
 export interface JobCategory {
@@ -15,13 +20,14 @@ export interface JobCategory {
 }
 
 export interface JobRequest {
-  id: string;
   fullname: string;
-  job: any;
+  job: { title: string; id: string };
+  message: string;
+  resume: string;
 }
 
-export interface EditJobCategory extends JobCategory {
-  id: string;
+export interface EditJobCategory {
+  title: string;
 }
 
 export interface CreateJobCategory {

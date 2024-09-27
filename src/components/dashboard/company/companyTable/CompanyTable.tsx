@@ -26,7 +26,7 @@ export const CompanyTable = ({ data, columns, refetch, ...others }: Props) => {
   const column = useCompanyTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_COMPANY.root}/${record.project_id}`);
+    navigate(`${PATH_COMPANY.root}/${record.id}`);
   };
 
   return (

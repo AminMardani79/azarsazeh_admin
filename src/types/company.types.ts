@@ -4,3 +4,9 @@ export interface CompanyArticle {
   image: File;
   content: string;
 }
+
+export interface EditCompanyArticle {
+  title: string;
+  image: string;
+  content: string;
+}

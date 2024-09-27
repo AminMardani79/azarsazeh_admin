@@ -5,8 +5,10 @@ export interface AcademyArticle {
   id: string;
 }
 
-export interface EditAcademyArticle extends AcademyArticle {
-  id: string;
+export interface EditAcademyArticle {
+  title: string;
+  content: string;
+  image: string;
 }
 
 export interface CreateAcademy {

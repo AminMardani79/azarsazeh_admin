@@ -5,7 +5,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 const getCompanyArticles = () => apiService.get('/blogs/about_us/');
 
 const getCompanyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
-  apiService.get(`/company/articles/${queryKey[1]}`);
+  apiService.get(`/blogs/about_us/${queryKey[1]}/`);
 
 const removeCompanyArticle = (id: string) =>
   apiService.delete(`/blogs/about_us/${id}/delete/`);
@@ -13,8 +13,8 @@ const removeCompanyArticle = (id: string) =>
 const createCompanyArticle = (data: FormData) =>
   apiService.post('/blogs/about_us/create/', data);
 
-const editCompanyArticle = (data: any) =>
-  apiService.put('/company/articles', data);
+const editCompanyArticle = ({ data, id }: { data: FormData; id: string }) =>
+  apiService.put(`/blogs/about_us/${id}/update/`, data);
 
 // client queries
 export const useCompanyArticles = () =>

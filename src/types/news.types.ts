@@ -5,8 +5,11 @@ export interface News {
   id: string;
 }
 
-export interface EditNews extends News {
-  id: string;
+export interface EditNews{
+  title: string;
+  meta_title: string;
+  content: string;
+  image: string;
 }
 
 export interface CreateNews {
