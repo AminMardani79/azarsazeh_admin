@@ -28,17 +28,17 @@ function JobRequestDetail({
     <Row gutter={[15, 0]}>
       <Col span={24} md={12}>
         <Form.Item label="نام و نام خانوادگی" name="fullname">
-          <Input />
+          <Input disabled/>
         </Form.Item>
       </Col>
       <Col span={24} md={12}>
         <Form.Item label="شغل" name="job">
-          <Input />
+          <Input disabled/>
         </Form.Item>
       </Col>
       <Col span={24} md={24}>
         <Form.Item label="متن پیام" name="message">
-          <TextArea rows={10} />
+          <TextArea rows={10} disabled/>
         </Form.Item>
       </Col>
       <Col span={24} md={10}>

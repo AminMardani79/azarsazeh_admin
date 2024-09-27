@@ -31,7 +31,7 @@ export const ContactusTable = ({
   const column = useContactusTableColumn(handleDeleteModalOpen);
 
   const handleRowClick = (record: any) => {
-    navigate(`${PATH_CONTACTUS.root}/${record.project_id}`);
+    navigate(`${PATH_CONTACTUS.root}/${record.id}`);
   };
 
   return (

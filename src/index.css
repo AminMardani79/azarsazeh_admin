@@ -13,6 +13,7 @@ body {
 
 .ant-input{
   padding: 10px 11px !important;
+  font-weight: 600;
 }
 
 .ant-dropdown-menu-title-content{

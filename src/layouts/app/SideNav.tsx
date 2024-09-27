@@ -28,9 +28,9 @@ const getItem = (
 };
 
 const items: MenuProps['items'] = [
-  getItem('پروژه ها', '', <ProductOutlined />, [
+  getItem('پروژه ها', 'project', <ProductOutlined />, [
     getItem(
-      <Link to="/">دسته بندی</Link>,
+      <Link to={PATH_PROJECTS.categories}>دسته بندی</Link>,
       '',
       null
     ),
