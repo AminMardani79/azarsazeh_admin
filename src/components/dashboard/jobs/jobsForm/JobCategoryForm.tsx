@@ -6,7 +6,7 @@ const JobCategoryForm = () => {
     <>
       <Form.Item
         label="عنوان دسته بندی"
-        name="name"
+        name="title"
         rules={[{ required: true, message: 'لطفا عنوان دسته بندی را وارد کنید.' }]}
       >
         <Input />

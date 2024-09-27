@@ -1,5 +1,4 @@
 import type {
-  Projects,
   ProjectCategory,
   ProjectStatus,
   ProjectPriority,
@@ -40,7 +39,6 @@ import type { Session } from './session';
 import type { ActivityTimeline } from './timeline';
 
 export type {
-  Projects,
   ProjectStatus,
   ProjectCategory,
   ProjectPriority,

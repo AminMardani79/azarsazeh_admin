@@ -1,17 +1,22 @@
-import { Col, Row } from 'antd';
+import { useEffect } from 'react';
+import { Col, FormInstance, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import NewsForm from '../../components/dashboard/news/newsForm/NewsForm';
 import { NewsTable } from '../../components/dashboard/news/newsTable/NewsTable';
-import { useAllNews } from '../../services/news.api';
+import { useAllNews, useCreateNews } from '../../services/news.api';
 
 export const NewsPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+  const { data, isFetching, refetch } = useAllNews();
+  const { mutate, isPending, isSuccess } = useCreateNews();
 
-  const {data, isFetching} = useAllNews();
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+  }, [isSuccess]);
 
   return (
     <div>
@@ -37,7 +42,9 @@ export const NewsPage = () => {
         renderButtons={() => (
           <CreateButton
             title="ساخت خبر"
-            renderForm={() => <NewsForm />}
+            confirmLoading={isPending}
+            mutate={mutate}
+            renderForm={(form: FormInstance) => <NewsForm form={form} />}
           />
         )}
       />
@@ -49,7 +56,11 @@ export const NewsPage = () => {
       >
         <Col span={24}>
           <Card title="اخبار">
-            <NewsTable key="all-news-categories-table" data={data?.data.results} loading={isFetching} />
+            <NewsTable
+              key="all-news-categories-table"
+              data={data?.data.results}
+              loading={isFetching}
+            />
           </Card>
         </Col>
       </Row>

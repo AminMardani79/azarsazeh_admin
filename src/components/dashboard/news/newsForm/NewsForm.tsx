@@ -1,23 +1,44 @@
-import { Form, Input } from 'antd';
+import { Form, FormInstance, Input } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { useUpdateImages } from '../../../../hooks/useUpdateImages';
+import { normFile } from '../../../../utils';
+import ImageUploder from '../../../Uploader/ImageUploader';
 
-const NewsForm = () => {
-
+const NewsForm = ({ form }: { form: FormInstance }) => {
+  const { handleUpdateImages } = useUpdateImages(form);
   return (
     <>
       <Form.Item
-        label="نام خبر"
-        name="name"
+        label="عنوان خبر"
+        name="title"
+        rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="عنوان ثانویه خبر"
+        name="meta_title"
         rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
         label="توضیحات خبر"
-        name="description"
+        name="content"
         rules={[{ required: true, message: 'لطفا توضیحات خبر را وارد کنید.' }]}
       >
-        <TextArea />
+        <TextArea rows={10}/>
+      </Form.Item>
+      <Form.Item
+        name="images"
+        label="آپلود عکس"
+        valuePropName="fileList"
+        getValueFromEvent={normFile}
+      >
+        <ImageUploder
+          updateImages={handleUpdateImages}
+          maxCount={1}
+        />
       </Form.Item>
     </>
   );

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
 import { useEquipmentCategoriesTableColumn } from './EquipmentCategories.column';
 import { PATH_EQUIPMENTS } from '../../../../constants/routes';
+import { EquipmentCategory } from '../../../../types/equipment.types';
 
 type Props = {
-  data: Projects[];
+  data: EquipmentCategory[];
   onRowClick?: any;
 } & TableProps<any>;
 

@@ -1,14 +1,22 @@
-import { Col, Row } from 'antd';
+import { Col, FormInstance, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
-import { useFetchData } from '../../hooks';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import EquipmentCategoryForm from '../../components/dashboard/equipments/equipmentCategoryForm/EquipmentCategoryForm';
 import { EquipmentCategoriesTable } from '../../components/dashboard/equipments/equipmentCategoriesTable/EquipmentCategoriesTable';
+import { useCreateEquipmentCategory, useEquipmentCategories } from '../../services/equipment.api';
+import { useEffect } from 'react';
 
 export const EquipmentCategoriesPage = () => {
-  const { data: projectsData } = useFetchData('../mocks/Projects.json');
+  const { data, isFetching, refetch } = useEquipmentCategories();
+  const {mutate, isSuccess, isPending} = useCreateEquipmentCategory();
+
+  useEffect(()=> {
+    if(isSuccess){
+      refetch();
+    }
+  },[isSuccess]);
 
   return (
     <div>
@@ -34,7 +42,9 @@ export const EquipmentCategoriesPage = () => {
         renderButtons={() => (
           <CreateButton
             title="ساخت دسته بندی"
-            renderForm={() => <EquipmentCategoryForm />}
+            renderForm={(form: FormInstance) => <EquipmentCategoryForm form={form}/>}
+            mutate={mutate}
+            confirmLoading={isPending}
           />
         )}
       />
@@ -46,7 +56,11 @@ export const EquipmentCategoriesPage = () => {
       >
         <Col span={24}>
           <Card title="دسته بندی تجهیزات">
-            <EquipmentCategoriesTable key="all-equipment-categories-table" data={projectsData} />
+            <EquipmentCategoriesTable
+              key="all-equipment-categories-table"
+              data={data?.data.results}
+              loading={isFetching}
+            />
           </Card>
         </Col>
       </Row>

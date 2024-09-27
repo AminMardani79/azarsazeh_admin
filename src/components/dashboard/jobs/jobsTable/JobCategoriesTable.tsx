@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
 import { useJobCategoriesTableColumn } from './JobCategories.column';
 import { PATH_JOBS } from '../../../../constants/routes';
+import { JobCategory } from '../../../../types/job.types';
 
 type Props = {
-  data: Projects[];
+  data: JobCategory[];
   onRowClick?: any;
 } & TableProps<any>;
 

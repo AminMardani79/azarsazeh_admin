@@ -42,7 +42,7 @@ export const useNewsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {category.substring(0, 20)}
+          {category.title.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useProjectsTableColumn } from './ProjectsTable.column';
 import { useNavigate } from 'react-router-dom';
 import { PATH_PROJECTS } from '../../../../constants';
+import { Projects } from '../../../../types/project.types';
 
 type Props = {
   data: Projects[];

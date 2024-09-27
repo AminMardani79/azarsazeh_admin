@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Modal, Table, TableProps, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { useNavigate } from 'react-router-dom';
 import { useContactusTableColumn } from './Contactus.column';
 import { PATH_CONTACTUS } from '../../../../constants/routes';
+import { ContactUs } from '../../../../types/contactUs.types';
 
 type Props = {
-  data: Projects[];
+  data: ContactUs[];
   onRowClick?: any;
 } & TableProps<any>;
 

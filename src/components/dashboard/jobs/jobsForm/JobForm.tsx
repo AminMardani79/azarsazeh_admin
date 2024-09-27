@@ -1,11 +1,30 @@
 import { Form, Input, Select } from 'antd';
+import { JobCategory } from '../../../../types/job.types';
+import { useEffect, useState } from 'react';
 
-const JobForm = () => {
+const JobForm = ({ jobCategories }: { jobCategories: JobCategory[] }) => {
+  const [categoryOptions, setCategoryOptions] = useState<
+    { label: string; value: string }[]
+  >([]);
+  
+  useEffect(() => {
+    if (jobCategories && jobCategories.length > 0) {
+      const options = jobCategories.map((category) => {
+        return {
+          label: category.title,
+          value: category.id,
+        };
+      });
+
+      setCategoryOptions(options);
+    }
+  }, [jobCategories]);
+
   return (
     <>
       <Form.Item
         label="عنوان شغل"
-        name="name"
+        name="title"
         rules={[{ required: true, message: 'لطفا عنوان شغل را وارد کنید.' }]}
       >
         <Input />
@@ -24,17 +43,7 @@ const JobForm = () => {
       >
         <Select
           labelInValue
-          defaultValue={{ value: 'lucy', label: 'Lucy (101)' }}
-          options={[
-            {
-              value: 'jack',
-              label: 'Jack (100)',
-            },
-            {
-              value: 'lucy',
-              label: 'Lucy (101)',
-            },
-          ]}
+          options={categoryOptions}
         />
       </Form.Item>
     </>

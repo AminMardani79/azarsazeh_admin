@@ -9,12 +9,17 @@ import {
   useCreateProjectCategory,
   useProjectCategories,
 } from '../../services/project.api';
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 export const ProjectCategoriesPage = () => {
-  const [images, setImages] = useState<File[]>([]);
-  const { data, isFetching } = useProjectCategories();
-  const { mutate } = useCreateProjectCategory();
+  const { data, isFetching, refetch } = useProjectCategories();
+  const { mutate, isSuccess, isPending } = useCreateProjectCategory();
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+  }, [isSuccess]);
 
   return (
     <div>
@@ -41,7 +46,10 @@ export const ProjectCategoriesPage = () => {
           <CreateButton
             title="ساخت دسته بندی"
             mutate={mutate}
-            renderForm={(form: FormInstance) => <ProjectCategoriesForm form={form}/>}
+            renderForm={(form: FormInstance) => (
+              <ProjectCategoriesForm form={form} />
+            )}
+            confirmLoading={isPending}
           />
         )}
       />

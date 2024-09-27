@@ -10,5 +10,5 @@ export interface EditAcademyArticle extends AcademyArticle {
 
 export interface CreateAcademy {
   title: string;
-  image: File;
+  images: File[];
 }

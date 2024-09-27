@@ -1,22 +1,22 @@
 export type Projects = {
   id: string;
   title: string;
-  categories: any[]
+  categories: { title: string }[];
 };
 
 export type ProjectCategories = {
   id: string;
   title: string;
-}
+};
 
 export type CreateProjectCategory = {
-  title: string,
-  image: File
-}
+  title: string;
+  images: File[];
+};
 
 export type CreateProject = {
   content: string;
   title: string;
-  categories: string[];
-  images: File[];
-}
+  categories: { value: string; label: string };
+  images: any;
+};

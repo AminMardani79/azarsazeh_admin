@@ -1,6 +1,5 @@
 import { message } from 'antd';
 import axios from 'axios';
-import { PATH_AUTH } from '../constants';
 
 const apiService = axios.create({
   baseURL: 'http://37.32.27.22/api',

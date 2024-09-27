@@ -1,20 +1,20 @@
 import { Button, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
+import { EquipmentCategory } from '../../../../types/equipment.types';
 
 export const useEquipmentCategoriesTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
     {
       title: 'نام دسته بندی',
-      dataIndex: 'category_name',
-      key: 'category_name',
-      render: (_: any, { project_name }: Projects) => (
+      dataIndex: 'title',
+      key: 'title',
+      render: (_: any, { title }: EquipmentCategory) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {project_name.substring(0, 20)}
+          {title.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

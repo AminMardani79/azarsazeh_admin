@@ -1,7 +1,7 @@
 export interface Job {
   title: string;
   location: string;
-  category: string;
+  category: { id: string; title: string };
 }
 
 export interface EditJob extends Job {
@@ -9,6 +9,7 @@ export interface EditJob extends Job {
 }
 
 export interface JobCategory {
+  id: string;
   title: string;
 }
 
@@ -28,5 +29,5 @@ export interface CreateJobCategory {
 export interface CreateJob {
   title: string;
   location: string;
-  category: string;
+  category: { value: string; label: string };
 }

@@ -1,15 +1,59 @@
-import { Form, Input } from 'antd';
+import { Form, FormInstance, Input, Select } from 'antd';
+import { useUpdateImages } from '../../../../hooks/useUpdateImages';
+import TextArea from 'antd/es/input/TextArea';
+import ImageUploder from '../../../Uploader/ImageUploader';
+import { useEffect, useState } from 'react';
+import { EquipmentCategory } from '../../../../types/equipment.types';
 
-const EquipmentForm = () => {
+const EquipmentForm = ({form, categories}: {form: FormInstance, categories: EquipmentCategory[];}) => {
+  const [categoryOptions, setCategoryOptions] = useState<
+    { label: string; value: string }[]
+  >([]);
+  const {handleUpdateImages} = useUpdateImages(form)
 
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      const options = categories.map((category) => {
+        return {
+          label: category.title,
+          value: category.id,
+        };
+      });
+
+      setCategoryOptions(options);
+    }
+  }, [categories]);
   return (
     <>
       <Form.Item
         label="نام تجهیزات"
-        name="name"
+        name="title"
         rules={[{ required: true, message: 'لطفا نام تجهیزات را وارد کنید.' }]}
       >
         <Input />
+      </Form.Item>
+      <Form.Item
+        label="دسته بندی"
+        name="categories"
+        rules={[
+          { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
+        ]}
+      >
+        <Select
+          labelInValue
+          defaultValue={categoryOptions[0]}
+          options={categoryOptions}
+        />
+      </Form.Item>
+      <Form.Item
+        label="توضیحات"
+        name="content"
+        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+      >
+        <TextArea rows={10} />
+      </Form.Item>
+      <Form.Item label="آلبوم عکس" name="images">
+        <ImageUploder updateImages={handleUpdateImages} />
       </Form.Item>
     </>
   );

@@ -13,12 +13,21 @@ const getProject = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeProject = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createProject = (data: CreateProject) => apiService.post('/blogs/projects/create/', data);
+const createProject = (data: CreateProject) => {
+  const formData = new FormData();
+  formData.append("title", data.title);
+  formData.append("content", data.content);
+  formData.append("categories", data.categories.value);
+  formData.append("images", data.images[0]);
+  formData.append("images", data.images[1]);
+
+  return apiService.post('/blogs/projects/create/', formData);
+}
 
 const editProject = (data: any) => apiService.put('/company/articles', data);
 
 // Project categories
-const getProjectCategories = () => apiService.get('/blogs/categories/');
+const getProjectCategories = () => apiService.get('/blogs/project_categories/');
 
 const getProjectCategory = ({ queryKey }: { queryKey: [string, string] }) =>
   apiService.get(`/company/articles/${queryKey[1]}`);
@@ -26,8 +35,13 @@ const getProjectCategory = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeProjectCategory = (data: { id: string }) =>
   apiService.delete(`/company/articles/${data.id}`);
 
-const createProjectCategory = (data: CreateProjectCategory) =>
-  apiService.post('/blogs/project_categories/create/', data);
+const createProjectCategory = (data: CreateProjectCategory) => {
+  const formData = new FormData();
+  formData.append("title", data.title);
+  formData.append("image", data.images[0]);
+
+  return apiService.post('/blogs/project_categories/create/', formData);
+}
 
 const editProjectCategory = (data: any) =>
   apiService.put('/company/articles', data);
@@ -54,8 +68,8 @@ export const useRemoveProject = () =>
     mutationFn: removeProject,
   });
 
-export const useProjectCategories = () =>
-  useQuery({ queryKey: ['project-categories'], queryFn: getProjectCategories });
+export const useProjectCategories = (enabled: boolean = true) =>
+  useQuery({ queryKey: ['project-categories'], queryFn: getProjectCategories, enabled: enabled });
 
 export const useProjectCategory = (id: string) =>
   useQuery({ queryKey: ['project-categories', id], queryFn: getProjectCategory });

@@ -12,5 +12,5 @@ export interface CreateNews {
   title: string;
   meta_title: string;
   content: string;
-  is_published: boolean;
+  images: File[]
 }

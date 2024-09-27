@@ -11,7 +11,14 @@ const getNews = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeNews = (data: { id: string }) =>
   apiService.delete(`/academy/articles/${data.id}`);
 
-const createNews = (data: CreateNews) => apiService.post('/blogs/news/create/', data);
+const createNews = (data: CreateNews) => {
+  const formData = new FormData();
+  formData.append('title', data.title);
+  formData.append('meta_title', data.meta_title);
+  formData.append('content', data.content);
+  formData.append('image', data.images[0]);
+  return apiService.post('/blogs/news/create/', formData);
+}
 
 const editNews = (data: EditNews) => apiService.put('/academy/articles', data);
 
@@ -24,15 +31,15 @@ export const useNews = (id: string) =>
 
 export const useCreateNews = () =>
   useMutation({
-    mutationFn: removeNews,
+    mutationFn: createNews,
   });
 
 export const useEditNews = () =>
   useMutation({
-    mutationFn: createNews,
+    mutationFn: editNews,
   });
 
 export const useRemoveNews = () =>
   useMutation({
-    mutationFn: editNews,
+    mutationFn: removeNews,
   });

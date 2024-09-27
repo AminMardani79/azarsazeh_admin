@@ -1,7 +1,7 @@
 export interface ContactUs {
-  name: string;
-  family: string;
-  description: string;
+  first_name: string;
+  last_name: string;
+  message: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
 }

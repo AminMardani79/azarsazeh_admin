@@ -1,15 +1,25 @@
-import { Helmet } from "react-helmet-async";
-import { PageHeader } from "../../../components";
-import { HomeOutlined } from "@ant-design/icons";
-import CreateButton from "../../../components/CreateButton/CreateButton";
-import { Card, Col, Row } from "antd";
-import JobCategoryForm from "../../../components/dashboard/jobs/jobsForm/JobCategoryForm";
-import { JobCategoriesTable } from "../../../components/dashboard/jobs/jobsTable/JobCategoriesTable";
-import { useJobCategories } from "../../../services/jobs.api";
-
+import { Helmet } from 'react-helmet-async';
+import { PageHeader } from '../../../components';
+import { HomeOutlined } from '@ant-design/icons';
+import CreateButton from '../../../components/CreateButton/CreateButton';
+import { Card, Col, Row } from 'antd';
+import JobCategoryForm from '../../../components/dashboard/jobs/jobsForm/JobCategoryForm';
+import { JobCategoriesTable } from '../../../components/dashboard/jobs/jobsTable/JobCategoriesTable';
+import {
+  useCreateJobCategory,
+  useJobCategories,
+} from '../../../services/jobs.api';
+import { useEffect } from 'react';
 
 export const JobCategoriesPage = () => {
-  const {data, isFetching} = useJobCategories();
+  const { data, isFetching, refetch } = useJobCategories();
+  const { mutate, isPending, isSuccess } = useCreateJobCategory();
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+  }, [isSuccess]);
 
   return (
     <div>
@@ -36,6 +46,8 @@ export const JobCategoriesPage = () => {
           <CreateButton
             title="ساخت دسته بندی"
             renderForm={() => <JobCategoryForm />}
+            confirmLoading={isPending}
+            mutate={mutate}
           />
         )}
       />
@@ -47,7 +59,11 @@ export const JobCategoriesPage = () => {
       >
         <Col span={24}>
           <Card title="دسته بندی مشاغل">
-            <JobCategoriesTable key="all-job-categories-table" data={data?.data.results} loading={isFetching} />
+            <JobCategoriesTable
+              key="all-job-categories-table"
+              data={data?.data.results}
+              loading={isFetching}
+            />
           </Card>
         </Col>
       </Row>

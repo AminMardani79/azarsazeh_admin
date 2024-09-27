@@ -1,5 +1,4 @@
 import { Button, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
 import { ContactUs } from '../../../../types/contactUs.types';
 
@@ -9,13 +8,13 @@ export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) 
       title: 'نام',
       dataIndex: 'name',
       key: 'name',
-      render: (_: any, { name }: ContactUs) => (
+      render: (_: any, { first_name }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {name.substring(0, 20)}
+          {first_name.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
@@ -23,13 +22,13 @@ export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) 
       title: 'نام خانوادگی',
       dataIndex: 'family',
       key: 'family',
-      render: (_: any, { family }: ContactUs) => (
+      render: (_: any, { last_name }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {family.substring(0, 20)}
+          {last_name.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },
@@ -51,13 +50,13 @@ export const useContactusTableColumn = (toggleDeleteModal: (event: any)=> void) 
       title: 'شماره تلفن',
       dataIndex: 'phoneNumber',
       key: 'phoneNumber',
-      render: (_: any, { phoneNumber }: ContactUs) => (
+      render: (_: any, { phone }: ContactUs) => (
         <Typography.Paragraph
           ellipsis={{ rows: 1 }}
           className="text-capitalize"
           style={{ marginBottom: 0 }}
         >
-          {phoneNumber.substring(0, 20)}
+          {phone.substring(0, 20)}
         </Typography.Paragraph>
       ),
     },

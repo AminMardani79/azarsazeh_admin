@@ -11,8 +11,12 @@ const getAcademyArticle = ({ queryKey }: { queryKey: [string, string] }) =>
 const removeAcademyArticle = (data: { id: string }) =>
   apiService.delete(`/blogs/academies/${data.id}/delete`);
 
-const createAcademyArticle = (data: CreateAcademy) =>
-  apiService.post('/blogs/academies/create/', data);
+const createAcademyArticle = (data: CreateAcademy) => {
+  const formData = new FormData();
+  formData.append("title", data.title);
+  formData.append("image", data.images[0])
+  return apiService.post('/blogs/academies/create/', formData);
+}
 
 const editAcademyArticle = (data: EditAcademyArticle) => {
   return apiService.put(`/blogs/academies/${data.id}/update`, data);

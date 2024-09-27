@@ -1,14 +1,25 @@
-import { Col, Row } from 'antd';
+import { useEffect } from 'react';
+import { Col, FormInstance, Row } from 'antd';
 import { Card, PageHeader } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import AcademyForm from '../../components/dashboard/academy/academyForm/AcademyForm';
 import { AcademyTable } from '../../components/dashboard/academy/academyTable/AcademyTable';
-import { useAcademyArticles } from '../../services/academy.api';
+import {
+  useAcademyArticles,
+  useCreateAcademyArticle,
+} from '../../services/academy.api';
 
 export const AcademyPage = () => {
-  const {data, isFetching} = useAcademyArticles();
+  const { data, isFetching, refetch } = useAcademyArticles();
+  const { mutate, isPending, isSuccess } = useCreateAcademyArticle();
+
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+  }, [isSuccess]);
 
   return (
     <div>
@@ -34,7 +45,9 @@ export const AcademyPage = () => {
         renderButtons={() => (
           <CreateButton
             title="ساخت مقاله"
-            renderForm={() => <AcademyForm />}
+            confirmLoading={isPending}
+            mutate={mutate}
+            renderForm={(form: FormInstance) => <AcademyForm form={form} />}
           />
         )}
       />
@@ -46,7 +59,11 @@ export const AcademyPage = () => {
       >
         <Col span={24}>
           <Card title="مقالات">
-            <AcademyTable key="all-academy-table" data={data?.data.results} loading={isFetching} />
+            <AcademyTable
+              key="all-academy-table"
+              data={data?.data.results}
+              loading={isFetching}
+            />
           </Card>
         </Col>
       </Row>

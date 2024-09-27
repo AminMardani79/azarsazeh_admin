@@ -22,7 +22,7 @@ const ImageUploder = ({
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState<UploadFile[]>([
-    {
+    /* {
       uid: '-1',
       name: 'image.png',
       status: 'done',
@@ -45,7 +45,7 @@ const ImageUploder = ({
       name: 'image.png',
       status: 'done',
       url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
+    }, */
   ]);
 
   const handlePreview = async (file: UploadFile) => {

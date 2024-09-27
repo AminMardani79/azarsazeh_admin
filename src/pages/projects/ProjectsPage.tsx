@@ -1,13 +1,27 @@
-import { Col, Row } from 'antd';
+import { Col, FormInstance, Row } from 'antd';
 import { Card, PageHeader, ProjectsTable } from '../../components';
 import { HomeOutlined } from '@ant-design/icons';
 import { Helmet } from 'react-helmet-async';
 import CreateButton from '../../components/CreateButton/CreateButton';
 import ProjectsForm from '../../components/dashboard/projects/ProjectsForm/ProjectsForm';
-import { useProjects } from '../../services/project.api';
+import {
+  useCreateProject,
+  useProjectCategories,
+  useProjects,
+} from '../../services/project.api';
+import { useEffect } from 'react';
 
 export const ProjectPage = () => {
-  const {data, isFetching} = useProjects();
+  const { data, isFetching, refetch: refetchProjects } = useProjects();
+  const { mutate, isSuccess, isPending } = useCreateProject();
+  const { refetch: refetchCategories, data: projectCategories } =
+    useProjectCategories(false);
+
+  useEffect(()=> {
+    if (isSuccess) {
+      refetchProjects();
+    }
+  }, [isSuccess])
 
   return (
     <div>
@@ -33,7 +47,15 @@ export const ProjectPage = () => {
         renderButtons={() => (
           <CreateButton
             title="ساخت پروژه ها"
-            renderForm={() => <ProjectsForm />}
+            renderForm={(form: FormInstance) => (
+              <ProjectsForm
+                form={form}
+                categories={projectCategories?.data.results}
+              />
+            )}
+            mutate={mutate}
+            refetch={refetchCategories}
+            confirmLoading={isPending}
           />
         )}
       />
@@ -45,7 +67,11 @@ export const ProjectPage = () => {
       >
         <Col span={24}>
           <Card title="پروژه ها">
-            <ProjectsTable key="all-project-table" data={data?.data.results} loading={isFetching}/>
+            <ProjectsTable
+              key="all-project-table"
+              data={data?.data.results}
+              loading={isFetching}
+            />
           </Card>
         </Col>
       </Row>

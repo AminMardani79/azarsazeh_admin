@@ -8,16 +8,23 @@ function CreateButton({
   renderForm,
   title,
   mutate,
+  refetch,
+  confirmLoading = false
 }: {
   renderForm?: (form: FormInstance) => React.ReactNode;
   title: string;
-  mutate: UseMutateFunction<AxiosResponse<any, any>, Error, any, unknown>;
+  mutate: UseMutateFunction<AxiosResponse<any, any>, Error, any, unknown>,
+  refetch?: any;
+  confirmLoading: boolean
 }) {
   const [form] = useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggleModal = () => {
     form.resetFields();
+    if(!isModalOpen){
+      refetch && refetch();
+    }
     setIsModalOpen((prev) => !prev);
   };
 
@@ -25,11 +32,13 @@ function CreateButton({
 
   const onError = () => message.error('ذخیره فرم با مشکل مواجه شد.');
 
-  const onSuccess = () => message.success('ذخیره فرم با موفقیت انجام شد');
+  const onSuccess = () => {
+    message.success('ذخیره فرم با موفقیت انجام شد');
+    handleToggleModal();
+  };
 
   const handleFinish = (values: any) => {
-    //mutate(values, { onSuccess, onError });
-    console.log({ values });
+    mutate(values, { onSuccess, onError });
   };
 
   return (
@@ -44,7 +53,7 @@ function CreateButton({
         onCancel={handleToggleModal}
         cancelText="لغو"
         okText="ذخیره"
-        confirmLoading={false}
+        confirmLoading={confirmLoading}
         centered
       >
         <Form form={form} onFinish={handleFinish}>

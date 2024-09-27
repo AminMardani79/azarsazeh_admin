@@ -1,6 +1,6 @@
 import { Button, Tag, Typography } from 'antd';
-import { Projects } from '../../../../types';
 import { DeleteOutlined } from '@ant-design/icons';
+import { Projects } from '../../../../types/project.types';
 
 export const useProjectsTableColumn = (toggleDeleteModal: (event: any)=> void) => {
   const COLUMNS = [
@@ -29,7 +29,7 @@ export const useProjectsTableColumn = (toggleDeleteModal: (event: any)=> void) =
           style={{ marginBottom: 0 }}
         >
           {categories.map(item=> {
-            return <Tag color="blue">{item.title}</Tag>
+            return <Tag color="blue" key={item.title}>{item.title}</Tag>
           })}
         </Typography.Paragraph>
       ),
