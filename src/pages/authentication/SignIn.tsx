@@ -32,14 +32,13 @@ export const SignInPage = () => {
   const { mutate, isPending } = useLogin();
 
   const onSuccess = (values: any) => {
-    console.log('Success:', values);
     const xAuthToken = values.data.token;
-    localStorage.setItem("xAuthToken", `Token ${xAuthToken}`);
+    localStorage.setItem('xAuthToken', `Token ${xAuthToken}`);
     message.open({
       type: 'success',
       content: 'ورود شما با موفقیت انجام شد',
     });
-    
+
     navigate(PATH_LANDING.root);
   };
 
@@ -73,7 +72,6 @@ export const SignInPage = () => {
           gap="middle"
           style={{ height: '100%', padding: '2rem' }}
         >
-          <Title className="m-0">ورود</Title>
           <Form
             name="sign-up-form"
             layout="vertical"
@@ -86,7 +84,9 @@ export const SignInPage = () => {
             onFinish={onFinish}
             autoComplete="off"
             requiredMark={false}
+            style={{ alignSelf: 'center' }}
           >
+            <Title className="m-0" style={{padding: "20px 0"}}>ورود</Title>
             <Row gutter={[8, 0]}>
               <Col xs={24}>
                 <Form.Item<FieldType>

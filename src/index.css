@@ -16,6 +16,10 @@ body {
   font-weight: 600;
 }
 
+.ant-input-password{
+  padding: 0 11px;
+}
+
 .ant-dropdown-menu-title-content{
   font-weight: 600;
 }

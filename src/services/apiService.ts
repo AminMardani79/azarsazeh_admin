@@ -28,6 +28,8 @@ apiService.interceptors.response.use(
     const { status } = error.response;
     if (status === 401) {
       // window.location.replace(PATH_AUTH.signin);
+      const event = new Event('logout');
+      window.dispatchEvent(event);
       message.error('نشست شما منقضی شد.');
       return Promise.reject(error);
     }

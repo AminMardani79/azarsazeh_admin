@@ -113,8 +113,12 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   }, []);
 
   useEffect(()=> {
+    window.addEventListener("logout", ()=> {
+      navigate(PATH_AUTH.signin);
+      localStorage.clear();
+    });
     if(!localStorage.getItem("xAuthToken")){
-      // navigate(PATH_AUTH.signin);
+      navigate(PATH_AUTH.signin);
     }
   }, [])
 
