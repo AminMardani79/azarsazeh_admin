@@ -21,18 +21,23 @@ const EditJobForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
+        title_en: data.title_en,
         location: data.location,
+        location_en: data.location_en,
         work_experiences: data.work_experiences,
+        work_experiences_en: data.work_experiences_en,
         education: data.education,
+        education_en: data.education_en,
         skills: data.skills,
+        skills_en: data.skills_en,
         category: { label: data.category.title, value: data.category.id },
       });
     }
   }, [data]);
 
   return (
-    <Row gutter={[10, 0]}>
-      <Col span={24} md={10}>
+    <Row gutter={[15, 0]}>
+      <Col span={24} md={12}>
         <Form.Item
           label="عنوان شغل"
           name="title"
@@ -41,7 +46,16 @@ const EditJobForm = ({
           <Input />
         </Form.Item>
       </Col>
-      <Col span={24} md={10}>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) عنوان شغل"
+          name="title_en"
+          rules={[{ required: true, message: 'لطفا عنوان شغل را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
         <Form.Item
           label="مکان"
           name="location"
@@ -50,7 +64,70 @@ const EditJobForm = ({
           <Input />
         </Form.Item>
       </Col>
-      <Col span={24} md={10}>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) مکان"
+          name="location_en"
+          rules={[{ required: true, message: 'لطفا مکان را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="تجربه کاری"
+          name="work_experiences"
+          rules={[{ required: true, message: 'لطفا تجربه کاری را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) تجربه کاری"
+          name="work_experiences_en"
+          rules={[{ required: true, message: 'لطفا تجربه کاری را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="تحصیلات"
+          name="education"
+          rules={[{ required: true, message: 'لطفا تحصیلات را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) تحصیلات"
+          name="education_en"
+          rules={[{ required: true, message: 'لطفا تحصیلات را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="توانایی ها"
+          name="skills"
+          rules={[{ required: true, message: 'لطفا توانایی ها را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) توانایی ها"
+          name="skills_en"
+          rules={[{ required: true, message: 'لطفا توانایی ها را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
         <Form.Item
           label="دسته بندی"
           name="category"
@@ -60,33 +137,6 @@ const EditJobForm = ({
             labelInValue
             options={categoryOptions}
           />
-        </Form.Item>
-      </Col>
-      <Col span={24} md={10}>
-        <Form.Item
-          label="تجربه کاری"
-          name="work_experiences"
-          rules={[{ required: true, message: 'لطفا تجربه کاری را وارد کنید.' }]}
-        >
-          <Input />
-        </Form.Item>
-      </Col>
-      <Col span={24} md={10}>
-        <Form.Item
-          label="تحصیلات"
-          name="education"
-          rules={[{ required: true, message: 'لطفا تحصیلات را وارد کنید.' }]}
-        >
-          <Input />
-        </Form.Item>
-      </Col>
-      <Col span={24} md={10}>
-        <Form.Item
-          label="توانایی ها"
-          name="skills"
-          rules={[{ required: true, message: 'لطفا توانایی ها را وارد کنید.' }]}
-        >
-          <Input />
         </Form.Item>
       </Col>
       <Col span={24}>

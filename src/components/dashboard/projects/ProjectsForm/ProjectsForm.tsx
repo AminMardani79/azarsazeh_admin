@@ -41,6 +41,29 @@ const ProjectsForm = ({
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) نام پروژه"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا نام پروژه را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="توضیحات"
+        name="content"
+        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+        className='text-area'
+      >
+        <TextArea rows={10} />
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) توضیحات"
+        name="content_en"
+        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+        className='text-area'
+      >
+        <TextArea rows={10} />
+      </Form.Item>
+      <Form.Item
         label="دسته بندی"
         name="categories"
         rules={[
@@ -52,13 +75,6 @@ const ProjectsForm = ({
           defaultValue={categoryOptions[0]}
           options={categoryOptions}
         />
-      </Form.Item>
-      <Form.Item
-        label="توضیحات"
-        name="content"
-        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
-      >
-        <TextArea rows={10} />
       </Form.Item>
       <Form.Item label="آلبوم عکس" name="images">
         <ImageUploder updateImages={handleUpdateImages} />

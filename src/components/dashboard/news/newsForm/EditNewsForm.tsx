@@ -24,8 +24,11 @@ const EditNewsForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
+        title_en: data.title_en,
         content: data.content,
+        content_en: data.content_en,
         meta_title: data.meta_title,
+        meta_title_en: data.meta_title_en,
       });
 
       if (data.image) {
@@ -48,8 +51,28 @@ const EditNewsForm = ({
       </Col>
       <Col span={24} md={12}>
         <Form.Item
+          label="(انگلیسی) عنوان خبر"
+          name="title_en"
+          rules={[{ required: true, message: 'لطفا عنوان خبر را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
           label="عنوان ثانویه"
           name="meta_title"
+          rules={[
+            { required: true, message: 'لطفا عنوان ثانویه را وارد کنید.' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) عنوان ثانویه"
+          name="meta_title_en"
           rules={[
             { required: true, message: 'لطفا عنوان ثانویه را وارد کنید.' },
           ]}
@@ -62,6 +85,17 @@ const EditNewsForm = ({
           label="توضیحات"
           name="content"
           rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+          className='text-area'
+        >
+          <TextArea rows={10} />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={24}>
+        <Form.Item
+          label="(انگلیسی) توضیحات"
+          name="content_en"
+          rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+          className='text-area'
         >
           <TextArea rows={10} />
         </Form.Item>

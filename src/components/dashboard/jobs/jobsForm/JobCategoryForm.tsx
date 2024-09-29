@@ -11,6 +11,13 @@ const JobCategoryForm = () => {
       >
         <Input />
       </Form.Item>
+      <Form.Item
+        label="(انگلیسی) عنوان دسته بندی"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا عنوان دسته بندی را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
     </>
   );
 };

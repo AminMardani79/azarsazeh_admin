@@ -30,6 +30,13 @@ const JobForm = ({ jobCategories }: { jobCategories: JobCategory[] }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) عنوان شغل"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا عنوان شغل را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="دسته بندی"
         name="category"
         rules={[{ required: true, message: 'لطفا دسته بندی را وارد کنید.' }]}
@@ -47,8 +54,22 @@ const JobForm = ({ jobCategories }: { jobCategories: JobCategory[] }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) مکان"
+        name="location_en"
+        rules={[{ required: true, message: 'لطفا مکان را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="سابقه کاری"
         name="work_experiences"
+        rules={[{ required: true, message: 'لطفا سابقه کاری را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) سابقه کاری"
+        name="work_experiences_en"
         rules={[{ required: true, message: 'لطفا سابقه کاری را وارد کنید.' }]}
       >
         <Input />
@@ -61,8 +82,22 @@ const JobForm = ({ jobCategories }: { jobCategories: JobCategory[] }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) تحصیلات"
+        name="education_en"
+        rules={[{ required: true, message: 'لطفا تحصیلات را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="مهارت ها"
         name="skills"
+        rules={[{ required: true, message: 'لطفا مهارت ها را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) مهارت ها"
+        name="skills_en"
         rules={[{ required: true, message: 'لطفا مهارت ها را وارد کنید.' }]}
       >
         <Input />

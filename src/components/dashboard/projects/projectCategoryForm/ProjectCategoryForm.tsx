@@ -24,6 +24,15 @@ const ProjectCategoriesForm = ({
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) نام دسته بندی"
+        name="title_en"
+        rules={[
+          { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
+        ]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         name="image"
         label="آپلود عکس"
         valuePropName="fileList"

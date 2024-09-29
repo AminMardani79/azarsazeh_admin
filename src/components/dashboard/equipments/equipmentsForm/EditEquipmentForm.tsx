@@ -74,6 +74,15 @@ const EditEquipmentForm = ({
       </Col>
       <Col span={24} md={12}>
         <Form.Item
+          label="(انگلیسی) نام تجهیزات"
+          name="title_en"
+          rules={[{ required: true, message: 'لطفا نام تجهیزات را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
           label="دسته بندی"
           name="categories"
           rules={[
@@ -88,6 +97,17 @@ const EditEquipmentForm = ({
           label="توضیحات"
           name="content"
           rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+          className='text-area'
+        >
+          <TextArea rows={10} />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={24}>
+        <Form.Item
+          label="(انگلیسی) توضیحات"
+          name="content_en"
+          rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+          className='text-area'
         >
           <TextArea rows={10} />
         </Form.Item>

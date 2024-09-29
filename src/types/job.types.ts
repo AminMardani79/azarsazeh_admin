@@ -7,11 +7,16 @@ export interface Job {
 
 export interface EditJob {
   title: string;
+  title_en: string;
   category: { title: string; id: string };
   location: string;
+  location_en: string;
   work_experiences: string;
+  work_experiences_en: string;
   education: string;
+  education_en: string;
   skills: string;
+  skills_en: string;
 }
 
 export interface JobCategory {
@@ -28,6 +33,7 @@ export interface JobRequest {
 
 export interface EditJobCategory {
   title: string;
+  title_en: string;
 }
 
 export interface CreateJobCategory {

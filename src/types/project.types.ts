@@ -23,8 +23,11 @@ export type CreateProject = {
 
 export type EditProject = {
   title: string;
+  title_en: string;
   meta_title: string;
+  meta_title_en: string;
   content: string;
+  content_en: string;
   images: { id: string; image: string }[];
   categories: { title: string; id: string };
 };

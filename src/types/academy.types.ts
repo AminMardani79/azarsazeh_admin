@@ -7,7 +7,9 @@ export interface AcademyArticle {
 
 export interface EditAcademyArticle {
   title: string;
+  title_en: string;
   content: string;
+  content_en: string;
   image: string;
 }
 

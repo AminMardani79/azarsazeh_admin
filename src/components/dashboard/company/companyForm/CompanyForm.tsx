@@ -17,11 +17,27 @@ const CompanyForm = ({ form }: { form: FormInstance }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) عنوان مطلب"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا عنوان مطلب را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="توضیحات مطلب"
         name="content"
         rules={[{ required: true, message: 'لطفا توضیحات مطلب را وارد کنید.' }]}
+        className='text-area'
       >
-        <TextArea />
+        <TextArea rows={10}/>
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) توضیحات مطلب"
+        name="content_en"
+        rules={[{ required: true, message: 'لطفا توضیحات مطلب را وارد کنید.' }]}
+        className='text-area'
+      >
+        <TextArea rows={10}/>
       </Form.Item>
       <Form.Item
         name="image"

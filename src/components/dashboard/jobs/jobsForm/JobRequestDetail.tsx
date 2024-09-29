@@ -37,7 +37,7 @@ function JobRequestDetail({
         </Form.Item>
       </Col>
       <Col span={24} md={24}>
-        <Form.Item label="متن پیام" name="message">
+        <Form.Item label="متن پیام" name="message" className='text-area'>
           <TextArea rows={10} disabled/>
         </Form.Item>
       </Col>

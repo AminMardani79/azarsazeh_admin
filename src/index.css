@@ -31,3 +31,29 @@ body {
 .ant-pagination-item {
   font-weight: 600 !important;
 }
+
+.ant-form-item-row{
+  flex-direction: column;
+  height: 60px;
+  .ant-form-item-label{
+    text-align: right;
+  }
+}
+
+.text-area{
+  height: 265px;
+}
+
+.ant-modal-body{
+  padding: 5px 0px 95px 0;
+}
+
+.create-form{
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+}
+
+.ant-select-in-form-item{
+  height: 44px;
+}

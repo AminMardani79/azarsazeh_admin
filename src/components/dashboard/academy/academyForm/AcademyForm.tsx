@@ -16,11 +16,29 @@ const AcademyForm = ({ form }: { form: FormInstance }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) نام مقاله"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا نام مقاله را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="توضیحات مقاله"
         name="content"
         rules={[
           { required: true, message: 'لطفا توضیحات مقاله را وارد کنید.' },
         ]}
+        className='text-area'
+      >
+        <TextArea rows={10}/>
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) توضیحات مقاله"
+        name="content_en"
+        rules={[
+          { required: true, message: 'لطفا توضیحات مقاله را وارد کنید.' },
+        ]}
+        className='text-area'
       >
         <TextArea rows={10}/>
       </Form.Item>

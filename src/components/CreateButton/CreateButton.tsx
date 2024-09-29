@@ -50,6 +50,7 @@ function CreateButton({
         {title}
       </Button>
       <Modal
+        width={700}
         title={title}
         open={isModalOpen}
         onOk={handleSubmitForm}
@@ -59,7 +60,7 @@ function CreateButton({
         confirmLoading={confirmLoading}
         centered
       >
-        <Form form={form} onFinish={handleFinish}>
+        <Form form={form} onFinish={handleFinish} className="create-form">
           {renderForm && renderForm(form)}
         </Form>
       </Modal>

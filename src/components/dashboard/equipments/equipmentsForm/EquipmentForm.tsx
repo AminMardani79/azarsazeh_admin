@@ -5,18 +5,24 @@ import ImageUploder from '../../../Uploader/ImageUploader';
 import { useEffect, useState } from 'react';
 import { EquipmentCategory } from '../../../../types/equipment.types';
 
-const EquipmentForm = ({form, categories}: {form: FormInstance, categories: EquipmentCategory[];}) => {
+const EquipmentForm = ({
+  form,
+  categories,
+}: {
+  form: FormInstance;
+  categories: EquipmentCategory[];
+}) => {
   const [categoryOptions, setCategoryOptions] = useState<
     { label: string; value: string }[]
   >([]);
-  const {handleUpdateImages} = useUpdateImages(form, "images")
+  const { handleUpdateImages } = useUpdateImages(form, 'images');
 
   useEffect(() => {
     if (categories && categories.length > 0) {
       const options = categories.map((category) => {
         return {
           label: category.title,
-          value: category.id
+          value: category.id,
         };
       });
 
@@ -33,6 +39,29 @@ const EquipmentForm = ({form, categories}: {form: FormInstance, categories: Equi
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) نام تجهیزات"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا نام تجهیزات را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="توضیحات"
+        name="content"
+        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+        className="text-area"
+      >
+        <TextArea rows={10} />
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) توضیحات"
+        name="content_en"
+        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+        className="text-area"
+      >
+        <TextArea rows={10} />
+      </Form.Item>
+      <Form.Item
         label="دسته بندی"
         name="categories"
         rules={[
@@ -44,13 +73,6 @@ const EquipmentForm = ({form, categories}: {form: FormInstance, categories: Equi
           defaultValue={categoryOptions[0]}
           options={categoryOptions}
         />
-      </Form.Item>
-      <Form.Item
-        label="توضیحات"
-        name="content"
-        rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
-      >
-        <TextArea rows={10} />
       </Form.Item>
       <Form.Item label="آلبوم عکس" name="images">
         <ImageUploder updateImages={handleUpdateImages} />

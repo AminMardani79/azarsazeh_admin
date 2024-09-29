@@ -17,16 +17,31 @@ const EditJobCategoryForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
+        title_en: data.title_en
       });
     }
   }, [data]);
 
   return (
-    <Row>
+    <Row gutter={[15, 0]}>
       <Col span={24} md={10}>
         <Form.Item
           label="عنوان دسته بندی شغل"
           name="title"
+          rules={[
+            {
+              required: true,
+              message: 'لطفا عنوان دسته بندی شغل را وارد کنید.',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={10}>
+        <Form.Item
+          label="(انگلیسی) عنوان دسته بندی شغل"
+          name="title_en"
           rules={[
             {
               required: true,

@@ -23,6 +23,7 @@ const EditEquipmentCategoryForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
+        title_en: data.title_en
       });
 
       if (data.image) {
@@ -33,11 +34,22 @@ const EditEquipmentCategoryForm = ({
   }, [data]);
 
   return (
-    <Row>
+    <Row gutter={[15, 0]}>
       <Col span={24} md={12}>
         <Form.Item
           label="نام دسته بندی تجهیزات"
           name="title"
+          rules={[
+            { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) نام دسته بندی تجهیزات"
+          name="title_en"
           rules={[
             { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
           ]}

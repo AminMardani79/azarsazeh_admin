@@ -24,6 +24,9 @@ const EditAcademyForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
+        title_en: data.title_en,
+        content: data.content,
+        content_en: data.content_en,
       });
 
       if (data.image) {
@@ -34,11 +37,20 @@ const EditAcademyForm = ({
   }, [data]);
 
   return (
-    <Row>
+    <Row gutter={[15, 0]}>
       <Col span={24} md={10}>
         <Form.Item
           label="نام مقاله"
           name="title"
+          rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={10}>
+        <Form.Item
+          label="(انگلیسی) نام مقاله"
+          name="title_en"
           rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
         >
           <Input />
@@ -51,6 +63,19 @@ const EditAcademyForm = ({
           rules={[
             { required: true, message: 'لطفا توضیحات خبر را وارد کنید.' },
           ]}
+          className='text-area'
+        >
+          <TextArea rows={10} />
+        </Form.Item>
+      </Col>
+      <Col span={24}>
+        <Form.Item
+          label="(انگلیسی) توضیحات مقاله"
+          name="content_en"
+          rules={[
+            { required: true, message: 'لطفا توضیحات خبر را وارد کنید.' },
+          ]}
+          className='text-area'
         >
           <TextArea rows={10} />
         </Form.Item>

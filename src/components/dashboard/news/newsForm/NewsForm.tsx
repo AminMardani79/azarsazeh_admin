@@ -16,8 +16,22 @@ const NewsForm = ({ form }: { form: FormInstance }) => {
         <Input />
       </Form.Item>
       <Form.Item
+        label="(انگلیسی) عنوان خبر"
+        name="title_en"
+        rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
         label="عنوان ثانویه خبر"
         name="meta_title"
+        rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) عنوان ثانویه خبر"
+        name="meta_title_en"
         rules={[{ required: true, message: 'لطفا نام خبر را وارد کنید.' }]}
       >
         <Input />
@@ -26,6 +40,15 @@ const NewsForm = ({ form }: { form: FormInstance }) => {
         label="توضیحات خبر"
         name="content"
         rules={[{ required: true, message: 'لطفا توضیحات خبر را وارد کنید.' }]}
+        className='text-area'
+      >
+        <TextArea rows={10}/>
+      </Form.Item>
+      <Form.Item
+        label="(انگلیسی) توضیحات خبر"
+        name="content_en"
+        rules={[{ required: true, message: 'لطفا توضیحات خبر را وارد کنید.' }]}
+        className='text-area'
       >
         <TextArea rows={10}/>
       </Form.Item>

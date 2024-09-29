@@ -44,7 +44,7 @@ const ContactUsDetailForm = ({data}: {data: ContactUs}) => {
           </Form.Item>
         </Col>
         <Col span={24}>
-          <Form.Item label="توضیحات" name="message">
+          <Form.Item label="توضیحات" name="message" className='text-area'>
             <TextArea disabled rows={10} />
           </Form.Item>
         </Col>

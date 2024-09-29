@@ -44,8 +44,10 @@ const EditProjectForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
-        content: data.content,
+        title_en: data.title_en,
+        content_en: data.content_en,
         meta_title: data.meta_title,
+        meta_title_en: data.meta_title_en,
         categories: generateCategoryOptions(data.categories)[0],
       });
 
@@ -64,7 +66,7 @@ const EditProjectForm = ({
 
   return (
     <Row gutter={[15, 0]}>
-      <Col span={24} md={8}>
+      <Col span={24} md={12}>
         <Form.Item
           label="نام پروژه"
           name="title"
@@ -73,8 +75,22 @@ const EditProjectForm = ({
           <Input />
         </Form.Item>
       </Col>
-      <Col span={24} md={8}>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) نام پروژه"
+          name="title_en"
+          rules={[{ required: true, message: 'لطفا نام پروژه را وارد کنید.' }]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
         <Form.Item label="عنوان ثانویه" name="meta_title">
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item label="(انگلیسی) عنوان ثانویه" name="meta_title_en">
           <Input />
         </Form.Item>
       </Col>
@@ -94,6 +110,17 @@ const EditProjectForm = ({
           label="توضیحات"
           name="content"
           rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+          className='text-area'
+        >
+          <TextArea rows={10} />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={24}>
+        <Form.Item
+          label="(انگلیسی) توضیحات"
+          name="content_en"
+          rules={[{ required: true, message: 'لطفا توضیحات را وارد کنید.' }]}
+          className='text-area'
         >
           <TextArea rows={10} />
         </Form.Item>

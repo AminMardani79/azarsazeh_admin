@@ -13,6 +13,7 @@ export interface EditEquipment {
 
 export interface EditEquipmentCategory {
   title: string;
+  title_en: string;
   image: string;
 }
 

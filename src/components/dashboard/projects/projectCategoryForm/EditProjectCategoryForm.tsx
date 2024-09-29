@@ -10,7 +10,7 @@ const EditProjectCategoryForm = ({
   confirmLoading,
 }: {
   form: FormInstance<any>;
-  data: { id: string; title: string; image: string };
+  data: { id: string; title: string; title_en: string; image: string };
   confirmLoading: boolean;
 }) => {
   const { handleUpdateImages } = useUpdateImages(form, 'image');
@@ -22,6 +22,7 @@ const EditProjectCategoryForm = ({
     if (data) {
       form.setFieldsValue({
         title: data.title,
+        title_en: data.title_en,
       });
 
       if (data.image) {
@@ -32,11 +33,22 @@ const EditProjectCategoryForm = ({
   }, [data]);
 
   return (
-    <Row>
-      <Col span={24} md={10}>
+    <Row gutter={[15, 0]}>
+      <Col span={24} md={12}>
         <Form.Item
           label="نام دسته بندی"
           name="title"
+          rules={[
+            { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+      </Col>
+      <Col span={24} md={12}>
+        <Form.Item
+          label="(انگلیسی) نام دسته بندی"
+          name="title_en"
           rules={[
             { required: true, message: 'لطفا نام دسته بندی را وارد کنید.' },
           ]}
