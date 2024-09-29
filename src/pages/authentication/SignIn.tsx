@@ -95,6 +95,7 @@ export const SignInPage = () => {
                   rules={[
                     { required: true, message: 'لطفا نام کاربری را وارد کنید' },
                   ]}
+                  className='signIn-field'
                 >
                   <Input />
                 </Form.Item>
@@ -106,6 +107,7 @@ export const SignInPage = () => {
                   rules={[
                     { required: true, message: 'لطفا رمز عبور را وارد کنید' },
                   ]}
+                  className='signIn-field'
                 >
                   <Input.Password />
                 </Form.Item>

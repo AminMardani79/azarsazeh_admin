@@ -32,11 +32,21 @@ body {
   font-weight: 600 !important;
 }
 
+.ant-form-item{
+  height: 60px;
+}
+
 .ant-form-item-row{
   flex-direction: column;
   height: 60px;
   .ant-form-item-label{
     text-align: right;
+  }
+}
+
+.signIn-field{
+  .ant-form-item-row{
+    flex-direction: row !important;
   }
 }
 

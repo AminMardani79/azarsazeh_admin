@@ -1,12 +1,14 @@
 import { message } from 'antd';
 import axios from 'axios';
 
+
 const apiService = axios.create({
   baseURL: 'http://37.32.27.22/api',
 });
 
 apiService.interceptors.request.use(
   function (config) {
+    config.headers['accept-language'] = '*'
     const xAuthToken = localStorage.getItem('xAuthToken');
     if (xAuthToken) {
       config.headers['Authorization'] = xAuthToken;

@@ -9,6 +9,9 @@ import {
   theme,
   Tooltip,
   Switch,
+  Modal,
+  Form,
+  Input,
 } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ReactNode, useEffect, useRef, useState } from 'react';
@@ -33,7 +36,9 @@ import { NProgress } from '../../components';
 import { PATH_AUTH } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../../redux/theme/themeSlice.ts';
-import { useLogout } from '../../services/auth.api.ts';
+import { useChangePassword, useLogout } from '../../services/auth.api.ts';
+import { useForm } from 'antd/es/form/Form';
+import { generateResponseFormData } from '../../utils/index.ts';
 
 const { Content } = Layout;
 
@@ -49,6 +54,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const [collapsed, setCollapsed] = useState(true);
   const [navFill, setNavFill] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
+    useState(false);
+  const [form] = useForm();
   const location = useLocation();
   const navigate = useNavigate();
   const nodeRef = useRef(null);
@@ -57,6 +65,8 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
   const { mytheme } = useSelector((state: any) => state.theme);
 
   const { mutate } = useLogout();
+
+  const { mutate: changePassword, isPending } = useChangePassword();
 
   const onSuccess = () => {
     localStorage.clear();
@@ -74,18 +84,35 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
     });
   };
 
+  const onChangePasswordSuccess = () => {
+    message.open({
+      type: 'success',
+      content: 'تغییر رمز با موفقیت انجام شد.',
+    });
+    setIsChangePasswordModalOpen(false);
+    form.resetFields();
+  }
+
+  const handleFinish = (values: any) => {
+    const formData = generateResponseFormData(values);
+    changePassword(formData, { onSuccess: onChangePasswordSuccess });
+  };
+
+  const handleSubmitForm = () => form.submit();
+
   const items: MenuProps['items'] = [
     {
       key: 'user-profile-link',
-      label: 'profile',
+      label: 'ویرایش رمز',
       icon: <UserOutlined />,
+      onClick: () => setIsChangePasswordModalOpen(true),
     },
     {
       type: 'divider',
     },
     {
       key: 'user-logout-link',
-      label: 'logout',
+      label: 'خروج',
       icon: <LogoutOutlined />,
       danger: true,
       onClick: () => {
@@ -112,15 +139,15 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
     });
   }, []);
 
-  useEffect(()=> {
-    window.addEventListener("logout", ()=> {
+  useEffect(() => {
+    window.addEventListener('logout', () => {
       navigate(PATH_AUTH.signin);
       localStorage.clear();
     });
-    if(!localStorage.getItem("xAuthToken")){
+    if (!localStorage.getItem('xAuthToken')) {
       navigate(PATH_AUTH.signin);
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -250,6 +277,73 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
               background: 'none',
             }}
           />
+          <Modal
+            width={700}
+            title="ویرایش رمز عبور"
+            open={isChangePasswordModalOpen}
+            onOk={handleSubmitForm}
+            onCancel={() => {
+              setIsChangePasswordModalOpen(false);
+              form.resetFields();
+            }}
+            cancelText="لغو"
+            okText="ذخیره"
+            confirmLoading={isPending}
+            centered
+          >
+            <Form form={form} onFinish={handleFinish}>
+              <Form.Item
+                label="رمز عبور فعلی"
+                name="old_password"
+                rules={[
+                  {
+                    required: true,
+                    message: 'لطفا رمزعبور فعلی خود را وارد کنید',
+                  },
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
+              <Form.Item
+                label="رمز عبور جدید"
+                name="new_password"
+                rules={[
+                  {
+                    required: true,
+                    pattern:
+                      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/,
+                    message:
+                      'لازم است رمز عبور حداقل 8 کاراکتر شامل حروف کوچک, حروف بزرگ, عدد و کاراکتر باشد',
+                  },
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
+              <Form.Item
+                label="تکرار رمز عبور جدید"
+                name="confirm_new_password"
+                rules={[
+                  {
+                    message: 'رمزعبور وارد شده با رمزعبور جدید یکسان نیست',
+                  },
+                  {
+                    validator: (_, value, callback) => {
+                      if (
+                        !value ||
+                        value !== form.getFieldValue('new_password')
+                      ) {
+                        callback('رمزعبور وارد شده با رمزعبور جدید یکسان نیست');
+                      } else {
+                        callback();
+                      }
+                    },
+                  },
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
+            </Form>
+          </Modal>
         </Layout>
       </Layout>
     </>
